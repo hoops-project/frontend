@@ -22,7 +22,7 @@ export default function BasicButton({
   $borderColor,
 }: BasicButtonProps) {
   return (
-    <S.TestButton
+    <S.BasicButton
       type={type}
       onClick={onClick}
       $bgColor={$bgColor}
@@ -31,6 +31,6 @@ export default function BasicButton({
       $borderColor={$borderColor}
     >
       {children}
-    </S.TestButton>
+    </S.BasicButton>
   )
 }
