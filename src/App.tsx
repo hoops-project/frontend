@@ -1,11 +1,13 @@
-import Main from './pages/Main.tsx'
-import { S } from './App.style.ts'
+import Header from './layout/Header/Header.tsx'
+import MainRouter from './routes/MainRouter.tsx'
+import Footer from './layout/Footer/Footer.tsx'
 
 export default function App() {
   return (
-    <div>
-      <S.Test>ddd</S.Test>
-      <Main />
-    </div>
+    <>
+      <Header />
+      <MainRouter />
+      <Footer />
+    </>
   )
 }
