@@ -1,4 +1,4 @@
-import { S } from './BasicInput.style.ts'
+import { S } from './AuthInput.style.ts'
 import { Control, useController } from 'react-hook-form'
 import { InputName, SignIn, SignUp } from '../../../types/signIn.ts'
 
@@ -9,7 +9,7 @@ interface InputProps {
   control: Control<SignIn & SignUp>
 }
 
-export default function BasicInput({
+export default function AuthInput({
   type,
   placeholder,
   name,
