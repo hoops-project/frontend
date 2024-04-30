@@ -9,12 +9,14 @@ interface SelectBoxSmallProps {
   name: string
   options: string[]
   size?: 'small' | 'medium'
+  width?: number
 }
 
 export default function SelectBox({
   name,
-  options,
-  size,
+  options = [],
+  size = 'medium',
+  width = 900,
 }: SelectBoxSmallProps) {
   const [age, setAge] = useState('')
 
@@ -24,30 +26,23 @@ export default function SelectBox({
 
   return (
     <S.SelectBox>
-      <FormControl sx={{ m: 1, minWidth: 80 }} size={size}>
-        <InputLabel
-          id='demo-simple-select-autowidth-label'
-          style={{ fontSize: 'inherit' }}
-        >
-          {name}
-        </InputLabel>
+      <FormControl sx={{ m: 1, width: width }} size={size} fullWidth>
+        <InputLabel>{name}</InputLabel>
         <Select
           style={{
-            fontSize: 'inherit',
             borderRadius: `${size === 'small' ? '2rem' : ''}`,
           }}
-          labelId='demo-simple-select-autowidth-label'
-          id={name}
+          labelId='demo-simple-select-label'
+          id='demo-simple-select'
           value={age}
+          label='Age'
           onChange={handleChange}
-          autoWidth
-          label={name}
         >
           {options.map((option) => (
             <MenuItem
               key={option}
-              value={option}
               style={{ fontSize: '1.4rem' }}
+              value={option}
             >
               {option}
             </MenuItem>
