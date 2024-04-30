@@ -10,6 +10,7 @@ interface SelectBoxSmallProps {
   options: string[]
   size?: 'small' | 'medium'
   width?: number
+  fontSize?: number
 }
 
 export default function SelectBox({
@@ -17,6 +18,7 @@ export default function SelectBox({
   options = [],
   size = 'medium',
   width = 900,
+  fontSize = 1.4,
 }: SelectBoxSmallProps) {
   const [age, setAge] = useState('')
 
@@ -27,9 +29,10 @@ export default function SelectBox({
   return (
     <S.SelectBox>
       <FormControl sx={{ m: 1, width: width }} size={size} fullWidth>
-        <InputLabel>{name}</InputLabel>
+        <InputLabel style={{ fontSize: `${fontSize}rem` }}>{name}</InputLabel>
         <Select
           style={{
+            fontSize: `${fontSize}rem`,
             borderRadius: `${size === 'small' ? '2rem' : ''}`,
           }}
           labelId='demo-simple-select-label'
@@ -41,7 +44,7 @@ export default function SelectBox({
           {options.map((option) => (
             <MenuItem
               key={option}
-              style={{ fontSize: '1.4rem' }}
+              style={{ fontSize: `${fontSize}rem` }}
               value={option}
             >
               {option}
