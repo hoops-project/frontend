@@ -1,5 +1,36 @@
 import { S } from './BasicButton.style.ts'
+import React from 'react'
+import { theme } from '../../../styles/theme.ts'
 
-export default function BasicButton() {
-  return <S.TestButton>예시 버튼</S.TestButton>
+export interface BasicButtonProps {
+  children: React.ReactNode
+  type: 'button' | 'submit' | 'reset'
+  onClick?: () => void
+  $bgColor: string
+  $hoverBgColor?: string
+  $fontcolor?: string
+  $borderColor?: string
+}
+
+export default function BasicButton({
+  children,
+  type = 'button',
+  onClick,
+  $bgColor = theme.colors.blue,
+  $hoverBgColor,
+  $fontcolor = theme.colors.black,
+  $borderColor,
+}: BasicButtonProps) {
+  return (
+    <S.TestButton
+      type={type}
+      onClick={onClick}
+      $bgColor={$bgColor}
+      $hoverBgColor={$hoverBgColor}
+      $fontcolor={$fontcolor}
+      $borderColor={$borderColor}
+    >
+      {children}
+    </S.TestButton>
+  )
 }
