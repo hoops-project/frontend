@@ -10,6 +10,7 @@ export interface SignUp {
   password_confirm: string
   name: string
   nick_name: string
+  birthday: string
 }
 
 export type InputName =
@@ -19,3 +20,4 @@ export type InputName =
   | 'name'
   | 'id'
   | 'nick_name'
+  | 'birthday'
