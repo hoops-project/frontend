@@ -1,12 +1,12 @@
 import BottomText from '../BottomText/BottomText.tsx'
-import TopText from '../TopText/TopText.tsx'
-import BasicInput from '../BasicInput/BasicInput'
+import TopTextPw from '../TopText/TopText.tsx'
+import BasicInputPw from '../BasicInput/BasicInputPw.tsx'
 
 export default function PasswordSerachForm() {
   return (
     <>
-      <TopText />
-      <BasicInput />
+      <TopTextPw />
+      <BasicInputPw />
       <BottomText />
     </>
   )
