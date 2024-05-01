@@ -1,5 +1,5 @@
 import { S } from './Main.style.ts'
-import Modal from '../../layout/modal/Modal.tsx'
+import Modal from '../../components/modal/Modal.tsx'
 
 export default function Main() {
   return (
