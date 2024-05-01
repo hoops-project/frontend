@@ -7,8 +7,11 @@ import { theme } from '../../styles/theme.ts'
 import { SignInType, SignUpType } from '../../types/signIn.ts'
 import checkMark from '../../assets/check-mark.webp'
 import { useValid } from '../../hooks/useValid.ts'
+import { useState } from 'react'
 
 export default function SignIn() {
+  // TODO: 서버 연결 후 서버에서 내려온 에러메시지 담아서 출력할것
+  const [signInError] = useState<string>('')
   const { handleSubmit, control, watch } = useForm<SignInType & SignUpType>({
     defaultValues: {
       email: '',
@@ -31,9 +34,12 @@ export default function SignIn() {
   return (
     <CS.DefaultContainer>
       <S.Wrapper>
+        <S.ErrorWrapper>
+          {signInError !== '' && <p>{signInError}</p>}
+        </S.ErrorWrapper>
         <form onSubmit={handleSubmit(handleSignIn)}>
           <div>
-            <S.ErrorWrapper>
+            <S.ValidWrapper>
               <S.InputTitle>아이디</S.InputTitle>
               {!isValidEmail && email ? (
                 <span>이메일 형식이 올바르지 않습니다.</span>
@@ -41,7 +47,7 @@ export default function SignIn() {
               {isValidEmail && email ? (
                 <img src={checkMark} alt={'확인표시'} />
               ) : null}
-            </S.ErrorWrapper>
+            </S.ValidWrapper>
             <AuthInput
               type={'email'}
               name={'email'}
@@ -50,7 +56,7 @@ export default function SignIn() {
             />
           </div>
           <div>
-            <S.ErrorWrapper>
+            <S.ValidWrapper>
               <S.InputTitle>비밀번호</S.InputTitle>
               {!isValidPassword && password ? (
                 <span>
@@ -60,7 +66,7 @@ export default function SignIn() {
               {isValidPassword && password ? (
                 <img src={checkMark} alt={'확인표시'} />
               ) : null}
-            </S.ErrorWrapper>
+            </S.ValidWrapper>
             <AuthInput
               type={'password'}
               name={'password'}

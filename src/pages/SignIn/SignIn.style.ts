@@ -25,7 +25,7 @@ export const S = {
     padding-bottom: 1rem;
     color: ${(props) => props.theme.colors.gray_500};
   `,
-  ErrorWrapper: styled.div`
+  ValidWrapper: styled.div`
     display: flex;
     & > span {
       font-size: 1.2rem;
@@ -39,5 +39,13 @@ export const S = {
       width: 1.7rem;
       height: 1.7rem;
     }
+  `,
+  ErrorWrapper: styled.div`
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: red;
   `,
 }

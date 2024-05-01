@@ -23,7 +23,6 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
         border: 0;
-        font-size: 100%;
         font: inherit;
         vertical-align: baseline;
     }
@@ -49,7 +48,6 @@ export const GlobalStyle = createGlobalStyle`
     blockquote:before, blockquote:after,
     q:before, q:after {
         content: '';
-        content: none;
     }
 
     table {
