@@ -2,7 +2,7 @@ import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
-import { useState } from 'react'
+import React from 'react'
 import { S } from './SelectBox.style.ts'
 
 interface SelectBoxSmallProps {
@@ -11,6 +11,8 @@ interface SelectBoxSmallProps {
   size?: 'small' | 'medium'
   width?: number
   fontSize?: number
+  value?: string
+  setValue: React.Dispatch<React.SetStateAction<string>>
 }
 
 export default function SelectBox({
@@ -19,11 +21,11 @@ export default function SelectBox({
   size = 'medium',
   width = 900,
   fontSize = 1.4,
+  value,
+  setValue,
 }: SelectBoxSmallProps) {
-  const [age, setAge] = useState('')
-
   const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value)
+    setValue(event.target.value)
   }
 
   return (
@@ -37,7 +39,7 @@ export default function SelectBox({
           }}
           labelId='demo-simple-select-label'
           id='demo-simple-select'
-          value={age}
+          value={value}
           label='Age'
           onChange={handleChange}
         >

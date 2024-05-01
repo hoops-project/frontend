@@ -10,6 +10,7 @@ export interface BasicButtonProps {
   $hoverBgColor?: string
   $fontcolor?: string
   $borderColor?: string
+  $width?: string
 }
 
 export default function BasicButton({
@@ -20,6 +21,7 @@ export default function BasicButton({
   $hoverBgColor,
   $fontcolor = theme.colors.black,
   $borderColor,
+  $width,
 }: BasicButtonProps) {
   return (
     <S.BasicButton
@@ -29,6 +31,7 @@ export default function BasicButton({
       $hoverBgColor={$hoverBgColor}
       $fontcolor={$fontcolor}
       $borderColor={$borderColor}
+      $width={$width}
     >
       {children}
     </S.BasicButton>

@@ -3,7 +3,7 @@ import { BasicButtonProps } from './BasicButton.tsx'
 
 export const S = {
   BasicButton: styled.button<BasicButtonProps>`
-    width: 100%;
+    width: ${(props) => props.$width};
     font-size: 1.4rem;
     color: ${(props) => props.$fontcolor};
     background-color: ${(props) => props.$bgColor};
