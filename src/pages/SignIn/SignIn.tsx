@@ -8,6 +8,7 @@ import { SignInType, SignUpType } from '../../types/signIn.ts'
 import checkMark from '../../assets/check-mark.webp'
 import { useValid } from '../../hooks/useValid.ts'
 import { useState } from 'react'
+import kakao from '../../assets/kakao.svg'
 
 export default function SignIn() {
   // TODO: 서버 연결 후 서버에서 내려온 에러메시지 담아서 출력할것
@@ -74,6 +75,10 @@ export default function SignIn() {
               placeholder={'비밀번호를 입력해 주세요.'}
             />
           </div>
+          <S.RememberId>
+            <input type='checkbox' />
+            <p>아이디 저장</p>
+          </S.RememberId>
           <div>
             <BasicButton
               type={'submit'}
@@ -86,6 +91,30 @@ export default function SignIn() {
             </BasicButton>
           </div>
         </form>
+        <S.FindAccount>
+          <CS.Link to={'/account'}>
+            <span>아이디 찾기/</span>
+          </CS.Link>
+
+          <CS.Link to={'/password'}>
+            <span>비밀번호 찾기</span>
+          </CS.Link>
+          <CS.Link to={'/password'}>
+            <p>회원가입</p>
+          </CS.Link>
+        </S.FindAccount>
+        <S.Hr />
+        <BasicButton
+          type={'button'}
+          $bgColor={theme.colors.yellow}
+          $width={'100%'}
+          $height={'5rem'}
+        >
+          <S.OAuthTitle>
+            <S.KakaoIcon src={kakao} alt={'카카오 아이콘'} />
+            <p>카카오 로그인</p>
+          </S.OAuthTitle>
+        </BasicButton>
       </S.Wrapper>
     </CS.DefaultContainer>
   )

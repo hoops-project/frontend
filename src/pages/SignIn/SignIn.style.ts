@@ -11,12 +11,15 @@ export const S = {
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      & > div {
+
+      & > div:nth-child(1),
+      & > div:nth-child(2),
+      & > div:nth-child(4) {
         width: 100%;
-        margin: 2rem 0 2rem 0;
+        padding: 2rem 0 2rem 0;
       }
       & > div:last-of-type {
-        padding-top: 3rem;
+        padding-top: 2rem;
       }
     }
   `,
@@ -40,6 +43,18 @@ export const S = {
       height: 1.7rem;
     }
   `,
+  RememberId: styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+
+    & > p {
+      margin-left: 1rem;
+      margin-top: 0.2rem;
+      color: ${(props) => props.theme.colors.gray_500};
+    }
+  `,
   ErrorWrapper: styled.div`
     height: 3rem;
     display: flex;
@@ -47,5 +62,34 @@ export const S = {
     justify-content: center;
     font-weight: 600;
     color: red;
+  `,
+  FindAccount: styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.7rem 0 6rem 0;
+
+    & > a > span {
+      color: ${(props) => props.theme.colors.gray_500};
+    }
+
+    & > a > p {
+      margin-left: 2.5rem;
+      color: ${(props) => props.theme.colors.gray_500};
+    }
+  `,
+  Hr: styled.hr`
+    margin-bottom: 5rem;
+    height: 0.1rem;
+    border: 0;
+    background-color: ${(props) => props.theme.colors.gray_400};
+  `,
+  OAuthTitle: styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  `,
+  KakaoIcon: styled.img`
+    margin-right: 1rem;
   `,
 }
