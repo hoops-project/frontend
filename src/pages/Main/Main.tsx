@@ -1,11 +1,13 @@
 import { S } from './Main.style.ts'
-import Modal from '../../components/modal/Modal.tsx'
+import IdSearchForm from '../../components/IdSearchForm/IdSearchForm.tsx'
+import PasswordSerachForm from '../../components/PasswordSearchForm/PasswordSerachForm.tsx'
 
 export default function Main() {
   return (
     <S.Container>
       메인 페이지
-      <Modal />
+      <IdSearchForm />
+      <PasswordSerachForm />
     </S.Container>
   )
 }

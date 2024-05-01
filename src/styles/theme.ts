@@ -1,6 +1,7 @@
 export const theme = {
   colors: {
     blue: '#1570FF',
+    blue_100: '#C4CDD4',
     red: '#FF4D37',
     green: '#009E5C',
     yellow: '#FEE500',
@@ -13,6 +14,7 @@ export const theme = {
     gray_100: '#f2f3f4',
     white: '#ffffff',
     footer: '#FAFAFA',
+    purple: '#9F7DFF',
   },
   width: {
     default: '102.4rem',
