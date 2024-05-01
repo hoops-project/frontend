@@ -31,7 +31,6 @@ export const S = {
       color: #222;
       font-size: ${(props) => props.theme.font.fz_20};
       font-weight: bold;
-      line-height: 1.2rem;
     }
     & > .txt {
       color: ${(props) => props.theme.colors.gray_500};
