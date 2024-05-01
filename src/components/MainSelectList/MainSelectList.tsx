@@ -14,7 +14,7 @@ export default function MainSelectList({ selected }: Selected) {
         setValue={selected.setRegion}
       />
       <SelectBox
-        name={'마감 가리기'}
+        name={'마감'}
         options={['표시', '가리기']}
         size={'small'}
         width={100}
@@ -38,7 +38,7 @@ export default function MainSelectList({ selected }: Selected) {
         setValue={selected.setGamePlace}
       />
       <SelectBox
-        name={'경기 형식'}
+        name={'경기'}
         options={['3 vs 3', '4 vs 4', '5 vs 5']}
         size={'small'}
         width={100}

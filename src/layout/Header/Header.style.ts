@@ -5,6 +5,7 @@ export const S = {
     width: 100vw;
     height: 5.8rem;
     position: fixed;
+    z-index: 100;
     top: 0;
     left: 0;
     background-color: ${({ theme }) => theme.colors.white};
