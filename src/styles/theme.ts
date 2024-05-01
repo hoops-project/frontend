@@ -21,4 +21,10 @@ export const theme = {
     full: '100%',
     screen: '100vh',
   },
+  font: {
+    fz_20: '2rem',
+    fz_16: '1rem',
+    fz_18: '1.125rem',
+    fz_12: '1.2rem',
+  },
 }
