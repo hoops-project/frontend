@@ -16,32 +16,33 @@ export const S = {
     position: absolute;
     top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%);
     width: 25rem;
     height: 15rem;
-    background-color: #fff;
+    background-color: ${(props) => props.theme.colors.white};
     padding: 1.875rem;
     text-align: center;
     z-index: 1;
-    display: flex;
     display: flex;
     flex-direction: column;
     gap: 30px;
     border-radius: 1rem;
     & > .tit {
       color: #222;
-      font-size: 2rem;
+      font-size: ${(props) => props.theme.font.fz_20};
       font-weight: bold;
+      line-height: 1.2rem;
     }
     & > .txt {
-      color: #888888;
-      font-size: 1rem;
+      color: ${(props) => props.theme.colors.gray_500};
+      font-size: ${(props) => props.theme.font.fz_18};
       font-weight: bold;
     }
     & button {
-      background-color: #1570ff;
+      background-color: ${(props) => props.theme.colors.blue};
       border-radius: 2rem;
-      color: #fff;
-      font-size: 1.2rem;
+      color: ${(props) => props.theme.colors.white};
+      font-size: ${(props) => props.theme.font.fz_18};
       font-weight: bold;
       border: none;
       border-radius: 0.5rem;
