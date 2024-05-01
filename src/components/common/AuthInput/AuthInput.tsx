@@ -1,12 +1,12 @@
 import { S } from './AuthInput.style.ts'
 import { Control, useController } from 'react-hook-form'
-import { InputName, SignIn, SignUp } from '../../../types/signIn.ts'
+import { InputName, SignInType, SignUpType } from '../../../types/signIn.ts'
 
 interface InputProps {
   type: 'text' | 'password' | 'email'
   placeholder?: string
   name: InputName
-  control: Control<SignIn & SignUp>
+  control: Control<SignInType & SignUpType>
 }
 
 export default function AuthInput({

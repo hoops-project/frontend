@@ -1,9 +1,10 @@
 import styled from 'styled-components'
-import { BasicButtonProps } from './BasicButton.tsx'
+import { BasicButtonProps } from '../../../types/button.ts'
 
 export const S = {
   BasicButton: styled.button<BasicButtonProps>`
     width: ${(props) => props.$width};
+    height: ${(props) => props.$height};
     font-size: 1.4rem;
     color: ${(props) => props.$fontcolor};
     background-color: ${(props) => props.$bgColor};

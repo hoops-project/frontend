@@ -1,9 +1,9 @@
-export interface SignIn {
+export interface SignInType {
   id: string
   password: string
 }
 
-export interface SignUp {
+export interface SignUpType {
   id: string
   email: string
   password: string

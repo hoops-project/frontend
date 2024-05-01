@@ -4,6 +4,7 @@ export const GlobalStyle = createGlobalStyle`
     html {
         font-size: 10px;
         font-family: 'Noto Sans', 'Noto Sans KR', sans-serif;
+        box-sizing: border-box;
     }
 
     body, div, span, applet, object, iframe,
