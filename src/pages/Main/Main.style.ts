@@ -13,4 +13,7 @@ export const S = {
       padding: 5rem 0 5rem 0;
     }
   `,
+  Option: styled.div`
+    display: flex;
+  `,
 }
