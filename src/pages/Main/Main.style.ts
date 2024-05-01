@@ -8,5 +8,9 @@ export const S = {
     height: fit-content;
     max-width: ${(props) => props.theme.width.default};
     min-height: ${(props) => props.theme.height.screen};
+
+    & > div {
+      padding: 5rem 0 5rem 0;
+    }
   `,
 }
