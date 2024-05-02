@@ -6,19 +6,9 @@ import {
 import SelectButton from '../SelectButton/SelectButton.tsx'
 import { theme } from '../../../styles/theme.ts'
 import { S } from './UserInfoSelect.style.ts'
+import { StyleSelectedProps } from '../../../types/select.ts'
 
-interface SelectedProps {
-  selected: {
-    handleGenderSelect: (index: number) => void
-    handleStyleSelect: (index: number) => void
-    handleAbilitiesSelect: (index: number) => void
-    genderSelected: number
-    styleSelected: number
-    abilitiesSelected: number
-  }
-}
-
-export default function UserInfoSelect({ selected }: SelectedProps) {
+export default function UserInfoSelect({ selected }: StyleSelectedProps) {
   return (
     <S.SelectSection>
       <>
