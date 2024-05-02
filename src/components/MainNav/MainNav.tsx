@@ -9,7 +9,7 @@ import { CS } from '../../styles/commonStyle.ts'
 export default function MainNav() {
   return (
     <S.NavContainer>
-      <CS.Link to={'/'}>
+      <CS.Link to={'/add-game'}>
         <div>
           <img src={makeGroup} alt={'모임 추가'} />
           <p>모임 추가</p>
