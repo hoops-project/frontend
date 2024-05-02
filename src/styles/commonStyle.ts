@@ -6,4 +6,12 @@ export const CS = {
     text-decoration-line: none;
     color: ${({ theme }) => theme.colors.black};
   `,
+  DefaultContainer: styled.div`
+    margin: 0 auto;
+    padding-top: 6rem;
+    background-color: ${(props) => props.theme.colors.white};
+    height: fit-content;
+    max-width: ${(props) => props.theme.width.default};
+    min-height: ${(props) => props.theme.height.screen};
+  `,
 }

@@ -28,12 +28,9 @@ export const S = {
     display: flex;
     align-items: center;
 
-    & > img:first-of-type {
-      cursor: pointer;
-      margin-right: 1.5rem;
-    }
-    & > img:last-of-type {
-      cursor: pointer;
+    & > a > img:first-of-type {
+      margin-right: 2rem;
+      margin-top: 0.5rem;
     }
   `,
 }

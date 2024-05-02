@@ -1,13 +1,14 @@
-export interface SignIn {
+export interface SignInType {
   id: string
   password: string
+  rememberMe: boolean
 }
 
-export interface SignUp {
+export interface SignUpType {
   id: string
   email: string
   password: string
-  password_confirm: string
+  passwordConfirm: string
   name: string
   nick_name: string
   birthday: string
@@ -15,9 +16,10 @@ export interface SignUp {
 
 export type InputName =
   | 'password'
-  | 'password_confirm'
+  | 'passwordConfirm'
   | 'email'
   | 'name'
   | 'id'
   | 'nick_name'
   | 'birthday'
+  | 'rememberMe'

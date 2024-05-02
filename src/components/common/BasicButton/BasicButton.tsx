@@ -1,17 +1,6 @@
 import { S } from './BasicButton.style.ts'
-import React from 'react'
 import { theme } from '../../../styles/theme.ts'
-
-export interface BasicButtonProps {
-  children: React.ReactNode
-  type: 'button' | 'submit' | 'reset'
-  onClick?: () => void
-  $bgColor: string
-  $hoverBgColor?: string
-  $fontcolor?: string
-  $borderColor?: string
-  $width?: string
-}
+import { BasicButtonProps } from '../../../types/button.ts'
 
 export default function BasicButton({
   children,
@@ -22,6 +11,7 @@ export default function BasicButton({
   $fontcolor = theme.colors.black,
   $borderColor,
   $width,
+  $height,
 }: BasicButtonProps) {
   return (
     <S.BasicButton
@@ -32,6 +22,7 @@ export default function BasicButton({
       $fontcolor={$fontcolor}
       $borderColor={$borderColor}
       $width={$width}
+      $height={$height}
     >
       {children}
     </S.BasicButton>
