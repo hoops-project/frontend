@@ -33,6 +33,9 @@ export const VALID_RULES = {
       },
     }
   },
+  ID: {
+    required: '아이디를 입력해 주세요',
+  },
   BIRTHDAY: {
     required: '생년월일을 입력해 주세요',
     validate: {
@@ -40,5 +43,11 @@ export const VALID_RULES = {
         /^(19|20)\d\d(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])$/.test(value) ||
         '올바른 생일 형식이 아닙니다.',
     },
+  },
+  NAME: {
+    required: '이름을 입력해 주세요',
+  },
+  NICKNAME: {
+    required: '닉네임을 입력해 주세요',
   },
 }

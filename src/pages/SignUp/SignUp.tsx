@@ -6,7 +6,7 @@ import AuthInput from '../../components/common/AuthInput/AuthInput.tsx'
 import { VALID_RULES } from '../../constants/validRules.ts'
 import { theme } from '../../styles/theme.ts'
 import SelectButton from '../../components/common/SelectButton/SelectButton.tsx'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { abilities, gender, playStyle } from '../../constants/signUpSelect.ts'
 import BasicButton from '../../components/common/BasicButton/BasicButton.tsx'
 import { useDuplicate } from '../../hooks/useDuplicate.ts'
@@ -43,6 +43,12 @@ export default function SignUp() {
       birthday: '',
     },
   })
+
+  useEffect(() => {
+    if (Object.keys(errors).length > 0) {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+    }
+  }, [errors])
 
   const passowrd = watch('password')
 
@@ -106,6 +112,7 @@ export default function SignUp() {
                 name={'id'}
                 control={control}
                 placeholder={'아이디를 입력해 주세요.'}
+                rules={VALID_RULES.ID}
               />
               <BasicButton
                 type={'button'}
@@ -188,6 +195,7 @@ export default function SignUp() {
               name={'name'}
               control={control}
               placeholder={'이름을 입력해 주세요.'}
+              rules={VALID_RULES.NAME}
             />
           </S.InputWrapper>
           <S.InputWrapper>
@@ -204,6 +212,7 @@ export default function SignUp() {
                 name={'nickname'}
                 control={control}
                 placeholder={'닉네임을 입력해 주세요.'}
+                rules={VALID_RULES.NICKNAME}
               />
               <BasicButton
                 type={'button'}
