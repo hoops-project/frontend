@@ -5,15 +5,19 @@ import { useForm } from 'react-hook-form'
 import BasicButton from '../../components/common/BasicButton/BasicButton.tsx'
 import { theme } from '../../styles/theme.ts'
 import { SignInType, SignUpType } from '../../types/auth.ts'
-import checkMark from '../../assets/check-mark.webp'
-import { useValid } from '../../hooks/useValid.ts'
 import { useState } from 'react'
 import kakao from '../../assets/kakao.svg'
+import { VALID_RULES } from '../../constants/validRules.ts'
 
 export default function SignIn() {
   // TODO: 서버 연결 후 서버에서 내려온 에러메시지 담아서 출력할것
   const [signInError] = useState<string>('')
-  const { handleSubmit, control, watch } = useForm<SignInType & SignUpType>({
+  const {
+    handleSubmit,
+    control,
+    watch,
+    formState: { errors },
+  } = useForm<SignInType & SignUpType>({
     defaultValues: {
       email: '',
       password: '',
@@ -24,10 +28,8 @@ export default function SignIn() {
   const email: string = watch('email')
   const password: string = watch('password')
 
-  const { isValidEmail, isValidPassword } = useValid(email, password)
-
   const handleSignIn = (sigInData: SignInType) => {
-    if (!isValidEmail && !isValidPassword) {
+    if (errors.email?.message && errors.password?.message) {
       return
     }
     // TODO: rememberMe 값에 따라서 아이디 쿠키에 저장시키는 로직 추가할것
@@ -45,11 +47,8 @@ export default function SignIn() {
           <div>
             <S.ValidWrapper>
               <S.InputTitle>아이디</S.InputTitle>
-              {!isValidEmail && email ? (
-                <span>이메일 형식이 올바르지 않습니다.</span>
-              ) : null}
-              {isValidEmail && email ? (
-                <img src={checkMark} alt={'확인표시'} />
+              {errors.email?.message && email ? (
+                <span>{errors.email?.message}</span>
               ) : null}
             </S.ValidWrapper>
             <AuthInput
@@ -57,19 +56,14 @@ export default function SignIn() {
               name={'email'}
               control={control}
               placeholder={'이메일을 입력해 주세요.'}
+              rules={VALID_RULES.EMAIL}
             />
           </div>
           <div>
             <S.ValidWrapper>
               <S.InputTitle>비밀번호</S.InputTitle>
-              {!isValidPassword && password ? (
-                <span>
-                  비밀번호는 8-13자리 영어 대소문자, 숫자, 특수기호 최소 1개
-                  이상 포함 해야합니다.
-                </span>
-              ) : null}
-              {isValidPassword && password ? (
-                <img src={checkMark} alt={'확인표시'} />
+              {errors.password?.message && password ? (
+                <span>{errors.password.message}</span>
               ) : null}
             </S.ValidWrapper>
             <AuthInput
@@ -77,6 +71,7 @@ export default function SignIn() {
               name={'password'}
               control={control}
               placeholder={'비밀번호를 입력해 주세요.'}
+              rules={VALID_RULES.PASSWORD}
             />
           </div>
           <S.RememberId>
