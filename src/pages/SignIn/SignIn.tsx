@@ -30,6 +30,8 @@ export default function SignIn() {
     if (!isValidEmail && !isValidPassword) {
       return
     }
+    // TODO: rememberMe 값에 따라서 아이디 쿠키에 저장시키는 로직 추가할것
+
     console.log(sigInData)
   }
 
