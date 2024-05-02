@@ -6,7 +6,9 @@ export const useValid = (email: string, password: string) => {
 
   useEffect(() => {
     const emailRegex: RegExp = /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/
-    const passwordRegex = /^(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,13}$/
+
     setIsValidEmail(emailRegex.test(email))
     setIsValidPassword(passwordRegex.test(password))
   }, [email, password])

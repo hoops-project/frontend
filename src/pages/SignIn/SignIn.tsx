@@ -64,7 +64,8 @@ export default function SignIn() {
               <S.InputTitle>비밀번호</S.InputTitle>
               {!isValidPassword && password ? (
                 <span>
-                  비밀번호는 특수문자 포함 6자리 이상으로 입력해 주세요.
+                  비밀번호는 8-13자리 영어 대소문자, 숫자, 특수기호 최소 1개
+                  이상 포함 해야합니다.
                 </span>
               ) : null}
               {isValidPassword && password ? (
