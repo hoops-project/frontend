@@ -11,6 +11,10 @@ export const S = {
     outline: none;
     font-size: 1.6rem;
     color: ${theme.colors.gray_700};
+
+    &::placeholder {
+      color: ${theme.colors.gray_400};
+    }
   `,
   BasicCheckbox: styled.input``,
 }

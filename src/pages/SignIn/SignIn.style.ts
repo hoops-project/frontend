@@ -23,7 +23,7 @@ export const S = {
       }
     }
   `,
-  InputTitle: styled.p`
+  InputLabel: styled.label`
     font-size: 1.4rem;
     padding-bottom: 1rem;
     color: ${(props) => props.theme.colors.gray_500};

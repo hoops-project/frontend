@@ -24,4 +24,21 @@ export const VALID_RULES = {
         '비밀번호에 특수기호(@$!%*?&)가 포함되어야 합니다.',
     },
   },
+  PASSWORD_CONFIRM: (password: string) => {
+    return {
+      required: '비밀번호를 한번더 입력해주세요.',
+      validate: {
+        passwordConfirm: (value: string) =>
+          value === password || '비밀번호 두개가 일치하지 않습니다.',
+      },
+    }
+  },
+  BIRTHDAY: {
+    required: '생년월일을 입력해 주세요',
+    validate: {
+      isBirthday: (value: string) =>
+        /^(19|20)\d\d(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])$/.test(value) ||
+        '올바른 생일 형식이 아닙니다.',
+    },
+  },
 }

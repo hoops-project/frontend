@@ -42,10 +42,11 @@ export default function SignIn() {
         <form onSubmit={handleSubmit(handleSignIn)}>
           <div>
             <S.ValidWrapper>
-              <S.InputTitle>아이디</S.InputTitle>
+              <S.InputLabel htmlFor={'email'}>아이디</S.InputLabel>
               {errors.email?.message && <span>{errors.email.message}</span>}
             </S.ValidWrapper>
             <AuthInput
+              id={'email'}
               type={'email'}
               name={'email'}
               control={control}
@@ -55,12 +56,13 @@ export default function SignIn() {
           </div>
           <div>
             <S.ValidWrapper>
-              <S.InputTitle>비밀번호</S.InputTitle>{' '}
+              <S.InputLabel htmlFor={'password'}>비밀번호</S.InputLabel>{' '}
               {errors.password?.message && (
                 <span>{errors.password.message}</span>
               )}
             </S.ValidWrapper>
             <AuthInput
+              id={'password'}
               type={'password'}
               name={'password'}
               control={control}
@@ -70,6 +72,7 @@ export default function SignIn() {
           </div>
           <S.RememberId>
             <AuthInput
+              id={'rememberMe'}
               type={'checkbox'}
               name={'rememberMe'}
               control={control}
@@ -96,7 +99,7 @@ export default function SignIn() {
           <CS.Link to={'/password'}>
             <span>비밀번호 찾기</span>
           </CS.Link>
-          <CS.Link to={'/password'}>
+          <CS.Link to={'/sign-up'}>
             <p>회원가입</p>
           </CS.Link>
         </S.FindAccount>
