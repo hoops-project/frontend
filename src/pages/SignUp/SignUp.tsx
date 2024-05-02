@@ -270,7 +270,7 @@ export default function SignUp() {
               </S.SelectWrapper>
             </>
             <>
-              <S.InputLabel htmlFor={''}>자신있는 능력</S.InputLabel>
+              <S.InputLabel>자신있는 능력</S.InputLabel>
               <S.SelectWrapper>
                 {abilities.map((ability, index) => (
                   <div key={ability}>
