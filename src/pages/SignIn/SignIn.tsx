@@ -15,7 +15,6 @@ export default function SignIn() {
   const {
     handleSubmit,
     control,
-    watch,
     formState: { errors },
   } = useForm<SignInType & SignUpType>({
     defaultValues: {
@@ -24,9 +23,6 @@ export default function SignIn() {
       rememberMe: false,
     },
   })
-
-  const email: string = watch('email')
-  const password: string = watch('password')
 
   const handleSignIn = (sigInData: SignInType) => {
     if (errors.email?.message && errors.password?.message) {
@@ -47,9 +43,7 @@ export default function SignIn() {
           <div>
             <S.ValidWrapper>
               <S.InputTitle>아이디</S.InputTitle>
-              {errors.email?.message && email ? (
-                <span>{errors.email?.message}</span>
-              ) : null}
+              {errors.email?.message && <span>{errors.email.message}</span>}
             </S.ValidWrapper>
             <AuthInput
               type={'email'}
@@ -61,10 +55,10 @@ export default function SignIn() {
           </div>
           <div>
             <S.ValidWrapper>
-              <S.InputTitle>비밀번호</S.InputTitle>
-              {errors.password?.message && password ? (
+              <S.InputTitle>비밀번호</S.InputTitle>{' '}
+              {errors.password?.message && (
                 <span>{errors.password.message}</span>
-              ) : null}
+              )}
             </S.ValidWrapper>
             <AuthInput
               type={'password'}
