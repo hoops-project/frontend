@@ -9,6 +9,7 @@ export const CS = {
   DefaultContainer: styled.div`
     margin: 0 auto;
     padding-top: 6rem;
+    padding-bottom: 3rem;
     background-color: ${(props) => props.theme.colors.white};
     height: fit-content;
     max-width: ${(props) => props.theme.width.default};

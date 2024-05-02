@@ -11,3 +11,8 @@ export interface BasicButtonProps {
   $width?: string
   $height?: string
 }
+
+export interface SelectButtonProps extends BasicButtonProps {
+  $isSelected?: boolean
+  onSelect?: (event: React.MouseEvent<HTMLButtonElement>) => void
+}

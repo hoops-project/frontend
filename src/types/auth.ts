@@ -10,7 +10,7 @@ export interface SignUpType {
   password: string
   passwordConfirm: string
   name: string
-  nick_name: string
+  nickname: string
   birthday: string
 }
 
@@ -20,6 +20,6 @@ export type InputName =
   | 'email'
   | 'name'
   | 'id'
-  | 'nick_name'
+  | 'nickname'
   | 'birthday'
   | 'rememberMe'
