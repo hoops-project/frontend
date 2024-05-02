@@ -4,7 +4,7 @@ import AuthInput from '../../components/common/AuthInput/AuthInput.tsx'
 import { useForm } from 'react-hook-form'
 import BasicButton from '../../components/common/BasicButton/BasicButton.tsx'
 import { theme } from '../../styles/theme.ts'
-import { SignInType, SignUpType } from '../../types/signIn.ts'
+import { SignInType, SignUpType } from '../../types/auth.ts'
 import checkMark from '../../assets/check-mark.webp'
 import { useValid } from '../../hooks/useValid.ts'
 import { useState } from 'react'
@@ -17,6 +17,7 @@ export default function SignIn() {
     defaultValues: {
       email: '',
       password: '',
+      rememberMe: false,
     },
   })
 
@@ -76,7 +77,11 @@ export default function SignIn() {
             />
           </div>
           <S.RememberId>
-            <input type='checkbox' />
+            <AuthInput
+              type={'checkbox'}
+              name={'rememberMe'}
+              control={control}
+            />
             <p>아이디 저장</p>
           </S.RememberId>
           <div>

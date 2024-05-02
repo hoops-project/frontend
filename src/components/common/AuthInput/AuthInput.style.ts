@@ -12,4 +12,5 @@ export const S = {
     font-size: 1.6rem;
     color: ${theme.colors.gray_700};
   `,
+  BasicCheckbox: styled.input``,
 }

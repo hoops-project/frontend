@@ -1,9 +1,9 @@
 import { S } from './AuthInput.style.ts'
 import { Control, useController } from 'react-hook-form'
-import { InputName, SignInType, SignUpType } from '../../../types/signIn.ts'
+import { InputName, SignInType, SignUpType } from '../../../types/auth.ts'
 
 interface InputProps {
-  type: 'text' | 'password' | 'email'
+  type: 'text' | 'password' | 'email' | 'checkbox'
   placeholder?: string
   name: InputName
   control: Control<SignInType & SignUpType>
@@ -19,6 +19,17 @@ export default function AuthInput({
     name,
     control,
   })
+
+  if (type === 'checkbox') {
+    return (
+      <S.BasicCheckbox
+        name={field.name}
+        type={type}
+        checked={field.value as boolean}
+        onChange={field.onChange}
+      ></S.BasicCheckbox>
+    )
+  }
 
   return (
     <S.BasicInput
