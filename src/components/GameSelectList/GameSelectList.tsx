@@ -1,4 +1,4 @@
-import { S } from './GameSelectList.style.ts'
+import { S } from '../MainSelectList/MainSelectList.style.ts'
 import SelectBox from '../common/SelectBox/SelectBox.tsx'
 import { GameSelectedProps } from '../../types/select.ts'
 import { OPTIONS } from '../../constants/selectOption.ts'

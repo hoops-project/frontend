@@ -12,6 +12,7 @@ export const theme = {
     gray_300: '#E4E4E4',
     gray_200: '#F7F7F7',
     gray_100: '#f2f3f4',
+    white_gray: '#F8FAFB',
     white: '#ffffff',
     footer: '#FAFAFA',
   },

@@ -1,7 +1,7 @@
-import { S } from '../../pages/Main/Main.style.ts'
 import SelectBox from '../common/SelectBox/SelectBox.tsx'
 import { MainSelectedProps } from '../../types/select.ts'
 import { OPTIONS } from '../../constants/selectOption.ts'
+import { S } from './MainSelectList.style.ts'
 
 export default function MainSelectList({ selected }: MainSelectedProps) {
   return (
