@@ -10,6 +10,7 @@ import { theme } from '../../styles/theme.ts'
 
 export default function AddGame() {
   const [gameTitle, setGameTitle] = useState<string>('')
+  const [query, setQuery] = useState<string>('')
   const useGameSelect = useSelectBox()
 
   return (
@@ -28,12 +29,12 @@ export default function AddGame() {
               placeholder={'모임 이름을 설정하세요.'}
             />
           </S.InputWrapper>
-          <S.InputWrapper>
+          <S.Form>
             <label htmlFor={'game-place'}>위치</label>
             <div>
               <BasicInput
-                value={gameTitle}
-                onChange={(e) => setGameTitle(e.target.value)}
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
                 type={'text'}
                 id={'game-place'}
                 placeholder={'장소명으로 검색해 주세요.'}
@@ -47,7 +48,7 @@ export default function AddGame() {
                 검색
               </BasicButton>
             </div>
-          </S.InputWrapper>
+          </S.Form>
         </div>
       </S.container>
     </CS.DefaultContainer>
