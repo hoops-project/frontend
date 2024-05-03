@@ -4,7 +4,7 @@ import logo from '../../assets/hoops-logo.png'
 import notice from '../../assets/ph-bell-light.svg'
 import myPage from '../../assets/my-page.svg'
 import SearchInput from '../../components/SearchInput/SearchInput.tsx'
-import Modal from '../../components/modal/Modal.tsx'
+import Modal from '../../components/Modal/Modal.tsx'
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false)

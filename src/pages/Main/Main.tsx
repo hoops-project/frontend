@@ -6,14 +6,12 @@ import { useMainSelect } from '../../hooks/useMainSelect.ts'
 import MainSelectList from '../../components/MainSelectList/MainSelectList.tsx'
 import { Suspense } from 'react'
 import MatchItem from '../../components/MatchItem/MatchItem.tsx'
-import IdSearchForm from '../../components/IdSearchForm/IdSearchForm.tsx'
 export default function Main() {
   const selected = useMainSelect()
 
   return (
     <S.Container>
       <div>
-        <IdSearchForm />
         <MainNav />
         <MainCarousel />
         <Calender />

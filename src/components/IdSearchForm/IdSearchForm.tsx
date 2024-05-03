@@ -6,7 +6,7 @@ export default function IdSearchForm() {
   return (
     <>
       <TopText />
-      <BasicInput />
+      <BasicInput isEmail />
       <BottomText />
     </>
   )

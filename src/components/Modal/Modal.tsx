@@ -1,4 +1,4 @@
-import { S } from './Modal.style.ts'
+import { S } from './Modal.style'
 
 interface ModalProps {
   closeModal: () => void
