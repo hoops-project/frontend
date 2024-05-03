@@ -10,7 +10,7 @@ export const CS = {
     margin: 0 auto;
     padding-top: 6rem;
     padding-bottom: 3rem;
-    background-color: ${(props) => props.theme.colors.white};
+    background-color: inherit;
     height: fit-content;
     max-width: ${(props) => props.theme.width.default};
     min-height: ${(props) => props.theme.height.screen};

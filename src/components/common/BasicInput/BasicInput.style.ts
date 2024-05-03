@@ -11,6 +11,7 @@ export const S = {
     outline: none;
     font-size: 1.6rem;
     color: ${theme.colors.gray_700};
+    background-color: ${theme.colors.white_gray};
 
     &::placeholder {
       color: ${theme.colors.gray_400};

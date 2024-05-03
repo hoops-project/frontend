@@ -1,13 +1,14 @@
-import { S } from '../../pages/Main/Main.style.ts'
 import SelectBox from '../common/SelectBox/SelectBox.tsx'
-import { Selected } from '../../types/select.ts'
+import { MainSelectedProps } from '../../types/select.ts'
+import { OPTIONS } from '../../constants/selectOption.ts'
+import { S } from './MainSelectList.style.ts'
 
-export default function MainSelectList({ selected }: Selected) {
+export default function MainSelectList({ selected }: MainSelectedProps) {
   return (
     <S.Option>
       <SelectBox
         name={'지역'}
-        options={['서울', '경기']}
+        options={OPTIONS.REGION}
         size={'small'}
         width={80}
         value={selected.region}
@@ -15,7 +16,7 @@ export default function MainSelectList({ selected }: Selected) {
       />
       <SelectBox
         name={'마감'}
-        options={['표시', '가리기']}
+        options={OPTIONS.GAME_OVER}
         size={'small'}
         width={100}
         value={selected.showOver}
@@ -23,7 +24,7 @@ export default function MainSelectList({ selected }: Selected) {
       />
       <SelectBox
         name={'성별'}
-        options={['남자', '여자']}
+        options={OPTIONS.GENDER}
         size={'small'}
         width={80}
         value={selected.gender}
@@ -31,7 +32,7 @@ export default function MainSelectList({ selected }: Selected) {
       />
       <SelectBox
         name={'실내외'}
-        options={['실내', '실외']}
+        options={OPTIONS.GAME_PLACE}
         size={'small'}
         width={80}
         value={selected.gamePlace}
@@ -39,7 +40,7 @@ export default function MainSelectList({ selected }: Selected) {
       />
       <SelectBox
         name={'경기'}
-        options={['3 vs 3', '4 vs 4', '5 vs 5']}
+        options={OPTIONS.GAME_TYPE}
         size={'small'}
         width={100}
         value={selected.gameType}

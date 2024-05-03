@@ -33,14 +33,14 @@ export default function SelectBox({
       <FormControl sx={{ m: 1, width: width }} size={size} fullWidth>
         <InputLabel style={{ fontSize: `${fontSize}rem` }}>{name}</InputLabel>
         <Select
+          defaultValue={name}
           style={{
             fontSize: `${fontSize}rem`,
             borderRadius: `${size === 'small' ? '2rem' : ''}`,
           }}
-          labelId='demo-simple-select-label'
-          id='demo-simple-select'
+          id={name}
           value={value}
-          label='Age'
+          label={name}
           onChange={handleChange}
         >
           {options.map((option) => (
