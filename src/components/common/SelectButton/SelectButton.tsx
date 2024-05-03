@@ -5,7 +5,6 @@ import { S } from './SelectButton.style.ts'
 export default function SelectButton({
   children,
   type = 'button',
-  value,
   onClick,
   $bgColor = theme.colors.white,
   $hoverBgColor,
@@ -18,7 +17,6 @@ export default function SelectButton({
   return (
     <S.SelectButton
       type={type}
-      value={value}
       onClick={onClick}
       $bgColor={$bgColor}
       $fontcolor={$fontcolor}
