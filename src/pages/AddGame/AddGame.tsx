@@ -95,7 +95,7 @@ export default function AddGame() {
           $width={'100%'}
           onClick={handleAddGame}
         >
-          경기 생성
+          모임 생성
         </BasicButton>
       </S.container>
     </CS.DefaultContainer>
