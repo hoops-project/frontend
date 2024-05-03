@@ -9,13 +9,7 @@ import BasicButton from '../../components/common/BasicButton/BasicButton.tsx'
 import { theme } from '../../styles/theme.ts'
 import SearchPlaceKakaoMap from '../../components/KakaoMap/SearchPlaceKakaoMap/SearchPlaceKakaoMap.tsx'
 import checkIcon from '../../assets/check-mark.webp'
-
-export interface AddressProps {
-  placeName: string
-  address: string
-  lat: string
-  lng: string
-}
+import { AddressProps } from '../../types/map.ts'
 
 export default function AddGame() {
   const [gameTitle, setGameTitle] = useState<string>('')

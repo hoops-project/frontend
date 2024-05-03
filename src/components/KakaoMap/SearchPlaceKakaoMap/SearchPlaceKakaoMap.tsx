@@ -4,7 +4,7 @@ import { S } from './SearchPlaceKakaoMap.style.ts'
 import BasicButton from '../../common/BasicButton/BasicButton.tsx'
 import { theme } from '../../../styles/theme.ts'
 import React from 'react'
-import { AddressProps } from '../../../pages/AddGame/AddGame.tsx'
+import { AddressProps } from '../../../types/map.ts'
 
 export default function SearchPlaceKakaoMap({
   query,
