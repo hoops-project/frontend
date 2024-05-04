@@ -3,6 +3,7 @@ import { Map, MapMarker, useKakaoLoader } from 'react-kakao-maps-sdk'
 export default function KakaoMap({ lat, lng }: { lat: number; lng: number }) {
   const [,] = useKakaoLoader({
     appkey: import.meta.env.VITE_KAKAO_MAP_APP_KEY,
+    libraries: ['services'],
   })
   return (
     <div style={{ marginTop: '1rem' }}>
