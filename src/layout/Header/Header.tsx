@@ -10,15 +10,17 @@ export default function Header() {
     <S.Header>
       <S.Container>
         <h1>
-          <S.Logo src={logo} alt='훕스 로고' />
+          <CS.Link to={'/'}>
+            <S.Logo src={logo} alt='훕스 로고' />
+          </CS.Link>
         </h1>
         <S.SearchGroup>
           <SearchInput />
-          <CS.Link to={'/'}>
+          <CS.Link to={'/sign-in'}>
             <img src={notice} alt='알림' />
           </CS.Link>
           {/* NOTICE: 원래는 마이페이지로 라우팅이 맞지만 테스트를 위해 임시로 설정*/}
-          <CS.Link to={'/sign-in'}>
+          <CS.Link to={'/my-page'}>
             <img src={myPage} alt='마이 페이지' />
           </CS.Link>
         </S.SearchGroup>

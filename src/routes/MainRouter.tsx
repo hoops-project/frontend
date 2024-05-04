@@ -6,6 +6,7 @@ import AddGame from '../pages/AddGame/AddGame.tsx'
 import Detail from '../pages/Detail/Detail.tsx'
 import ChangeBgLayout from '../layout/ChangeBgLayout/ChangeBgLayout.tsx'
 import { theme } from '../styles/theme.ts'
+import MyPage from '../pages/MyPage/MyPage.tsx'
 
 export default function MainRouter() {
   return (
@@ -22,6 +23,7 @@ export default function MainRouter() {
           </ChangeBgLayout>
         }
       />
+      <Route path={'/my-page'} element={<MyPage />} />
     </Routes>
   )
 }
