@@ -25,6 +25,7 @@ export default function Detail() {
     location: '서울 강남',
   }
 
+  // TODO: 각각의 영역마다 컴포넌트로 나눠서 관리 할 수 있을듯
   return (
     <CS.DefaultContainer>
       <S.Wrapper>
