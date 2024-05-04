@@ -6,17 +6,23 @@ import stadiumIcon from '../../assets/ic_info_stadium.svg'
 import shoesIcon from '../../assets/ic_info_shoes.svg'
 import maxPlayerIcon from '../../assets/ic_info_max_player_cnt.svg'
 import girl from '../../assets/girl.svg'
+import LockMatchData from '../../components/LockMatchData/LockMatchData.tsx'
+import BasicButton from '../../components/common/BasicButton/BasicButton.tsx'
+import { theme } from '../../styles/theme.ts'
+import KakaoMap from '../../components/KakaoMap/KakaoMap.tsx'
 
 export default function Detail() {
-  // NOTICE: 임시 데이터
+  // TODO: 임시 데이터입니다. 이후 페이지 id에 따라서 데이터 받아온 후 화면에 뿌릴것
   const detail = {
-    title: '강남 농구장',
+    title: ' 강남 농구장',
     matchPoint: {
       playType: '3 vs 3',
       gender: '남녀 모두',
       place: '실내 코트',
       addFriend: '초대 가능',
     },
+    date: '4월 24일 수요일 13:00',
+    location: '서울 강남',
   }
 
   return (
@@ -59,14 +65,31 @@ export default function Detail() {
                 <p>아직 여성 플레이어는 0명이에요.</p>
               </S.Girl>
             </S.MatchPoint>
-            <S.MatchData>
-              <p>메치 데이터</p>
-              <div>
-                <p></p>
-              </div>
-            </S.MatchData>
+            {/* TODO: 이곳에 메치 데이터 시각화 조건부 렌더링 */}
+            <LockMatchData />
+            <KakaoMap lat={33.450701} lng={126.570667} />
           </div>
-          <S.StickyDiv></S.StickyDiv>
+          <S.StickyDiv>
+            <S.PlaceInfo>
+              <p>{detail.date}</p>
+              <p>{detail.title}</p>
+              <p>{detail.location}</p>
+            </S.PlaceInfo>
+            <S.JoinWrapper>
+              <div>
+                <p>마감까지</p>
+                <p>6자리 남았어요!</p>
+              </div>
+              <BasicButton
+                type={'button'}
+                $bgColor={theme.colors.blue}
+                $fontcolor={theme.colors.white}
+                $width={'40%'}
+              >
+                참가
+              </BasicButton>
+            </S.JoinWrapper>
+          </S.StickyDiv>
         </S.InfoWrapper>
       </S.Wrapper>
     </CS.DefaultContainer>

@@ -33,7 +33,7 @@ export const S = {
     }
   `,
   MatchPoint: styled.div`
-    max-width: 63rem;
+    max-width: 60rem;
     height: 23rem;
     background-color: ${(props) => props.theme.colors.white};
     margin-bottom: 1rem;
@@ -77,28 +77,12 @@ export const S = {
     right: 0;
     top: 7rem;
     width: 100%;
-    height: 25rem;
+    height: 23rem;
     background-color: ${(props) => props.theme.colors.white};
     margin-left: 1rem;
     padding: 2rem;
   `,
-  MatchData: styled.div`
-    width: 63rem;
-    min-height: 26rem;
-    background-color: ${(props) => props.theme.colors.white};
-    margin-top: 1rem;
-    padding: 3rem;
 
-    & > p {
-      font-weight: bold;
-      font-size: 1.8rem;
-    }
-    & > div {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  `,
   Girl: styled.div`
     width: 100%;
     height: 100%;
@@ -112,6 +96,38 @@ export const S = {
     & > p {
       margin-left: 1.5rem;
       padding-top: 0.4rem;
+    }
+  `,
+  PlaceInfo: styled.div`
+    & > p:nth-child(1) {
+      font-weight: bold;
+      margin-bottom: 3rem;
+    }
+    & > p:nth-child(2) {
+      font-size: 2.2rem;
+      margin-bottom: 1.8rem;
+    }
+    & > p:nth-child(3) {
+      font-size: 1.4rem;
+      color: ${(props) => props.theme.colors.gray_700};
+    }
+  `,
+  JoinWrapper: styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4rem;
+    border-top: 1px solid ${(props) => props.theme.colors.gray_300};
+    padding-top: 2rem;
+    & > div > p:nth-child(1) {
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+      color: ${(props) => props.theme.colors.gray_700};
+    }
+
+    & > div > p:nth-child(2) {
+      font-size: 1.4rem;
+      color: ${(props) => props.theme.colors.red};
+      font-weight: bold;
     }
   `,
 }
