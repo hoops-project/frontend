@@ -6,6 +6,7 @@ export const theme = {
     green: '#009E5C',
     yellow: '#FEE500',
     black: '#242424',
+    default_gray_bg: '#F2F5F7',
     gray_700: '#444444',
     gray_500: '#888888',
     gray_400: '#C1CCD6',

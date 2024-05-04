@@ -4,16 +4,16 @@ import { theme } from '../../styles/theme.ts'
 import { Match } from '../../types/match.ts'
 import { CS } from '../../styles/commonStyle.ts'
 
-export default function MatchItem({ time, title }: Match) {
+export default function MatchItem({ match }: Match) {
   return (
-    <CS.Link to={'/'}>
+    <CS.Link to={`/detail/${match.id}`}>
       <S.container>
         <S.Info>
           <div>
-            <p>{time}</p>
+            <p>{match.time}</p>
           </div>
           <S.Match>
-            <p>{title}</p>
+            <p>{match.title}</p>
             <div>
               <p>경기 옵션 정보1</p>
               <p>경기 옵션 정보2</p>

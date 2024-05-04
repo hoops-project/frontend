@@ -30,7 +30,9 @@ export const useSearchPlaces = ({ query }: UseSearchPlacesOptions) => {
   const [markers, setMarkers] = useState<Marker[]>([])
 
   useEffect(() => {
-    if (!map) return
+    if (!map) {
+      return
+    }
 
     const ps = new kakao.maps.services.Places()
 
@@ -38,7 +40,6 @@ export const useSearchPlaces = ({ query }: UseSearchPlacesOptions) => {
       query ? query : '강남 농구장',
       (data, status, _pagination) => {
         if (status === kakao.maps.services.Status.OK) {
-          console.log(data)
           const newMarkers: Marker[] = []
           const bounds = new kakao.maps.LatLngBounds()
 

@@ -11,6 +11,13 @@ import { S } from './Main.style.ts'
 export default function Main() {
   const selected = useSelectBox()
 
+  // NOTICE: 임시 데이터
+  const match = {
+    id: 1,
+    time: '13:00',
+    title: '강남 농구장',
+  }
+
   return (
     <CS.DefaultContainer>
       <S.Wrapper>
@@ -21,7 +28,7 @@ export default function Main() {
         <Suspense fallback={<div>임시 fallback</div>}>
           {Array.from({ length: 10 }, (_, index) => (
             // NOTICE: 임시 배열 설정
-            <MatchItem key={index} time={'01:00'} title={'강남 농구장'} />
+            <MatchItem key={index} match={match} />
           ))}
         </Suspense>
       </S.Wrapper>
