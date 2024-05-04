@@ -6,3 +6,5 @@ export const REGEX = {
   INCLUDE_NUMBER: /\d/,
   SPECIAL_SYMBOL: /[@$!%*?&]/,
 }
+
+Object.freeze(REGEX)

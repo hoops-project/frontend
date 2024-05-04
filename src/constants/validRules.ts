@@ -53,3 +53,5 @@ export const VALID_RULES = {
     required: '닉네임을 입력해 주세요',
   },
 }
+
+Object.freeze(VALID_RULES)
