@@ -44,3 +44,5 @@ export const OPTIONS = {
   GAME_DATE: generateNextTwoWeeksDates(),
   GAME_OVER: ['표시', '가리기'],
 }
+
+Object.freeze(OPTIONS)
