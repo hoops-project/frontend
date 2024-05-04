@@ -1,8 +1,10 @@
+import { REGEX } from './regex.ts'
+
 export const VALID_RULES = {
   EMAIL: {
     required: '이메일을 입력해주세요.',
     pattern: {
-      value: /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/,
+      value: REGEX.EMAIL,
       message: '유효한 이메일 주소를 입력해주세요.',
     },
   },
@@ -14,13 +16,14 @@ export const VALID_RULES = {
       maxLength: (value: string) =>
         value.length <= 13 || '비밀번호는 최대 13자리를 넘을 수 없습니다.',
       containsUppercase: (value: string) =>
-        /[A-Z]/.test(value) || '비밀번호에 대문자가 포함되어야 합니다.',
+        REGEX.UPPERCASE.test(value) || '비밀번호에 대문자가 포함되어야 합니다.',
       containsLowercase: (value: string) =>
-        /[a-z]/.test(value) || '비밀번호에 소문자가 포함되어야 합니다.',
+        REGEX.LOWERCASE.test(value) || '비밀번호에 소문자가 포함되어야 합니다.',
       containsNumber: (value: string) =>
-        /\d/.test(value) || '비밀번호에 숫자가 포함되어야 합니다.',
+        REGEX.INCLUDE_NUMBER.test(value) ||
+        '비밀번호에 숫자가 포함되어야 합니다.',
       containsSpecialChar: (value: string) =>
-        /[@$!%*?&]/.test(value) ||
+        REGEX.SPECIAL_SYMBOL.test(value) ||
         '비밀번호에 특수기호(@$!%*?&)가 포함되어야 합니다.',
     },
   },
@@ -40,8 +43,7 @@ export const VALID_RULES = {
     required: '생년월일을 입력해 주세요',
     validate: {
       isBirthday: (value: string) =>
-        /^(19|20)\d\d(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])$/.test(value) ||
-        '올바른 생일 형식이 아닙니다.',
+        REGEX.BIRTH_DAY.test(value) || '올바른 생일 형식이 아닙니다.',
     },
   },
   NAME: {
