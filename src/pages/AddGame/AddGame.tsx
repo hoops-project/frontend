@@ -24,7 +24,6 @@ export default function AddGame() {
   const handleAddGame = () => {
     // NOTICE: 서버에 보내야할 정보는 address 와 useGameSelect,gameTitle 에 담겨 있음
     // TODO: 빈값 체크 후 서버에 보내는 로직을 이 아래부터 작성
-    console.log(gameTitle, address, useGameSelect)
   }
 
   return (

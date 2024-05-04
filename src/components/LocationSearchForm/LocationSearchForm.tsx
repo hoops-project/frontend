@@ -1,4 +1,3 @@
-import { S } from '../../pages/AddGame/AddGame.style.ts'
 import checkIcon from '../../assets/check-mark.webp'
 import BasicInput from '../common/BasicInput/BasicInput.tsx'
 import BasicButton from '../common/BasicButton/BasicButton.tsx'
@@ -6,6 +5,7 @@ import { theme } from '../../styles/theme.ts'
 import SearchPlaceKakaoMap from '../KakaoMap/SearchPlaceKakaoMap/SearchPlaceKakaoMap.tsx'
 import React, { useState } from 'react'
 import { AddressProps } from '../../types/map.ts'
+import { S } from './LocationSearchForm.style.ts'
 
 export default function LocationSearchForm({
   address,
