@@ -9,6 +9,8 @@ export default function AuthInput({
   control,
   rules,
   id,
+  defaultValue,
+  readonly,
 }: AuthInputProps) {
   return (
     <Controller
@@ -27,6 +29,7 @@ export default function AuthInput({
             />
           ) : (
             <S.BasicInput
+              readOnly={readonly}
               id={id}
               autoComplete='off'
               onChange={field.onChange}
@@ -34,6 +37,7 @@ export default function AuthInput({
               name={field.name}
               type={type}
               placeholder={placeholder}
+              defaultValue={defaultValue}
             />
           )}
         </>

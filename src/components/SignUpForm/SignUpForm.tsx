@@ -9,6 +9,7 @@ import { useSelect } from '../../hooks/useSelect.ts'
 import { useEffect } from 'react'
 import { useDuplicate } from '../../hooks/useDuplicate.ts'
 import { S } from './SignUpForm.style.ts'
+import { CS } from '../../styles/commonStyle.ts'
 
 export default function SignUpForm() {
   const {
@@ -70,10 +71,10 @@ export default function SignUpForm() {
   return (
     <form onSubmit={handleSubmit(handleSignUp)}>
       <S.InputWrapper>
-        <S.ValidWrapper>
-          <S.InputLabel htmlFor={'id'}>아이디</S.InputLabel>
+        <CS.ValidWrapper>
+          <CS.InputLabel htmlFor={'id'}>아이디</CS.InputLabel>
           {errors.id?.message && <span>{errors.id.message}</span>}
-        </S.ValidWrapper>
+        </CS.ValidWrapper>
         <S.DuplicateWrapper>
           <AuthInput
             id={'id'}
@@ -95,10 +96,10 @@ export default function SignUpForm() {
         </S.DuplicateWrapper>
       </S.InputWrapper>
       <S.InputWrapper>
-        <S.ValidWrapper>
-          <S.InputLabel htmlFor={'email'}>이메일</S.InputLabel>
+        <CS.ValidWrapper>
+          <CS.InputLabel htmlFor={'email'}>이메일</CS.InputLabel>
           {errors.email?.message && <span>{errors.email.message}</span>}
-        </S.ValidWrapper>
+        </CS.ValidWrapper>
         <S.DuplicateWrapper>
           <AuthInput
             id={'email'}
@@ -120,10 +121,10 @@ export default function SignUpForm() {
         </S.DuplicateWrapper>
       </S.InputWrapper>
       <S.InputWrapper>
-        <S.ValidWrapper>
-          <S.InputLabel htmlFor={'password'}>비밀번호</S.InputLabel>
+        <CS.ValidWrapper>
+          <CS.InputLabel htmlFor={'password'}>비밀번호</CS.InputLabel>
           {errors.password?.message && <span>{errors.password.message}</span>}
-        </S.ValidWrapper>
+        </CS.ValidWrapper>
         <AuthInput
           id={'password'}
           type={'password'}
@@ -134,12 +135,14 @@ export default function SignUpForm() {
         />
       </S.InputWrapper>
       <S.InputWrapper>
-        <S.ValidWrapper>
-          <S.InputLabel htmlFor={'passwordConfirm'}>비밀번호 확인</S.InputLabel>
+        <CS.ValidWrapper>
+          <CS.InputLabel htmlFor={'passwordConfirm'}>
+            비밀번호 확인
+          </CS.InputLabel>
           {errors.passwordConfirm?.message && (
             <span>{errors.passwordConfirm.message}</span>
           )}
-        </S.ValidWrapper>
+        </CS.ValidWrapper>
         <AuthInput
           id={'passwordConfirm'}
           type={'password'}
@@ -150,10 +153,10 @@ export default function SignUpForm() {
         />
       </S.InputWrapper>
       <S.InputWrapper>
-        <S.ValidWrapper>
-          <S.InputLabel htmlFor={'name'}>이름</S.InputLabel>
+        <CS.ValidWrapper>
+          <CS.InputLabel htmlFor={'name'}>이름</CS.InputLabel>
           {errors.name?.message && <span>{errors.name.message}</span>}
-        </S.ValidWrapper>
+        </CS.ValidWrapper>
         <AuthInput
           id={'name'}
           type={'text'}
@@ -164,10 +167,10 @@ export default function SignUpForm() {
         />
       </S.InputWrapper>
       <S.InputWrapper>
-        <S.ValidWrapper>
-          <S.InputLabel htmlFor={'nickname'}>닉네임</S.InputLabel>
+        <CS.ValidWrapper>
+          <CS.InputLabel htmlFor={'nickname'}>닉네임</CS.InputLabel>
           {errors.nickname?.message && <span>{errors.nickname.message}</span>}
-        </S.ValidWrapper>
+        </CS.ValidWrapper>
         <S.DuplicateWrapper>
           <AuthInput
             id={'nickname'}
@@ -189,10 +192,10 @@ export default function SignUpForm() {
         </S.DuplicateWrapper>
       </S.InputWrapper>
       <S.InputWrapper>
-        <S.ValidWrapper>
-          <S.InputLabel htmlFor={'birthday'}>생년월일</S.InputLabel>
+        <CS.ValidWrapper>
+          <CS.InputLabel htmlFor={'birthday'}>생년월일</CS.InputLabel>
           {errors.birthday?.message && <span>{errors.birthday.message}</span>}
-        </S.ValidWrapper>
+        </CS.ValidWrapper>
         <AuthInput
           id={'birthday'}
           type={'number'}

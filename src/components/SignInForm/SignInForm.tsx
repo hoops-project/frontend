@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { SignInType, SignUpType } from '../../types/auth.ts'
 import { S } from './SignInForm.style.ts'
+import { CS } from '../../styles/commonStyle.ts'
 
 export default function SignInForm() {
   // TODO: 서버 연결 후 서버에서 내려온 에러메시지 담아서 출력할것
@@ -38,10 +39,10 @@ export default function SignInForm() {
       </S.ErrorWrapper>
       <form onSubmit={handleSubmit(handleSignIn)}>
         <div>
-          <S.ValidWrapper>
-            <S.InputLabel htmlFor={'email'}>아이디</S.InputLabel>
+          <CS.ValidWrapper>
+            <CS.InputLabel htmlFor={'email'}>아이디</CS.InputLabel>
             {errors.email?.message && <span>{errors.email.message}</span>}
-          </S.ValidWrapper>
+          </CS.ValidWrapper>
           <AuthInput
             id={'email'}
             type={'email'}
@@ -52,10 +53,10 @@ export default function SignInForm() {
           />
         </div>
         <div>
-          <S.ValidWrapper>
-            <S.InputLabel htmlFor={'password'}>비밀번호</S.InputLabel>{' '}
+          <CS.ValidWrapper>
+            <CS.InputLabel htmlFor={'password'}>비밀번호</CS.InputLabel>{' '}
             {errors.password?.message && <span>{errors.password.message}</span>}
-          </S.ValidWrapper>
+          </CS.ValidWrapper>
           <AuthInput
             id={'password'}
             type={'password'}

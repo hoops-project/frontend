@@ -3,7 +3,7 @@ import { theme } from '../../../styles/theme.ts'
 
 export const S = {
   BasicInput: styled.input`
-    width: 98%;
+    width: calc(100% - 2rem);
     height: 4.8rem;
     border: 0.1rem solid ${theme.colors.gray_400};
     border-radius: 0.8rem;
