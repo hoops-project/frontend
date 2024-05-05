@@ -111,7 +111,7 @@ export default function UserInfoEdit() {
             window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
           }
         >
-          프로필 수정
+          {edit ? '프로필 수정' : '프로필 저장'}
         </BasicButton>
       </S.Form>
     </S.Container>
