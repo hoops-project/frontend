@@ -16,7 +16,7 @@ export const S = {
     padding: 1.2rem 0.6rem;
     border-radius: 0.8rem;
     transition: all 0.3s;
-    cursor: pointer;
+    cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
     font-weight: ${(props) => (props.$isSelected ? '600' : '500')};
 
     &:hover {

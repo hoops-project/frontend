@@ -4,6 +4,7 @@ export interface BasicButtonProps {
   children: React.ReactNode
   type: 'button' | 'submit' | 'reset'
   onClick?: () => void
+  disabled?: boolean
   $bgColor: string
   $hoverBgColor?: string
   $fontcolor?: string

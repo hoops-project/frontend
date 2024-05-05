@@ -9,6 +9,7 @@ export interface BasicInputProps {
   value?: string | number | readonly string[] | undefined
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   defaultValue?: string | number | readonly string[] | undefined
+  readonly?: boolean
 }
 
 export interface AuthInputProps extends BasicInputProps {

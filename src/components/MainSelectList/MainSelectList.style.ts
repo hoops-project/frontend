@@ -6,5 +6,6 @@ export const S = {
   `,
   Option: styled.div`
     display: flex;
+    justify-content: start;
   `,
 }

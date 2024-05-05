@@ -25,7 +25,14 @@ export default function MainRouter() {
             </ChangeBgLayout>
           }
         />
-        <Route path={'/my-page'} element={<MyPage />} />
+        <Route
+          path={'/my-page'}
+          element={
+            <ChangeBgLayout $bg={theme.colors.default_gray_bg}>
+              <MyPage />
+            </ChangeBgLayout>
+          }
+        />
       </Route>
     </Routes>
   )

@@ -19,7 +19,7 @@ export const theme = {
   },
   width: {
     default: '102.4rem',
-    large: '124rem',
+    large: '140rem',
   },
   height: {
     full: '100%',

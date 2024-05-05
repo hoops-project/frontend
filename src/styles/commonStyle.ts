@@ -24,4 +24,17 @@ export const CS = {
     max-width: ${(props) => props.theme.width.large};
     min-height: ${(props) => props.theme.height.screen};
   `,
+  ValidWrapper: styled.div`
+    display: flex;
+    & > span {
+      font-size: 1.2rem;
+      color: red;
+      margin-left: 0.6rem;
+    }
+  `,
+  InputLabel: styled.label`
+    font-size: 1.4rem;
+    padding-bottom: 1rem;
+    color: ${(props) => props.theme.colors.gray_500};
+  `,
 }
