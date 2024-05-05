@@ -7,6 +7,7 @@ import ChangeBgLayout from '../layout/ChangeBgLayout/ChangeBgLayout.tsx'
 import { theme } from '../styles/theme.ts'
 import MyPage from '../pages/MyPage/MyPage.tsx'
 import DefaultLayout from '../layout/DefaultLayout/DefaultLayout.tsx'
+import Report from '../pages/Report/Report.tsx'
 import Main from '../pages/Main/Main.tsx'
 
 export default function MainRouter() {
@@ -17,6 +18,7 @@ export default function MainRouter() {
         <Route path={'/sign-in'} element={<SignIn />} />
         <Route path={'/sign-up'} element={<SignUp />} />
         <Route path={'/add-game'} element={<AddGame />} />
+        <Route path={'/report'} element={<Report />} />
         <Route
           path={'/detail/:id'}
           element={
