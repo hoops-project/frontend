@@ -26,6 +26,10 @@ export default function UserInfoEdit() {
     },
   })
 
+  /**
+   * NOTICE: findSelectIndexes 함수를 이용하여 서버에서 받은 데이터를 넣어
+   * 속성에 해당하는 인덱스배열(defaultValue)을 받환 받은 후 useSelect 에 전달해야 합니다.
+   * */
   const defaultValue = findSelectIndexes('여자', '수비적', '드리볼')
   const selectedValue = useSelect({ defaultValue })
 
