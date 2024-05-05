@@ -6,6 +6,7 @@ export default function SelectButton({
   children,
   type = 'button',
   onClick,
+  disabled,
   $bgColor = theme.colors.white,
   $hoverBgColor,
   $fontcolor = theme.colors.black,
@@ -16,6 +17,7 @@ export default function SelectButton({
 }: SelectButtonProps) {
   return (
     <S.SelectButton
+      disabled={disabled}
       type={type}
       onClick={onClick}
       $bgColor={$bgColor}

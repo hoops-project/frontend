@@ -7,14 +7,16 @@ interface SelectedInfo {
   abilities: string
 }
 
-export const useSelect = () => {
-  const [genderSelected, setGenderSelected] = useState<number>(0)
-  const [styleSelected, setStyleSelected] = useState<number>(0)
-  const [abilitiesSelected, setAbilitiesSelected] = useState<number>(0)
+export const useSelect = ({ defaultValue }: { defaultValue: number[] }) => {
+  const [defaultGender, defaultPlayStyle, defaultAbilities] = defaultValue
+  const [genderSelected, setGenderSelected] = useState<number>(defaultGender)
+  const [styleSelected, setStyleSelected] = useState<number>(defaultPlayStyle)
+  const [abilitiesSelected, setAbilitiesSelected] =
+    useState<number>(defaultAbilities)
   const [select, setSelect] = useState<SelectedInfo>({
-    gender: '남자',
-    playStyle: '공격적',
-    abilities: '벨러스',
+    gender: gender[defaultGender],
+    playStyle: playStyle[defaultPlayStyle],
+    abilities: abilities[defaultAbilities],
   })
 
   const handleGenderSelect = (index: number) => {

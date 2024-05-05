@@ -10,6 +10,7 @@ import { useEffect } from 'react'
 import { useDuplicate } from '../../hooks/useDuplicate.ts'
 import { S } from './SignUpForm.style.ts'
 import { CS } from '../../styles/commonStyle.ts'
+import { findSelectIndexes } from '../../helper/findSelectIndex.ts'
 
 export default function SignUpForm() {
   const {
@@ -29,7 +30,9 @@ export default function SignUpForm() {
     },
   })
 
-  const selectedValue = useSelect()
+  const selectedValue = useSelect({
+    defaultValue: findSelectIndexes('남자', '공격적', '슛'),
+  })
 
   useEffect(() => {
     if (Object.keys(errors).length > 0) {

@@ -8,7 +8,10 @@ import { theme } from '../../../styles/theme.ts'
 import { S } from './UserInfoSelect.style.ts'
 import { StyleSelectedProps } from '../../../types/select.ts'
 
-export default function UserInfoSelect({ selected }: StyleSelectedProps) {
+export default function UserInfoSelect({
+  selected,
+  disabled,
+}: StyleSelectedProps) {
   return (
     <S.SelectSection>
       <>
@@ -17,6 +20,7 @@ export default function UserInfoSelect({ selected }: StyleSelectedProps) {
           {gender.map((gender, index) => (
             <div key={gender}>
               <SelectButton
+                disabled={disabled ?? false}
                 type={'button'}
                 $bgColor={theme.colors.white}
                 $width={'100%'}
@@ -35,6 +39,7 @@ export default function UserInfoSelect({ selected }: StyleSelectedProps) {
           {playStyle.map((style, index) => (
             <div key={style}>
               <SelectButton
+                disabled={disabled ?? false}
                 type={'button'}
                 $bgColor={theme.colors.white}
                 $width={'100%'}
@@ -53,6 +58,7 @@ export default function UserInfoSelect({ selected }: StyleSelectedProps) {
           {abilities.map((ability, index) => (
             <div key={ability}>
               <SelectButton
+                disabled={disabled ?? false}
                 type={'button'}
                 $bgColor={theme.colors.white}
                 $width={'100%'}

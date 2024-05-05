@@ -7,13 +7,15 @@ import { VALID_RULES } from '../../constants/validRules.ts'
 import UserInfoSelect from '../common/UserInfoSelect/UserInfoSelect.tsx'
 import { useSelect } from '../../hooks/useSelect.ts'
 import { CS } from '../../styles/commonStyle.ts'
+import { findSelectIndexes } from '../../helper/findSelectIndex.ts'
+import BasicButton from '../common/BasicButton/BasicButton.tsx'
+import { theme } from '../../styles/theme.ts'
 
 export default function UserInfoEdit() {
   const [edit, setEdit] = useState<boolean>(true)
   const {
     handleSubmit,
     control,
-    watch,
     formState: { errors },
   } = useForm<SignInType & SignUpType>({
     defaultValues: {
@@ -23,9 +25,21 @@ export default function UserInfoEdit() {
       birthday: '19960328',
     },
   })
-  const selectedValue = useSelect()
 
-  const handelEditUserInfo = () => {}
+  const defaultValue = findSelectIndexes('여자', '수비적', '드리볼')
+  const selectedValue = useSelect({ defaultValue })
+
+  const handelEditUserInfo = (data: SignInType & SignUpType) => {
+    if (edit) {
+      setEdit(false)
+      return
+    }
+    setEdit(true)
+
+    // TODO: 이후 프로필 수정 패칭 로직 작성
+
+    console.log(data, selectedValue.select)
+  }
 
   return (
     <S.Container>
@@ -81,13 +95,24 @@ export default function UserInfoEdit() {
             readonly={edit}
             name={'birthday'}
             control={control}
-            type={'text'}
+            type={'number'}
             id={'birthday'}
             rules={VALID_RULES.BIRTHDAY}
           />
         </S.InputWrapper>
 
-        <UserInfoSelect selected={selectedValue} />
+        <UserInfoSelect selected={selectedValue} disabled={edit} />
+        <BasicButton
+          type={'submit'}
+          $bgColor={theme.colors.blue}
+          $fontcolor={'white'}
+          $width={'100%'}
+          onClick={() =>
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+          }
+        >
+          프로필 수정
+        </BasicButton>
       </S.Form>
     </S.Container>
   )

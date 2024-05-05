@@ -37,6 +37,7 @@ export interface MainSelectedProps {
 }
 
 export interface StyleSelectedProps {
+  disabled?: boolean
   selected: {
     handleGenderSelect: (index: number) => void
     handleStyleSelect: (index: number) => void
