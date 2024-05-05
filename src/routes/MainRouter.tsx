@@ -8,6 +8,7 @@ import { theme } from '../styles/theme.ts'
 import MyPage from '../pages/MyPage/MyPage.tsx'
 import DefaultLayout from '../layout/DefaultLayout/DefaultLayout.tsx'
 import Main from '../pages/Main/Main.tsx'
+import Report from '../pages/Report/Report.tsx'
 
 export default function MainRouter() {
   return (
@@ -17,6 +18,7 @@ export default function MainRouter() {
         <Route path={'/sign-in'} element={<SignIn />} />
         <Route path={'/sign-up'} element={<SignUp />} />
         <Route path={'/add-game'} element={<AddGame />} />
+        <Route path={'/report'} element={<Report />} />
         <Route
           path={'/detail/:id'}
           element={
