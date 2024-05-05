@@ -1,6 +1,7 @@
 import { S } from './Notification.style.ts'
 import noticeBell from '../../assets/fluent-emoji-flat_bell.svg'
 import vector from '../../assets/Vector.svg'
+import { CS } from '../../styles/commonStyle.ts'
 
 export default function Notification() {
   return (
@@ -16,11 +17,13 @@ export default function Notification() {
         <p>알림 목록</p>
       </S.NoticeTitle>
       <S.NoticeBody>
-        {Array.from({ length: 3 }, (_, index) => (
-          <S.NoticeItem key={index}>
-            <img src={vector} alt={'느낌표 아이콘'} />
-            <p>{`시눙하이 님이 초대를 보냈습니다.`}</p>
-          </S.NoticeItem>
+        {Array.from({ length: 10 }, (_, index) => (
+          <CS.Link to={'/'} key={index}>
+            <S.NoticeItem key={index}>
+              <img src={vector} alt={'느낌표 아이콘'} />
+              <p>{`시눙하이 님이 초대를 보냈습니다.`}</p>
+            </S.NoticeItem>
+          </CS.Link>
         ))}
       </S.NoticeBody>
     </S.Wrapper>

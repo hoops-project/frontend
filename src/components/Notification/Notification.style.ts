@@ -37,6 +37,8 @@ export const S = {
     }
   `,
   NoticeBody: styled.div`
+    max-height: 100vh;
+    overflow-y: scroll;
     margin-top: 2rem;
     background-color: ${(props) => props.theme.colors.white_gray};
     height: 85%;

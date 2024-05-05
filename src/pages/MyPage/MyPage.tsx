@@ -2,6 +2,8 @@ import { CS } from '../../styles/commonStyle.ts'
 import { S } from './MyPage.style.ts'
 import UserInfoEdit from '../../components/UserInfoEdit/UserInfoEdit.tsx'
 import Notification from '../../components/Notification/Notification.tsx'
+import FriendRequestList from '../../components/FriendRequestList/FriendRequestList.tsx'
+import GameInviteList from '../../components/GameInviteList/GameInviteList.tsx'
 
 export default function MyPage() {
   return (
@@ -9,7 +11,10 @@ export default function MyPage() {
       <S.Wrapper>
         <Notification />
         <UserInfoEdit />
-        <div style={{ backgroundColor: 'white' }}>d</div>
+        <div>
+          <FriendRequestList />
+          <GameInviteList />
+        </div>
       </S.Wrapper>
     </CS.LargeContainer>
   )
