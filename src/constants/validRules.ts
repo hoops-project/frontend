@@ -1,6 +1,7 @@
 import { REGEX } from './regex.ts'
+import { deepFreeze } from '../helper/deepFreeze.ts'
 
-export const VALID_RULES = {
+export const VALID_RULES = deepFreeze({
   EMAIL: {
     required: '이메일을 입력해주세요.',
     pattern: {
@@ -52,6 +53,4 @@ export const VALID_RULES = {
   NICKNAME: {
     required: '닉네임을 입력해 주세요',
   },
-}
-
-Object.freeze(VALID_RULES)
+})
