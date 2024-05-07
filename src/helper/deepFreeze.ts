@@ -4,7 +4,7 @@ export const deepFreeze = <T extends object>(obj: T): T => {
 
   for (const prop in obj) {
     if (
-      obj.hasOwnProperty(prop) &&
+      Object.prototype.hasOwnProperty.call(obj, prop) &&
       typeof obj[prop] === 'object' &&
       !Object.isFrozen(obj[prop])
     ) {
