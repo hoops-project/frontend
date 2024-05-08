@@ -3,6 +3,7 @@ import Badge from '../common/Badge/Badge.tsx'
 import { theme } from '../../styles/theme.ts'
 import { MyGameItemProps } from '../../types/game.ts'
 import enterDoor from '../../assets/enter_door.svg'
+import { useNavigate } from 'react-router-dom'
 
 export default function MyGameItem({
   gameInfo,
@@ -11,11 +12,17 @@ export default function MyGameItem({
 }: MyGameItemProps) {
   // NOTICE: 실제로는 로그인시 전역 상태관리 되고 있는 로그인한 유저의 데이터를 불러와야합니다.
   const userId = 1
+  const navigate = useNavigate()
+
+  const handleGameItem = () => {
+    setSelected(gameInfo.gameId)
+    navigate(`/my-game/${gameInfo.gameId}`)
+  }
 
   return (
     <S.GameItem
       role={'button'}
-      onClick={() => setSelected(gameInfo.gameId)}
+      onClick={handleGameItem}
       $isJoined={selected === gameInfo.gameId}
     >
       <div>

@@ -9,3 +9,12 @@ export interface MyGameItemProps {
   selected: number
   setSelected: React.Dispatch<React.SetStateAction<number>>
 }
+
+export interface MyGameUserList {
+  userInfo: {
+    userId: number
+    name: string
+    gameId: number
+    rate: number
+  }[]
+}

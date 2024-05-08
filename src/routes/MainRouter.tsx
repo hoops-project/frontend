@@ -43,7 +43,9 @@ export default function MainRouter() {
               <MyGame />
             </ChangeBgLayout>
           }
-        />
+        >
+          <Route path={'/my-game/:id'} element={<div>ddd</div>} />
+        </Route>
       </Route>
     </Routes>
   )
