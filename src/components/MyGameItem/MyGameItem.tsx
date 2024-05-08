@@ -14,6 +14,7 @@ export default function MyGameItem({
   const userId = 1
   const navigate = useNavigate()
 
+  // NOTICE: gameId를 이용하여 동적 라우팅을 합니다.
   const handleGameItem = () => {
     setSelected(gameInfo.gameId)
     navigate(`/my-game/${gameInfo.gameId}`)

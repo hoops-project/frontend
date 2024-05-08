@@ -13,8 +13,9 @@ export const S = {
   `,
   ListContainer: styled.div`
     margin-bottom: 3rem;
-    max-height: 50%;
+
     & > div:nth-child(1) {
+      margin-bottom: 1.5rem;
     }
   `,
 }

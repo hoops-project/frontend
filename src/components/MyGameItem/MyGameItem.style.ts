@@ -13,6 +13,7 @@ export const S = {
     border-radius: 1rem;
     margin-top: 1.5rem;
     cursor: pointer;
+    font-weight: ${(props) => (props.$isJoined ? 'bold' : '')};
 
     & > div:nth-child(1) {
       display: grid;

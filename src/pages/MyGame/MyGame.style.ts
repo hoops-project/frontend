@@ -6,6 +6,6 @@ export const S = {
     height: 100%;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
-    gap: 1rem;
+    gap: 5rem;
   `,
 }

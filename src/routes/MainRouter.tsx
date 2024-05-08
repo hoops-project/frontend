@@ -10,6 +10,7 @@ import DefaultLayout from '../layout/DefaultLayout/DefaultLayout.tsx'
 import Report from '../pages/Report/Report.tsx'
 import Main from '../pages/Main/Main.tsx'
 import MyGame from '../pages/MyGame/MyGame.tsx'
+import GameChat from '../components/GameChat/GameChat.tsx'
 
 export default function MainRouter() {
   return (
@@ -44,7 +45,7 @@ export default function MainRouter() {
             </ChangeBgLayout>
           }
         >
-          <Route path={'/my-game/:id'} element={<div>ddd</div>} />
+          <Route path={'/my-game/:id'} element={<GameChat />} />
         </Route>
       </Route>
     </Routes>
