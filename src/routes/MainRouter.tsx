@@ -45,6 +45,7 @@ export default function MainRouter() {
             </ChangeBgLayout>
           }
         >
+          <Route path={'/my-game'} element={<GameChat />} />
           <Route path={'/my-game/:id'} element={<GameChat />} />
         </Route>
       </Route>

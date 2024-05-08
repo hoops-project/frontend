@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const S = {
   Wrapper: styled.div`
-    height: 100vh;
+    height: calc(100vh - 20rem);
     overflow-y: scroll;
   `,
   Chat: styled.div`

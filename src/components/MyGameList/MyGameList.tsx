@@ -6,7 +6,7 @@ import GameUserList from '../GameUserList/GameUserList.tsx'
 import { useParams } from 'react-router-dom'
 
 export default function MyGameList() {
-  const [selected, setSelected] = useState<number>(0)
+  const [selected, setSelected] = useState<number>(1)
   const [page, setPage] = React.useState(1)
   const params = useParams()
 

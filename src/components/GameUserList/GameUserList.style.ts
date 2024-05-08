@@ -5,9 +5,9 @@ export const S = {
     background-color: ${({ theme }) => theme.colors.white_gray};
     border-radius: 1rem;
     padding: 2rem 0 2rem 0;
-    max-height: 50%;
+
     & > div:first-of-type {
-      max-height: 37rem;
+      max-height: 25rem;
       margin-top: 2rem;
       overflow-y: scroll;
     }

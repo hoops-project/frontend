@@ -34,6 +34,7 @@ export const S = {
     }
 
     & > div > span {
+      cursor: pointer;
       margin-right: 1rem;
       margin-left: 1rem;
       font-size: 1.2rem;
