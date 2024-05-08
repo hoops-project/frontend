@@ -9,6 +9,7 @@ import MyPage from '../pages/MyPage/MyPage.tsx'
 import DefaultLayout from '../layout/DefaultLayout/DefaultLayout.tsx'
 import Report from '../pages/Report/Report.tsx'
 import Main from '../pages/Main/Main.tsx'
+import MyGame from '../pages/MyGame/MyGame.tsx'
 
 export default function MainRouter() {
   return (
@@ -32,6 +33,14 @@ export default function MainRouter() {
           element={
             <ChangeBgLayout $bg={theme.colors.default_gray_bg}>
               <MyPage />
+            </ChangeBgLayout>
+          }
+        />
+        <Route
+          path={'/my-game'}
+          element={
+            <ChangeBgLayout $bg={theme.colors.default_gray_bg}>
+              <MyGame />
             </ChangeBgLayout>
           }
         />
