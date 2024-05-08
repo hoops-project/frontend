@@ -1,11 +1,20 @@
 import { S } from './MyGameList.style.ts'
 import MyGameItem from '../MyGameItem/MyGameItem.tsx'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Pagination } from '@mui/material'
 import GameUserList from '../GameUserList/GameUserList.tsx'
 
 export default function MyGameList() {
   const [selected, setSelected] = useState<number>(0)
+  const [page, setPage] = React.useState(1)
+
+  const handlePageChange = (
+    _event: React.ChangeEvent<unknown>,
+    value: number
+  ) => {
+    setPage(value)
+  }
+
   const TestData = [
     {
       gameId: 1,
@@ -69,7 +78,7 @@ export default function MyGameList() {
             />
           ))}
         </div>
-        <Pagination size={'large'} count={5} />
+        <Pagination count={5} page={page} onChange={handlePageChange} />
       </S.ListContainer>
       <GameUserList userInfo={TestData2} />
     </S.Wrapper>
