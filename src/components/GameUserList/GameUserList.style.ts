@@ -3,7 +3,6 @@ import styled from 'styled-components'
 export const S = {
   Wrapper: styled.div`
     max-height: 50%;
-    margin-top: 5rem;
     & > div:first-of-type {
       max-height: 37rem;
       margin-top: 2rem;

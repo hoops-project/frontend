@@ -12,10 +12,9 @@ export const S = {
     }
   `,
   ListContainer: styled.div`
-    margin-bottom: 1rem;
+    margin-bottom: 3rem;
     max-height: 50%;
     & > div:nth-child(1) {
-      margin: 2.5rem 0 2.5rem 0;
     }
   `,
 }

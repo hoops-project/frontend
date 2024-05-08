@@ -1,7 +1,7 @@
 import { S } from './MyGameList.style.ts'
 import MyGameItem from '../MyGameItem/MyGameItem.tsx'
 import React, { useState } from 'react'
-import { Pagination } from '@mui/material'
+import { Pagination, Stack } from '@mui/material'
 import GameUserList from '../GameUserList/GameUserList.tsx'
 
 export default function MyGameList() {
@@ -78,7 +78,11 @@ export default function MyGameList() {
             />
           ))}
         </div>
-        <Pagination count={5} page={page} onChange={handlePageChange} />
+        <div>
+          <Stack spacing={1}>
+            <Pagination count={5} page={page} onChange={handlePageChange} />
+          </Stack>
+        </div>
       </S.ListContainer>
       <GameUserList userInfo={TestData2} />
     </S.Wrapper>
