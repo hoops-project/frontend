@@ -5,6 +5,7 @@ import KakaoMap from '../../components/KakaoMap/KakaoMap.tsx'
 import MatchPoint from '../../components/MatchPoint/MatchPoint.tsx'
 import DetailTopTitle from '../../components/DetailTopTitle/DetailTopTitle.tsx'
 import JoinGame from '../../components/JoinGame/JoinGame.tsx'
+import MatchData from '../../components/MatchData/MatchData.tsx'
 
 export default function Detail() {
   // TODO: 임시 데이터입니다. 이후 페이지 id에 따라서 데이터 받아온 후 화면에 뿌릴것
@@ -29,8 +30,10 @@ export default function Detail() {
         <S.InfoWrapper>
           <div>
             <MatchPoint matchPoint={detail.matchPoint} />
-            {/* TODO: 이곳에 메치 데이터 시각화 조건부 렌더링 */}
+            {/* TODO: 매치 데이터 시각화 조건부 렌더링 구현 */}
+            <MatchData/>
             <LockMatchData />
+
             <KakaoMap lat={33.450701} lng={126.570667} />
           </div>
           <JoinGame
