@@ -15,7 +15,7 @@ export default function MainNav() {
           <p>모임 추가</p>
         </div>
       </CS.Link>
-      <CS.Link to={'/'}>
+      <CS.Link to={'/my-game'}>
         <div>
           <img src={myGame} alt={'나의 경기'} />
           <p>나의 경기</p>
