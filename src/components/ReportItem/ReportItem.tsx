@@ -62,14 +62,13 @@ export default function ReportItem({ report }: ReportItemProps) {
           $bgColor={theme.colors.red}
           $width={'13rem'}
           $fontcolor={theme.colors.white}
-          onClick={openModal}
         >
           블랙
         </BasicButton>
       </S.SubmitWrapper>
       {/* 임의의 데이터를 넣으면 될거 같아요 */}
       {showModal && ( // 모달 열렸을 때만 모달 표시
-        <ContentModal  onClose={closeModal} title={'모달타이틀'} content={'모달내용'} />
+        <ContentModal  onClose={closeModal} title={'모달타이틀'} content={'제가 욕을 했어요'} />
       )}
     </S.ContentBox>
   )
