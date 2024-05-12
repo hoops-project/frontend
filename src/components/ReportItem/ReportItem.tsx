@@ -2,6 +2,7 @@ import { useState } from 'react'
 import BasicButton from '../../components/common/BasicButton/BasicButton'
 import { theme } from '../../styles/theme'
 import { S } from '../ReportItem/ReportItem.style'
+import ContentModal from '../common/ContentModal/ContentModal'
 
 interface Report {
   name: string
@@ -15,10 +16,19 @@ interface ReportItemProps {
 
 export default function ReportItem({ report }: ReportItemProps) {
   const [selectedButton, setSelectedButton] = useState<string | null>(null)
+  const [showModal, setShowModal] = useState<boolean>(false); // 모달 열고 닫는 상태
 
   const handleButtonClick = (buttonText: string) => {
     setSelectedButton(buttonText)
   }
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
 
   return (
     <S.ContentBox>
@@ -43,6 +53,7 @@ export default function ReportItem({ report }: ReportItemProps) {
           $bgColor={theme.colors.blue}
           $width={'13rem'}
           $fontcolor={theme.colors.white}
+          onClick={openModal}
         >
           신고 내용
         </BasicButton>
@@ -51,10 +62,15 @@ export default function ReportItem({ report }: ReportItemProps) {
           $bgColor={theme.colors.red}
           $width={'13rem'}
           $fontcolor={theme.colors.white}
+          onClick={openModal}
         >
           블랙
         </BasicButton>
       </S.SubmitWrapper>
+      {/* 임의의 데이터를 넣으면 될거 같아요 */}
+      {showModal && ( // 모달 열렸을 때만 모달 표시
+        <ContentModal  onClose={closeModal} title={'모달타이틀'} content={'모달내용'} />
+      )}
     </S.ContentBox>
   )
 }
