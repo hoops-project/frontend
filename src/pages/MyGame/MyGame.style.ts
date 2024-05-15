@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const S = {
   Wrapper: styled.div`
-    padding: 3rem 0 3rem 0;
+    padding-top: 3rem;
     height: 100%;
     display: grid;
     width: 100%;

@@ -5,6 +5,7 @@ export const S = {
   Wrapper: styled.div`
     position: relative;
     width: 100%;
+    height: calc(100vh - 10rem);
     background-color: ${({ theme }) => theme.colors.white};
   `,
   TopTitleContainer: styled.div`

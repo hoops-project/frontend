@@ -2,11 +2,13 @@ import styled from 'styled-components'
 
 export const S = {
   Wrapper: styled.div`
-    height: calc(100vh - 20rem);
+    display: flex;
+    flex-direction: column;
     overflow-y: scroll;
+    height: calc(100vh - 30rem);
   `,
   Chat: styled.div`
-    margin: 2rem 0 2rem 2rem;
+    margin: 1rem 0 1rem 2rem;
     & > p {
       font-size: 1.2rem;
       padding-left: 4.5rem;
