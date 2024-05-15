@@ -12,6 +12,7 @@ import Main from '../pages/Main/Main.tsx'
 import MyGame from '../pages/MyGame/MyGame.tsx'
 import GameChat from '../components/GameChat/GameChat.tsx'
 import WaitChatSelect from '../components/WaitChatSelect/WaitChatSelect.tsx'
+import SearchTab from '../components/SearchTab/SearchTab.tsx'
 
 export default function MainRouter() {
   return (
@@ -22,6 +23,7 @@ export default function MainRouter() {
         <Route path={'/sign-up'} element={<SignUp />} />
         <Route path={'/add-game'} element={<AddGame />} />
         <Route path={'/report'} element={<Report />} />
+        <Route path={'/search'} element={<SearchTab />} />
         <Route
           path={'/detail/:id'}
           element={
@@ -48,6 +50,7 @@ export default function MainRouter() {
         >
           <Route path={'/my-game'} element={<WaitChatSelect />} />
           <Route path={'/my-game/:id'} element={<GameChat />} />
+
         </Route>
       </Route>
     </Routes>

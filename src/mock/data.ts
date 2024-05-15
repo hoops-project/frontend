@@ -76,14 +76,14 @@ export const participantGameUserList = [
     point : 3.0
   },
   {
-      participantId : 2,
-      status : "APPLY",
-      createdDate : "2024-05-08T12:30:00.000000",
-      gender : "FEMALE",
-      nickName : "별명",
-      playStyle : "DEFENSIVE",
-      ability : "PASS",
-      point : 3.0
+    participantId : 2,
+    status : "APPLY",
+    createdDate : "2024-05-08T12:30:00.000000",
+    gender : "FEMALE",
+    nickName : "별명",
+    playStyle : "DEFENSIVE",
+    ability : "PASS",
+    point : 3.0
   },
   {
     participantId : 3,
@@ -104,5 +104,38 @@ export const participantGameUserList = [
     playStyle : "AGGRESSIVE",
     ability : "SHOOT",
     point : 3.0
+  },
+]
+
+export const userInfoData = [
+  {
+  userId: 10,
+  birthday: "2024-04-28",
+  gender: "MALE",
+  nickName: "시눙하이",
+  playStyle: "AGGRESSIVE",
+  rating:4.5,
+  ability: "SHOOT",
+  isRequestFriend: true,
+  },
+  {
+  userId: 11,
+  birthday: "2024-04-28",
+  gender: "FEMALE",
+  nickName: "Pinn",
+  playStyle: "DEFFENSIVE",
+  rating:4.5,
+  ability: "DRIBBLE",
+  isRequestFriend: false,
+  },
+  {
+  userId: 12,
+  birthday: "2024-04-28",
+  gender: "MALE",
+  nickName: "김영찬",
+  playStyle: "AGGRESSIVE",
+  rating:4.5,
+  ability: "SHOOT",
+  isRequestFriend: true,
   },
 ]
