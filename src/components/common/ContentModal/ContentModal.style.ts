@@ -32,10 +32,10 @@ export const S = {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 60rem;
-    height: 30rem;
+    width: 70rem;
+    height: 50rem;
     background-color: ${(props) => props.theme.colors.white};
-    padding: 2rem;
+    padding: 4rem;
     text-align: center;
     z-index: 1;
     display: flex;

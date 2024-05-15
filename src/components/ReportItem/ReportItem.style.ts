@@ -1,4 +1,5 @@
 import { styled } from 'styled-components'
+import { theme } from '../../styles/theme.ts';
 
 export const S = {
   ContentBox: styled.div`
@@ -6,7 +7,10 @@ export const S = {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  `,
+    width: 100%;
+    height: ${theme.height.full};
+    max-width: ${theme.width.default};
+    `,
 
   TopTit: styled.div`
   & .tit_box {
