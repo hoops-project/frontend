@@ -36,7 +36,7 @@ export const S = {
       color: #1570ff;
       border: 0.1rem solid #1570ff;
     }
-    &.selected {
+    & .selected {
       color: #1570ff;
       border: 0.1rem solid #1570ff;
     }
