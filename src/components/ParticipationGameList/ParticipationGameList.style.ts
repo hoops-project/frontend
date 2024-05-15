@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const S = {
   Wrapper: styled.div`
     background-color: ${(props) => props.theme.colors.white};
-    height: 100vh;
+    height: calc(100vh - 10rem);
 
     & > p {
       width: 100%;

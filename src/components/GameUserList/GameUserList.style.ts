@@ -7,8 +7,9 @@ export const S = {
     padding: 2rem 0 2rem 0;
 
     & > div:first-of-type {
-      max-height: 25rem;
       margin-top: 2rem;
+      height: calc(100vh - 82rem);
+      min-height: 10rem;
       overflow-y: scroll;
     }
     & > p {
