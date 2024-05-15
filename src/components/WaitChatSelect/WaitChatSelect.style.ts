@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const S = {
   Container: styled.div`
-    height: 100vh;
+    height: calc(100vh - 10rem);
     background-color: ${(props) => props.theme.colors.white};
     display: flex;
     align-items: center;
