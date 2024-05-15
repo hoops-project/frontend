@@ -3,7 +3,6 @@ import SignIn from '../pages/SignIn/SignIn.tsx'
 import SignUp from '../pages/SignUp/SignUp.tsx'
 import AddGame from '../pages/AddGame/AddGame.tsx'
 import Detail from '../pages/Detail/Detail.tsx'
-import Admin from '../pages/Admin/Admin.tsx'
 import ChangeBgLayout from '../layout/ChangeBgLayout/ChangeBgLayout.tsx'
 import { theme } from '../styles/theme.ts'
 import MyPage from '../pages/MyPage/MyPage.tsx'
@@ -22,8 +21,7 @@ export default function MainRouter() {
         <Route path={'/'} element={<Main />}></Route>
         <Route path={'/sign-in'} element={<SignIn />} />
         <Route path={'/sign-up'} element={<SignUp />} />
-        <Route path={'/add-game'} element={<AddGame />} />
-        <Route path={'/admin'} element={<Admin />} />
+        <Route path={'/add-game'} element={<AddGame />} />  
         <Route path={'/admin/report'} element={<Report />} />
         <Route path={'/search'} element={<SearchTab />} />
         <Route

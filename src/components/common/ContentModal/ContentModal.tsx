@@ -1,10 +1,7 @@
 import { S } from './ContentModal.style'
-
-interface ModalProps {
-  title: string
-  content: string
-  onClose: () => void
-}
+import { ModalProps } from '../../../types/modal';
+import ModalTextBox from '../ModalTextBox/ModalTextBox';
+import Review from '../../Review/Reivew';
 
 export default function ContentModal({onClose,  title, content }: ModalProps) {
   const handleClose = () => {
@@ -19,7 +16,9 @@ export default function ContentModal({onClose,  title, content }: ModalProps) {
         </S.CloseBtnContainer>
         <h3 className='tit'>{title}</h3>
         <p className='txt'>{content}</p>
-        <S.SubmitBtn  onClick={handleClose}>확인</S.SubmitBtn>
+        <ModalTextBox />
+        <Review />
+        <S.SubmitBtn onClick={handleClose}>확인</S.SubmitBtn>
       </S.Modal>
     </S.ModalContainer>
   )
