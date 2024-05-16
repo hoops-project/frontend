@@ -63,7 +63,7 @@ export const reportDetail = [
   },
 ]
 
-// 경기 참가 리스트
+// 경기 참가 사용자 리스트
 export const participantGameUserList = [
   {
     participantId : 1,
@@ -138,4 +138,53 @@ export const userInfoData = [
   ability: "SHOOT",
   isRequestFriend: true,
   },
+]
+// 내가 참가한 경기 리스트
+export const MyLastGameList = [
+  {
+  gameId: 4,
+  gameOwnerId: 4,
+  userId: 1,
+  title: "Example Game",
+  content: "This is an example game content.",
+  startDateTime: "10:00",
+  createdDateTime: null,
+  deletedDateTime: null,
+  inviteYn: true,
+  isRating: false,
+  cityName: "SEOUL",
+  address : "서울 용산구 이촌동 380",
+  latitude : 33.450701,
+  longitude : 126.570667,
+  matchPoint: {
+    playType: 'THREEONTHREE',
+    gender: 'MALEONLY',
+    place: 'OUTDOOR',
+    inviteYn : true,
+  },
+  },
+  {
+    gameId: 2,
+    gameOwnerId: 3,
+    userId: 1,
+    title: "Example Game",
+    content: "This is an example game content.",
+    headCount: 10,
+    startDateTime: "10:00",
+    createdDateTime: null,
+    deletedDateTime: null,
+    inviteYn: true,
+    isRating: true,
+    cityName: "SEOUL",
+    address : "서울 용산구 이촌동 380",
+    latitude : 33.450701,
+    longitude : 126.570667,
+    matchPoint: {
+      playType: 'THREEONTHREE',
+      gender: 'MALEONLY',
+      place: 'OUTDOOR',
+      inviteYn : true,
+    },
+    },
+    
 ]

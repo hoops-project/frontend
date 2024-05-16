@@ -14,6 +14,7 @@ import MyGame from '../pages/MyGame/MyGame.tsx'
 import GameChat from '../components/GameChat/GameChat.tsx'
 import WaitChatSelect from '../components/WaitChatSelect/WaitChatSelect.tsx'
 import SearchTab from '../components/SearchTab/SearchTab.tsx'
+import MyLastGameList from '../pages/MyLastGame/MyLastGame.tsx'
 
 export default function MainRouter() {
   return (
@@ -25,7 +26,8 @@ export default function MainRouter() {
         <Route path={'/add-game'} element={<AddGame />} />
         <Route path={'/admin'} element={<Admin />} />
         <Route path={'/admin/report'} element={<Report />} />
-        <Route path={'/search'} element={<SearchTab />} />
+        <Route path={'/search'} element={<SearchTab />} />       
+        <Route path={'/my-last-game'} element={<MyLastGameList />} />
         <Route
           path={'/detail/:id'}
           element={
