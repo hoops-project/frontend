@@ -16,19 +16,19 @@ interface ReportItemProps {
 
 export default function ReportItem({ report }: ReportItemProps) {
   const [selectedButton, setSelectedButton] = useState<string | null>(null)
-  const [showModal, setShowModal] = useState<boolean>(false); // 모달 열고 닫는 상태
+  const [showModal, setShowModal] = useState<boolean>(false) // 모달 열고 닫는 상태
 
   const handleButtonClick = (buttonText: string) => {
     setSelectedButton(buttonText)
   }
 
   const openModal = () => {
-    setShowModal(true);
-  };
+    setShowModal(true)
+  }
 
   const closeModal = () => {
-    setShowModal(false);
-  };
+    setShowModal(false)
+  }
 
   return (
     <S.ContentBox>
@@ -68,7 +68,11 @@ export default function ReportItem({ report }: ReportItemProps) {
       </S.SubmitWrapper>
       {/* 임의의 데이터를 넣으면 될거 같아요 */}
       {showModal && ( // 모달 열렸을 때만 모달 표시
-        <ContentModal  onClose={closeModal} title={'모달타이틀'} content={'제가 욕을 했어요'} />
+        <ContentModal
+          onClose={closeModal}
+          title={'모달타이틀'}
+          content={'제가 욕을 했어요'}
+        />
       )}
     </S.ContentBox>
   )
