@@ -24,8 +24,10 @@ export const S = {
     align-items: center;
     padding: 1.5rem;
 
-    & > img {
+    & > svg {
       cursor: pointer;
+      width: 2rem;
+      height: 2rem;
     }
   `,
 }

@@ -54,8 +54,10 @@ export const S = {
     padding-left: 1rem;
     font-size: 1.4rem;
 
-    & > img {
+    & > svg {
       margin-right: 1rem;
+      width: 2rem;
+      height: 2rem;
     }
   `,
 }

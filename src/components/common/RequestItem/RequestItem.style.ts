@@ -8,7 +8,9 @@ export const S = {
     padding: 1rem;
     border-bottom: 0.1rem solid ${(props) => props.theme.colors.gray_300};
 
-    & > img {
+    & > svg {
+      width: 2.2rem;
+      height: 2.2rem;
       cursor: pointer;
     }
   `,
