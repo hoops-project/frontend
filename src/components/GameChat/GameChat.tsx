@@ -81,6 +81,7 @@ export default function GameChat() {
           $width={theme.width.default}
           $height='50rem'
           onClose={closeModal}
+          confirmButtonText='확인'
         >
           <ModalTit title='내 친구들' />
           <FriendModalList />
