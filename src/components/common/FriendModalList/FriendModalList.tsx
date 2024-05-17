@@ -36,7 +36,7 @@ export default function FriendModalList() {
               $hoverBgColor={
                 user.isRequestFriend
                   ? theme.colors.gray_300
-                  : theme.colors.gray_300
+                  : theme.colors.gray_200
               }
               $fontcolor={theme.colors.white}
             >

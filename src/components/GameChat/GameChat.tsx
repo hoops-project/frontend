@@ -9,16 +9,23 @@ import ChatList from '../ChatList/ChatList.tsx'
 import BasicInput from '../common/BasicInput/BasicInput.tsx'
 import send from '../../assets/send.svg'
 import React, { useState } from 'react'
+import Modal from '../common/Modal/Modal.tsx'
+import FriendModalList from '../common/FriendModalList/FriendModalList.tsx'
+import ModalTit from '../common/ModalTit/ModalTit.tsx'
 
 export default function GameChat() {
   const params = useParams()
   const [chat, setChat] = useState<string>('')
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log(chat)
     setChat('')
   }
+
+  const openModal = () => setIsModalOpen(true)
+  const closeModal = () => setIsModalOpen(false)
 
   return (
     <S.Wrapper>
@@ -31,7 +38,7 @@ export default function GameChat() {
                 <img src={pin} alt={'핀 아이콘'} />
                 <p>지도</p>
               </span>
-              <span>
+              <span onClick={openModal}>
                 <img src={invite} alt={'초대 아이콘'} />
                 <p> 친구 초대</p>
               </span>
@@ -69,6 +76,16 @@ export default function GameChat() {
           </BasicButton>
         </S.InputWrapper>
       </S.ChatSendForm>
+      {isModalOpen && (
+        <Modal
+          $width={theme.width.default}
+          $height='50rem'
+          onClose={closeModal}
+        >
+          <ModalTit title='내 친구들' />
+          <FriendModalList />
+        </Modal>
+      )}
     </S.Wrapper>
   )
 }

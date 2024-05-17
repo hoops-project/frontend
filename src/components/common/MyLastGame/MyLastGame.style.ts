@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { theme } from "../../../styles/theme";
+import styled from 'styled-components'
+import { theme } from '../../../styles/theme'
 
 export const S = {
   Wrapper: styled.div`
@@ -52,14 +52,13 @@ export const S = {
       border-bottom: 1px solid ${theme.colors.gray_300};
     }
     button {
-      margin-left:auto;
+      margin-left: auto;
     }
   `,
   LastGameItem: styled.div`
     display: flex;
     flex-direction: column;
     font-size: 2rem;
-    margin-left:2rem;
+    margin-left: 2rem;
   `,
-
 }

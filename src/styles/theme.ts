@@ -2,7 +2,7 @@ export const theme = {
   colors: {
     blue: '#1570FF',
     blue_100: '#BCE8FF',
-    light_blue: 'rgba(21,112,255,50%)',
+    light_blue: 'rgba(21, 112, 255, 0.5) !important',
     red: '#FF4D37',
     green: '#009E5C',
     yellow: '#FEE500',
@@ -17,6 +17,7 @@ export const theme = {
     white_gray: '#F8FAFB',
     white: '#ffffff',
     footer: '#FAFAFA',
+    purple: '#9C8CFF',
   },
   width: {
     default: '102.4rem',

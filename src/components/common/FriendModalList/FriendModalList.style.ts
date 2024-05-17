@@ -20,6 +20,7 @@ export const S = {
     > a {
       text-decoration: none;
       font-size: 1.5rem;
+      color: ${theme.colors.purple};
     }
   `,
   FlexBox: styled.div`
@@ -31,11 +32,11 @@ export const S = {
     }
 
     > p:nth-child(2) {
-      margin-left: 7rem;
+      margin-left: 9rem;
     }
 
     > p:last-child {
-      margin-left: 14rem;
+      margin-left: 22rem;
     }
   `,
 
@@ -54,7 +55,7 @@ export const S = {
     width: 100%;
     padding-bottom: 1rem;
       button {
-        margin-left:5rem;
+        margin-left:22rem;
       }
     
     &:not(:last-child) {
@@ -68,8 +69,9 @@ export const S = {
       border: 1px solid ${theme.colors.gray_300};
       border-radius: 3rem;
       padding: 1.5rem;
+      cursor:pointer;
       &:first-child {
-        width:8rem;
+        width:9rem;
         text-align: left;
         border: none;
         font-weight:700;

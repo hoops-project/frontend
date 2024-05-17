@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { theme } from '../../styles/theme.ts';
+import styled from 'styled-components'
+import { theme } from '../../styles/theme.ts'
 
 export const S = {
   Wrapper: styled.div`
@@ -25,9 +25,9 @@ export const S = {
     right: 0.5rem;
     top: 50%; // 상단에서 50% 위치
     transform: translateY(-50%);
-    width: 1.6rem; 
+    width: 1.6rem;
     height: 1.6rem;
-    cursor: pointer; 
+    cursor: pointer;
   `,
   Search: styled.input`
     width: 100%;
@@ -66,15 +66,14 @@ export const S = {
         margin-left: 22rem;
       }
 `,
-  UnderLine:styled.hr`
-  background-color: ${theme.colors.gray_400};
-`,
+  UnderLine: styled.hr`
+    background-color: ${theme.colors.gray_400};
+  `,
   ListBox: styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
     gap: 10px;
-
   `,
   ListItem: styled.div`
     display: flex;
@@ -107,7 +106,5 @@ export const S = {
         border: none;
         margin: 0;
       }
-
   `,
-  
 }

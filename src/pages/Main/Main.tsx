@@ -9,12 +9,13 @@ import { Suspense, useState } from 'react'
 import MatchItem from '../../components/MatchItem/MatchItem.tsx'
 import { CS } from '../../styles/commonStyle.ts'
 import { S } from './Main.style.ts'
+import { theme } from '../../styles/theme.ts'
 
 export default function Main() {
   const selected = useSelectBox()
   // NOTICE : 임시 데이터
   // 나중에 로그인 토큰으로 조건문 렌더링 해야됨~
-  const [isAdmin] = useState(true)
+  const [isAdmin] = useState(false)
   // NOTICE: 임시 데이터
   const match = {
     id: 1,
@@ -31,8 +32,8 @@ export default function Main() {
               <BasicButton
                 children={'신고 목록'}
                 type={'button'}
-                $bgColor={'#FF4D37'}
-                $fontcolor='#fff'
+                $bgColor={theme.colors.red}
+                $fontcolor={theme.colors.white}
               />
             </Link>
           ) : (

@@ -1,5 +1,9 @@
+import React from 'react'
+
 export interface ModalProps {
-  title: string
-  content: string
-  onClose: () => void
+  children: React.ReactNode
+  onClick?: () => void
+  onClose?: () => void
+  $width?: string
+  $height?: string
 }

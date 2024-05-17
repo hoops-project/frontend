@@ -1,4 +1,5 @@
 import { styled } from 'styled-components'
+import { theme } from '../../../styles/theme'
 
 export const S = {
   Wrapper: styled.div`
@@ -7,7 +8,7 @@ export const S = {
     justify-content: center;
     align-items: center;
     padding: 2rem;
-    border-bottom: 2px solid #e4e4e4;
+    border-bottom: 2px solid ${theme.colors.gray_300};
 
     & p {
       font-size: 1.6rem;
