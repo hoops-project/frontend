@@ -1,13 +1,13 @@
-import vector from '../../../assets/Vector.svg'
 import BasicButton from '../BasicButton/BasicButton.tsx'
 import { theme } from '../../../styles/theme.ts'
 import { S } from './RequestItem.style.ts'
+import { PiInfoLight } from 'react-icons/pi'
 
 export default function RequestItem() {
   return (
     <S.RequestItem>
       <p>{`오신웅`}</p>
-      <img src={vector} alt={'느낌표 아이콘'} />
+      <PiInfoLight />
       <p>{`4.9`}</p>
       <S.ButtonWrapper>
         <BasicButton

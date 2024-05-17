@@ -2,8 +2,8 @@ import { S } from './MyGameItem.style.ts'
 import Badge from '../common/Badge/Badge.tsx'
 import { theme } from '../../styles/theme.ts'
 import { MyGameItemProps } from '../../types/game.ts'
-import enterDoor from '../../assets/enter_door.svg'
 import { useNavigate } from 'react-router-dom'
+import { PiArrowSquareInLight } from 'react-icons/pi'
 
 export default function MyGameItem({
   gameInfo,
@@ -38,7 +38,7 @@ export default function MyGameItem({
         <p>날짜</p>
         <p>{gameInfo.startDateTime}</p>
       </div>
-      <img src={enterDoor} alt={'입장 아이콘'} />
+      <PiArrowSquareInLight />
     </S.GameItem>
   )
 }

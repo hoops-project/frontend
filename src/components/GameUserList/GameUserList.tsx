@@ -1,8 +1,8 @@
 import { S } from './GameUserList.style.ts'
 import BasicButton from '../common/BasicButton/BasicButton.tsx'
 import { theme } from '../../styles/theme.ts'
-import reportIcon from '../../assets/report_icon.svg'
 import { MyGameUserList } from '../../types/game.ts'
+import { PiSirenThin } from 'react-icons/pi'
 
 export default function GameUserList({ userInfo }: MyGameUserList) {
   const userId = 1
@@ -26,7 +26,7 @@ export default function GameUserList({ userInfo }: MyGameUserList) {
                 >
                   친구 추가
                 </BasicButton>
-                <img src={reportIcon} alt={'신고 아이콘'} />
+                <PiSirenThin />
               </S.UserInfo>
             )
         )}
