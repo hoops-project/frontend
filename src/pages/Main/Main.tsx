@@ -15,7 +15,7 @@ export default function Main() {
   const selected = useSelectBox()
   // NOTICE : 임시 데이터
   // 나중에 로그인 토큰으로 조건문 렌더링 해야됨~
-  const [isAdmin] = useState(true)
+  const [isAdmin] = useState(false)
   // NOTICE: 임시 데이터
   const match = {
     id: 1,

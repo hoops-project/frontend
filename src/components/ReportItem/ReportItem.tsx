@@ -5,6 +5,7 @@ import { S } from '../ReportItem/ReportItem.style'
 import Modal from '../common/Modal/Modal'
 import ModalSubText from '../common/ModalSubText/ModalSubText'
 import ModalTit from '../common/ModalTit/ModalTit'
+import useModal from '../../hooks/useModal.ts'
 
 interface Report {
   name: string
@@ -18,18 +19,10 @@ interface ReportItemProps {
 
 export default function ReportItem({ report }: ReportItemProps) {
   const [selectedButton, setSelectedButton] = useState<string | null>(null)
-  const [showModal, setShowModal] = useState<boolean>(false) // 모달 열고 닫는 상태
+  const { isModalOpen, openModal, closeModal } = useModal()
 
   const handleButtonClick = (buttonText: string) => {
     setSelectedButton(buttonText)
-  }
-
-  const openModal = () => {
-    setShowModal(true)
-  }
-
-  const closeModal = () => {
-    setShowModal(false)
   }
 
   return (
@@ -69,7 +62,7 @@ export default function ReportItem({ report }: ReportItemProps) {
         </BasicButton>
       </S.SubmitWrapper>
       {/* 임의의 데이터를 넣으면 될거 같아요 */}
-      {showModal && ( // 모달 열렸을 때만 모달 표시
+      {isModalOpen && ( // 모달 열렸을 때만 모달 표시
         <Modal
           $width='52rem'
           $height='32rem'

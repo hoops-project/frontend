@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { S } from './MyLastGame.style'
 import BasicButton from '../BasicButton/BasicButton'
 import { theme } from '../../../styles/theme'
@@ -6,12 +5,10 @@ import { MyLastGameList } from '../../../mock/data'
 import Modal from '../Modal/Modal'
 import ModalTit from '../ModalTit/ModalTit'
 import Review from '../Review/Review'
+import useModal from '../../../hooks/useModal'
 
 export default function MyLastGame() {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
-
-  const openModal = () => setIsModalOpen(true)
-  const closeModal = () => setIsModalOpen(false)
+  const { isModalOpen, openModal, closeModal } = useModal()
 
   return (
     <S.Wrapper>
