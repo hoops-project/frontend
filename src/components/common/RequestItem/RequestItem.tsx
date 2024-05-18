@@ -1,4 +1,3 @@
-import vector from '../../../assets/Vector.svg'
 import BasicButton from '../BasicButton/BasicButton.tsx'
 import { theme } from '../../../styles/theme.ts'
 import { S } from './RequestItem.style.ts'
@@ -6,6 +5,7 @@ import useModal from '../../../hooks/useModal.ts'
 import Modal from '../../common/Modal/Modal.tsx'
 import ModalTit from '../ModalTit/ModalTit.tsx'
 import MyPageUserInfo from '../MyPageUserInfo/MyPageUserInfo.tsx'
+import { PiInfoLight } from 'react-icons/pi'
 
 export default function RequestItem() {
   const { isModalOpen, openModal, closeModal } = useModal()
@@ -20,7 +20,8 @@ export default function RequestItem() {
         tabIndex={0}
         onClick={openModal}
         aria-label='느낌표 아이콘 버튼'
-      />
+      /
+      <PiInfoLight />
       <p>{`4.9`}</p>
       <S.ButtonWrapper>
         <BasicButton

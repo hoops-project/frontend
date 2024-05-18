@@ -36,5 +36,10 @@ export const S = {
         color: ${(props) => props.theme.colors.gray_500};
       }
     }
+
+    & > svg {
+      width: 2rem;
+      height: 2rem;
+    }
   `,
 }
