@@ -20,7 +20,7 @@ export default function MainNav() {
           <p>나의 경기</p>
         </div>
       </CS.Link>
-      <CS.Link to={'/'}>
+      <CS.Link to={'/my-last-game'}>
         <div>
           <img src={lastGame} alt={'지난 경기'} />
           <p>지난 경기</p>
