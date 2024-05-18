@@ -1,12 +1,26 @@
 import BasicButton from '../BasicButton/BasicButton.tsx'
 import { theme } from '../../../styles/theme.ts'
 import { S } from './RequestItem.style.ts'
+import useModal from '../../../hooks/useModal.ts'
+import Modal from '../../common/Modal/Modal.tsx'
+import ModalTit from '../ModalTit/ModalTit.tsx'
+import MyPageUserInfo from '../MyPageUserInfo/MyPageUserInfo.tsx'
 import { PiInfoLight } from 'react-icons/pi'
 
 export default function RequestItem() {
+  const { isModalOpen, openModal, closeModal } = useModal()
+
   return (
     <S.RequestItem>
       <p>{`오신웅`}</p>
+      <img
+        src={vector}
+        alt='느낌표 아이콘'
+        role='button'
+        tabIndex={0}
+        onClick={openModal}
+        aria-label='느낌표 아이콘 버튼'
+      /
       <PiInfoLight />
       <p>{`4.9`}</p>
       <S.ButtonWrapper>
@@ -27,6 +41,17 @@ export default function RequestItem() {
           거절
         </BasicButton>
       </S.ButtonWrapper>
+      {isModalOpen && (
+        <Modal
+          $width='50rem'
+          $height='30rem'
+          onClose={closeModal}
+          confirmButtonText='닫기'
+        >
+          <ModalTit title='유저 정보' />
+          <MyPageUserInfo />
+        </Modal>
+      )}
     </S.RequestItem>
   )
 }

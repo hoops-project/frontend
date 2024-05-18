@@ -2,12 +2,14 @@ export const theme = {
   colors: {
     blue: '#1570FF',
     blue_100: '#BCE8FF',
+    light_blue: 'rgba(21, 112, 255, 0.5) !important',
     red: '#FF4D37',
     green: '#009E5C',
     yellow: '#FEE500',
     black: '#242424',
     default_gray_bg: '#F2F5F7',
     gray_700: '#444444',
+    gray_600: '#676767',
     gray_500: '#888888',
     gray_400: '#C1CCD6',
     gray_300: '#E4E4E4',
@@ -16,6 +18,7 @@ export const theme = {
     white_gray: '#F8FAFB',
     white: '#ffffff',
     footer: '#FAFAFA',
+    purple: '#9C8CFF',
   },
   width: {
     default: '102.4rem',
