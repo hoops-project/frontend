@@ -8,19 +8,11 @@ import MyPageUserInfo from '../MyPageUserInfo/MyPageUserInfo.tsx'
 import { PiInfoLight } from 'react-icons/pi'
 
 export default function RequestItem() {
-  const { isModalOpen, openModal, closeModal } = useModal()
+  const { isModalOpen, closeModal } = useModal()
 
   return (
     <S.RequestItem>
       <p>{`오신웅`}</p>
-      <img
-        src={vector}
-        alt='느낌표 아이콘'
-        role='button'
-        tabIndex={0}
-        onClick={openModal}
-        aria-label='느낌표 아이콘 버튼'
-      /
       <PiInfoLight />
       <p>{`4.9`}</p>
       <S.ButtonWrapper>
