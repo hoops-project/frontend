@@ -36,7 +36,7 @@ export const S = {
     width: ${(props) => props.$width};
     height: ${(props) => props.$height};
     background-color: ${(props) => props.theme.colors.white};
-    padding: 4rem;
+    padding: 3rem;
     text-align: center;
     z-index: 1;
     display: flex;
