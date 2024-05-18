@@ -1,0 +1,48 @@
+import { generateNextTwoWeeksDates } from '../helper/dateGenerater.ts'
+
+export const OPTIONS = {
+  REGION: ['서울', '경기', '인천'],
+  GENDER: ['혼성', '남성', '여성'],
+  GAME_TYPE: ['1 vs 1', '2 vs 2', '3 vs 3', '4 vs 4', '5 vs 5'],
+  TOTAL_PLAYERS: [
+    '1명',
+    '2명',
+    '3명',
+    '4명',
+    '5명',
+    '6명',
+    '7명',
+    '8명',
+    '9명',
+    '10명',
+    '11명',
+    '12명',
+  ],
+  ADD_FRIEND: ['허용', '불가'],
+  GAME_PLACE: ['실내', '야외'],
+  GAME_TIME: [
+    '06:00',
+    '07:00',
+    '08:00',
+    '09:00',
+    '10:00',
+    '11:00',
+    '12:00',
+    '13:00',
+    '14:00',
+    '15:00',
+    '16:00',
+    '17:00',
+    '18:00',
+    '19:00',
+    '20:00',
+    '21:00',
+    '22:00',
+    '23:00',
+    '24:00',
+  ],
+  GAME_DATE: generateNextTwoWeeksDates(),
+  GAME_OVER: ['표시', '가리기'],
+}
+
+Object.freeze(OPTIONS)

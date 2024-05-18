@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const S = {
-  Test: styled.p`
-    font-size: 10rem;
+  RootContainer: styled.div`
+    font-size: 1.6rem;
   `,
 }
