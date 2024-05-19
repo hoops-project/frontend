@@ -1,11 +1,17 @@
 import { S } from './GameUserList.style.ts'
 import BasicButton from '../common/BasicButton/BasicButton.tsx'
 import { theme } from '../../styles/theme.ts'
+import reportIcon from '../../assets/report_icon.svg'
 import { MyGameUserList } from '../../types/game.ts'
-import { PiSirenThin } from 'react-icons/pi'
+import useModal from '../../hooks/useModal.ts'
+import Modal from '../common/Modal/Modal.tsx'
+import ModalTit from '../common/ModalTit/ModalTit.tsx'
+import ModalSubText from '../common/ModalSubText/ModalSubText.tsx'
+import ModalTextBox from '../common/ModalTextBox/ModalTextBox.tsx'
 
 export default function GameUserList({ userInfo }: MyGameUserList) {
   const userId = 1
+  const { isModalOpen, openModal, closeModal } = useModal()
 
   return (
     <S.Wrapper>
@@ -26,11 +32,30 @@ export default function GameUserList({ userInfo }: MyGameUserList) {
                 >
                   친구 추가
                 </BasicButton>
-                <PiSirenThin />
+                <img
+                  role='button'
+                  tabIndex={0}
+                  onClick={openModal}
+                  aria-label='친구 초대'
+                  src={reportIcon}
+                  alt={'신고 아이콘'}
+                />
               </S.UserInfo>
             )
         )}
       </div>
+      {isModalOpen && (
+        <Modal
+          $width='50rem'
+          $height='30rem'
+          onClose={closeModal}
+          confirmButtonText='제출'
+        >
+          <ModalTit title='신고' />
+          <ModalSubText content='유저의 신고 사유를 작성해 주세요.' alignLeft />
+          <ModalTextBox />
+        </Modal>
+      )}
     </S.Wrapper>
   )
 }
