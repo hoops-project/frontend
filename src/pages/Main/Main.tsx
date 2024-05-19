@@ -41,8 +41,6 @@ export default function Main() {
     hasNextPage,
   })
 
-  console.log(data)
-
   return (
     <CS.DefaultContainer>
       <S.Wrapper>
