@@ -10,6 +10,8 @@ import MatchItem from '../../components/MatchItem/MatchItem.tsx'
 import { CS } from '../../styles/commonStyle.ts'
 import { S } from './Main.style.ts'
 import { theme } from '../../styles/theme.ts'
+import { useDateStore } from '../../store/calender.ts'
+import { useGameList } from '../../hooks/query/useGameList.ts'
 
 export default function Main() {
   const selected = useSelectBox()
@@ -22,6 +24,22 @@ export default function Main() {
     time: '13:00',
     title: '강남 농구장',
   }
+
+  const { date: globalDate } = useDateStore()
+
+  const gameFilter = {
+    localData: globalDate,
+    cityName: selected.region,
+    fieldStatus: selected.gamePlace,
+    gender: selected.gender,
+    matchFormat: selected.gameType,
+  }
+
+  const gameList = useGameList({
+    gameFilter,
+  })
+
+  console.log(gameList)
 
   return (
     <CS.DefaultContainer>
