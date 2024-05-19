@@ -10,6 +10,8 @@ import {
 } from '../../helper/convertValueToName.ts'
 
 export default function MatchItem({ match }: MatchData) {
+  const isOver: boolean = dayjs(match.startDateTime).isBefore(dayjs())
+
   return (
     <CS.Link to={`/detail/${match.gameId}`}>
       <S.container>
@@ -22,16 +24,17 @@ export default function MatchItem({ match }: MatchData) {
             <div>
               <p>{convertGender(match.gender)}</p>
               <p>{convertGameType(match.matchFormat)}</p>
+              <p>{match.inviteYn ? '친구초대 가능' : '친구초대 불가'}</p>
             </div>
           </S.Match>
         </S.Info>
         <BasicButton
           type={'button'}
-          $bgColor={theme.colors.blue}
+          $bgColor={isOver ? theme.colors.gray_300 : theme.colors.blue}
           $width={'13rem'}
           $fontcolor={theme.colors.white}
         >
-          마감임박
+          {isOver ? '마감' : '참가'}
         </BasicButton>
       </S.container>
     </CS.Link>

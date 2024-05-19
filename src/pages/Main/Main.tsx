@@ -14,6 +14,7 @@ import { useGameList } from '../../hooks/query/useGameList.ts'
 import { useInfiniteScroll } from '../../hooks/useInfiniteScroll.ts'
 import MatchItem from '../../components/MatchItem/MatchItem.tsx'
 import { Match } from '../../types/match.ts'
+import dayjs from 'dayjs'
 
 export default function Main() {
   const selected = useSelectBox()
@@ -41,8 +42,6 @@ export default function Main() {
     hasNextPage,
   })
 
-  console.log(data)
-
   return (
     <CS.DefaultContainer>
       <S.Wrapper>
@@ -65,9 +64,28 @@ export default function Main() {
         <MainSelectList selected={selected} />
         {data?.pages.map((page, index) => (
           <div key={index}>
-            {page.content.map((content: Match) => (
-              <MatchItem key={content.gameId} match={content} />
-            ))}
+            {page?.content?.length > 0 ? (
+              <>
+                {page.content.map((content: Match) => {
+                  const shouldRender = selected.showOver === 'HIDE'
+                  return (
+                    <div key={content.gameId}>
+                      {shouldRender ? (
+                        !dayjs(content.startDateTime).isBefore(dayjs()) && (
+                          <MatchItem match={content} />
+                        )
+                      ) : (
+                        <MatchItem match={content} />
+                      )}
+                    </div>
+                  )
+                })}
+              </>
+            ) : (
+              <S.NoResult>
+                <p>결과가 없습니다.</p>
+              </S.NoResult>
+            )}
           </div>
         ))}
       </S.Wrapper>

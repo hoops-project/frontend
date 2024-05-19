@@ -3,6 +3,22 @@ import { generateNextTwoWeeksDates } from '../helper/dateGenerater.ts'
 export const OPTIONS = {
   REGION: [
     { NAME: '서울', VALUE: 'SEOUL' },
+    { NAME: '경기', VALUE: 'GYEONGGI' },
+    { NAME: '인천', VALUE: 'INCHEON' },
+    { NAME: '강원', VALUE: 'GANGWON' },
+    { NAME: '대전', VALUE: 'DAEJEON' },
+    { NAME: '세종', VALUE: 'SEJONG' },
+    { NAME: '충남', VALUE: 'CHUNGNAM' },
+    { NAME: '충북', VALUE: 'CHUNGBUK' },
+    { NAME: '대구', VALUE: 'DAEGU' },
+    { NAME: '경북', VALUE: 'GYEONGBUK' },
+    { NAME: '부산', VALUE: 'BUSAN' },
+    { NAME: '울산', VALUE: 'ULSAN' },
+    { NAME: '경남', VALUE: 'GYEONGNAM' },
+    { NAME: '광주', VALUE: 'GWANGJU' },
+    { NAME: '전남', VALUE: 'JEONNAM' },
+    { NAME: '전북', VALUE: 'JEONBUK' },
+    { NAME: '제주', VALUE: 'JEJU' },
     { NAME: '선택취소', VALUE: '' },
   ],
   GENDER: [
