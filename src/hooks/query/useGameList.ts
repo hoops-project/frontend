@@ -16,6 +16,7 @@ interface GameListProps {
 
 export const useGameList = ({ gameFilter }: GameListProps) => {
   const queryClient = useQueryClient()
+
   const getGameList = async (page = 1, size = 2) => {
     try {
       const response = await defaultAxios.get(

@@ -41,6 +41,8 @@ export default function Main() {
     hasNextPage,
   })
 
+  console.log(selected.region)
+
   return (
     <CS.DefaultContainer>
       <S.Wrapper>
