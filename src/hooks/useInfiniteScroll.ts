@@ -11,7 +11,7 @@ interface UseInfiniteScrollProps {
 export const useInfiniteScroll = ({
   fetchNextPage,
   hasNextPage,
-  rootMargin = '1rem',
+  rootMargin = '10px',
   threshold = 0.1,
 }: UseInfiniteScrollProps) => {
   const [isFetchingMore, setIsFetchingMore] = useState<boolean>(false)

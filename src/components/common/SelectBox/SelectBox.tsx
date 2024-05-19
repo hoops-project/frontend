@@ -5,9 +5,12 @@ import Select, { SelectChangeEvent } from '@mui/material/Select'
 import React from 'react'
 import { S } from './SelectBox.style.ts'
 
-interface SelectBoxSmallProps {
+interface SelectBoxProps {
   name: string
-  options: string[]
+  options: {
+    NAME: string
+    VALUE: string
+  }[]
   size?: 'small' | 'medium'
   width?: number
   fontSize?: number
@@ -23,7 +26,7 @@ export default function SelectBox({
   fontSize = 1.4,
   value,
   setValue,
-}: SelectBoxSmallProps) {
+}: SelectBoxProps) {
   const handleChange = (event: SelectChangeEvent) => {
     setValue(event.target.value)
   }
@@ -45,11 +48,11 @@ export default function SelectBox({
         >
           {options.map((option) => (
             <MenuItem
-              key={option}
+              key={option.NAME}
               style={{ fontSize: `${fontSize}rem` }}
-              value={option}
+              value={option.VALUE}
             >
-              {option}
+              {option.NAME}
             </MenuItem>
           ))}
         </Select>
