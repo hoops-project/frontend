@@ -45,15 +45,17 @@ export default function GameUserList({ userInfo }: MyGameUserList) {
         )}
       </div>
       {isModalOpen && (
-        <Modal
-          $width='50rem'
-          $height='30rem'
-          onClose={closeModal}
-          confirmButtonText='제출'
-        >
+        <Modal $width='50rem' $height='30rem' onClose={closeModal}>
           <ModalTit title='신고' />
           <ModalSubText content='유저의 신고 사유를 작성해 주세요.' alignLeft />
           <ModalTextBox />
+          <BasicButton
+            type='button'
+            children={'제출'}
+            $width='100%'
+            $fontcolor={theme.colors.white}
+            $bgColor={theme.colors.blue}
+          />
         </Modal>
       )}
     </S.Wrapper>

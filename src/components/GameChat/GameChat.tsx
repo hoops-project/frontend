@@ -93,23 +93,19 @@ export default function GameChat() {
         </S.InputWrapper>
       </S.ChatSendForm>
       {isModalOpen && (
-        <Modal
-          $width='102.4rem'
-          $height='50rem'
-          onClose={closeModal}
-          confirmButtonText='확인'
-        >
+        <Modal $width='102.4rem' $height='50rem' onClose={closeModal}>
           <ModalTit title='내 친구들' />
           <FriendModalList />
+          <BasicButton
+            type='button'
+            children={'확인'}
+            $fontcolor={theme.colors.white}
+            $bgColor={theme.colors.blue}
+          />
         </Modal>
       )}
       {isFriendModalOpen && (
-        <Modal
-          $width='102.4rem'
-          $height='50rem'
-          onClose={closeFriendModal}
-          confirmButtonText='확인'
-        >
+        <Modal $width='102.4rem' $height='50rem' onClose={closeFriendModal}>
           <ModalTit title='친구 초대' />
           <MyFriend />
         </Modal>
