@@ -6,9 +6,9 @@ export const OPTIONS = {
     { NAME: '선택취소', VALUE: '' },
   ],
   GENDER: [
-    { NAME: '혼성', VALUE: 'MIXED' },
     { NAME: '남성', VALUE: 'MALEONLY' },
     { NAME: '여성', VALUE: 'FEMALEONLY' },
+    { NAME: '혼성', VALUE: 'ALL' },
     { NAME: '선택취소', VALUE: '' },
   ],
   GAME_TYPE: [

@@ -41,7 +41,7 @@ export default function Main() {
     hasNextPage,
   })
 
-  console.log(selected.region)
+  console.log(data)
 
   return (
     <CS.DefaultContainer>
