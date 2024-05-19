@@ -61,4 +61,9 @@ export const S = {
     font-size: 2rem;
     margin-left: 2rem;
   `,
+  ReviewContainer: styled.div`
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+  `,
 }

@@ -50,9 +50,11 @@ export default function MyLastGame() {
           confirmButtonText='제출'
         >
           <ModalTit title='유저 평가' />
-          {Array.from({ length: 2 }).map((_, index) => (
-            <Review key={index} />
-          ))}
+          <S.ReviewContainer>
+            {Array.from({ length: 2 }).map((_, index) => (
+              <Review key={index} />
+            ))}
+          </S.ReviewContainer>
         </Modal>
       )}
     </S.Wrapper>
