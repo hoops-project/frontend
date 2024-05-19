@@ -13,11 +13,19 @@ import Modal from '../common/Modal/Modal.tsx'
 import FriendModalList from '../common/FriendModalList/FriendModalList.tsx'
 import ModalTit from '../common/ModalTit/ModalTit.tsx'
 import useModal from '../../hooks/useModal.ts'
+import MyFriend from '../common/MyFriend/MyFriend.tsx'
 
 export default function GameChat() {
   const params = useParams()
   const [chat, setChat] = useState<string>('')
-  const { isModalOpen, openModal, closeModal } = useModal()
+  const {
+    isModalOpen,
+    openModal,
+    closeModal,
+    isFriendModalOpen,
+    openFriendModal,
+    closeFriendModal,
+  } = useModal()
 
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -32,18 +40,23 @@ export default function GameChat() {
         <div>
           <S.TopNavContainer>
             <div>
-              <span>
-                <img src={pin} alt={'핀 아이콘'} />
-                <p>지도</p>
-              </span>
               <span
                 role='button'
                 tabIndex={0}
                 onClick={openModal}
                 aria-label='친구 초대'
               >
+                <img src={pin} alt={'핀 아이콘'} />
+                <p>지도</p>
+              </span>
+              <span
+                role='button'
+                tabIndex={0}
+                aria-label='친구 초대'
+                onClick={openFriendModal}
+              >
                 <img src={invite} alt={'초대 아이콘'} />
-                <p> 친구 초대</p>
+                <p>친구 초대</p>
               </span>
             </div>
             <BasicButton
@@ -88,6 +101,17 @@ export default function GameChat() {
         >
           <ModalTit title='내 친구들' />
           <FriendModalList />
+        </Modal>
+      )}
+      {isFriendModalOpen && (
+        <Modal
+          $width='102.4rem'
+          $height='50rem'
+          onClose={closeFriendModal}
+          confirmButtonText='확인'
+        >
+          <ModalTit title='친구 초대' />
+          <MyFriend />
         </Modal>
       )}
     </S.Wrapper>
