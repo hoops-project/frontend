@@ -7,4 +7,9 @@ export const S = {
   CenterWrapper: styled.div`
     text-align: center;
   `,
+  HiddenRef: styled.div`
+    visibility: hidden;
+    height: 2rem;
+    background-color: red;
+  `,
 }
