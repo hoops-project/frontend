@@ -67,13 +67,14 @@ export default function Main() {
             {page?.content?.length > 0 ? (
               <>
                 {page.content.map((content: Match) => {
-                  const shouldRender = selected.showOver === 'HIDE'
+                  const isHide = selected.showOver === 'HIDE'
+                  const shouldRender = dayjs(content.startDateTime).isBefore(
+                    dayjs()
+                  )
                   return (
                     <div key={content.gameId}>
-                      {shouldRender ? (
-                        !dayjs(content.startDateTime).isBefore(dayjs()) && (
-                          <MatchItem match={content} />
-                        )
+                      {isHide ? (
+                        !shouldRender && <MatchItem match={content} />
                       ) : (
                         <MatchItem match={content} />
                       )}
