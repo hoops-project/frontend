@@ -1,4 +1,5 @@
 import { generateNextTwoWeeksDates } from '../helper/dateGenerater.ts'
+import { generateGameTimeObjects } from '../helper/generateGameTimeObjects.ts'
 
 export const OPTIONS = {
   REGION: [
@@ -32,6 +33,7 @@ export const OPTIONS = {
     { NAME: '5 vs 5', VALUE: 'FIVEONFIVE' },
     { NAME: '선택취소', VALUE: '' },
   ],
+  GAME_TIME: generateGameTimeObjects(),
   TOTAL_PLAYERS: [
     { NAME: '1명', VALUE: '1' },
     { NAME: '2명', VALUE: '2' },
