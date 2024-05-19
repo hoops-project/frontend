@@ -2,9 +2,10 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 export const CS = {
-  Link: styled(Link)`
+  Link: styled(Link)<{ $isBlock?: boolean }>`
     text-decoration-line: none;
     color: ${({ theme }) => theme.colors.black};
+    cursor: ${(props) => (props.$isBlock ? 'not-allowed' : 'pointer')};
   `,
   DefaultContainer: styled.div`
     margin: 0 auto;

@@ -5,7 +5,7 @@ export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false, // 개발중 서버 부하를 줄이기 위해 임시로 false로 설정
-      staleTime: 1000 * 60 * 5,
+      staleTime: 1000 * 60 * 5, // staleTime은 5분으로 설정
       retry: 1,
     },
   },
