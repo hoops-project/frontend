@@ -2,7 +2,6 @@ import AuthInput from '../common/AuthInput/AuthInput.tsx'
 import { VALID_RULES } from '../../constants/validRules.ts'
 import BasicButton from '../common/BasicButton/BasicButton.tsx'
 import { theme } from '../../styles/theme.ts'
-import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { SignInType, SignUpType } from '../../types/auth.ts'
 import { S } from './SignInForm.style.ts'
@@ -11,8 +10,7 @@ import useLoginQuery from '../../hooks/query/useLoginQuery.ts'
 
 export default function SignInForm() {
   // TODO: 서버 연결 후 서버에서 내려온 에러메시지 담아서 출력할것
-  
-  const [signInError, setSignInError] = useState<string>('');
+
   const {
     handleSubmit,
     control,
@@ -32,20 +30,16 @@ export default function SignInForm() {
       return;
     }
 
-    loginMutate(signInData, {
-      onError: () => {
-        setSignInError('로그인에 실패했습니다. 다시 시도해 주세요.');
-      }
-    });
+    loginMutate(signInData);
 
     console.log(signInData);
   };
 
   return (
     <>
-      <S.ErrorWrapper>
+      {/* <S.ErrorWrapper>
         {signInError !== '' && <p>{signInError}</p>}
-      </S.ErrorWrapper>
+      </S.ErrorWrapper> */}
       <form onSubmit={handleSubmit(handleSignIn)}>
         <div>
           <CS.ValidWrapper>
