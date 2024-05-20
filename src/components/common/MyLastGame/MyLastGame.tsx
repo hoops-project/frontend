@@ -43,16 +43,20 @@ export default function MyLastGame() {
         ))}
       </S.LastGameContainer>
       {isModalOpen && (
-        <Modal
-          $width='30rem'
-          $height='40rem'
-          onClose={closeModal}
-          confirmButtonText='제출'
-        >
+        <Modal $width='30rem' $height='40rem' onClose={closeModal}>
           <ModalTit title='유저 평가' />
-          {Array.from({ length: 2 }).map((_, index) => (
-            <Review key={index} />
-          ))}
+          <S.ReviewContainer>
+            {Array.from({ length: 2 }).map((_, index) => (
+              <Review key={index} />
+            ))}
+          </S.ReviewContainer>
+          <BasicButton
+            type='button'
+            children={'제출'}
+            $width='100%'
+            $bgColor={theme.colors.blue}
+            $fontcolor={theme.colors.white}
+          />
         </Modal>
       )}
     </S.Wrapper>

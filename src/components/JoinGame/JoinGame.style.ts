@@ -44,4 +44,9 @@ export const S = {
       font-weight: bold;
     }
   `,
+  BasicButtonWrapper: styled.div`
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+  `,
 }

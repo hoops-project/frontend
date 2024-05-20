@@ -1,5 +1,6 @@
 import { styled } from 'styled-components'
 import { ModalProps } from '../../../types/modal.ts'
+import { theme } from '../../../styles/theme.ts'
 
 export const S = {
   ModalContainer: styled.div`
@@ -44,6 +45,17 @@ export const S = {
     justify-content: space-between;
     gap: 30px;
     border-radius: 1rem;
+    }
+
+    .address {
+      font-size:2rem;
+      font-weight:600;
+    }
+
+    .submit {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: ${theme.colors.gray_500};
     }
   `,
 }

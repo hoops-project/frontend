@@ -8,12 +8,12 @@ import MyPageUserInfo from '../MyPageUserInfo/MyPageUserInfo.tsx'
 import { PiInfoLight } from 'react-icons/pi'
 
 export default function RequestItem() {
-  const { isModalOpen, closeModal } = useModal()
+  const { isModalOpen, openModal, closeModal } = useModal()
 
   return (
     <S.RequestItem>
       <p>{`오신웅`}</p>
-      <PiInfoLight />
+      <PiInfoLight onClick={openModal} />
       <p>{`4.9`}</p>
       <S.ButtonWrapper>
         <BasicButton
@@ -34,14 +34,16 @@ export default function RequestItem() {
         </BasicButton>
       </S.ButtonWrapper>
       {isModalOpen && (
-        <Modal
-          $width='50rem'
-          $height='30rem'
-          onClose={closeModal}
-          confirmButtonText='닫기'
-        >
+        <Modal $width='50rem' $height='30rem' onClose={closeModal}>
           <ModalTit title='유저 정보' />
           <MyPageUserInfo />
+          <BasicButton
+            type='button'
+            children={'닫기'}
+            $fontcolor={theme.colors.white}
+            $bgColor={theme.colors.blue}
+            onClick={closeModal}
+          />
         </Modal>
       )}
     </S.RequestItem>

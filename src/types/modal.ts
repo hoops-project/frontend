@@ -6,5 +6,4 @@ export interface ModalProps {
   onClose?: () => void
   $width?: string
   $height?: string
-  confirmButtonText?: string
 }

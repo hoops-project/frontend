@@ -7,7 +7,7 @@ export const S = {
     gap: 20px;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
+    padding: 1rem;
     border-bottom: 2px solid ${theme.colors.gray_300};
 
     & p {
