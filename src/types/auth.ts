@@ -45,6 +45,7 @@ export type InputName =
   }
   
   export interface SignInResponseType {
+    accessToken: any
     headers: TokenType;
     userInfo: UserInfoType;
   }
