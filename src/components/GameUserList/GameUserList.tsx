@@ -1,13 +1,13 @@
 import { S } from './GameUserList.style.ts'
 import BasicButton from '../common/BasicButton/BasicButton.tsx'
 import { theme } from '../../styles/theme.ts'
-import reportIcon from '../../assets/report_icon.svg'
 import { MyGameUserList } from '../../types/game.ts'
 import useModal from '../../hooks/useModal.ts'
 import Modal from '../common/Modal/Modal.tsx'
 import ModalTit from '../common/ModalTit/ModalTit.tsx'
 import ModalSubText from '../common/ModalSubText/ModalSubText.tsx'
 import ModalTextBox from '../common/ModalTextBox/ModalTextBox.tsx'
+import { PiSirenThin } from 'react-icons/pi'
 
 export default function GameUserList({ userInfo }: MyGameUserList) {
   const userId = 1
@@ -32,14 +32,7 @@ export default function GameUserList({ userInfo }: MyGameUserList) {
                 >
                   친구 추가
                 </BasicButton>
-                <img
-                  role='button'
-                  tabIndex={0}
-                  onClick={openModal}
-                  aria-label='친구 초대'
-                  src={reportIcon}
-                  alt={'신고 아이콘'}
-                />
+                <PiSirenThin onClick={openModal} />
               </S.UserInfo>
             )
         )}
@@ -53,6 +46,7 @@ export default function GameUserList({ userInfo }: MyGameUserList) {
             type='button'
             children={'제출'}
             $width='100%'
+            onClick={closeModal}
             $fontcolor={theme.colors.white}
             $bgColor={theme.colors.blue}
           />
