@@ -40,7 +40,9 @@ export default function RequestItem() {
           <BasicButton
             type='button'
             children={'닫기'}
+            $fontcolor={theme.colors.white}
             $bgColor={theme.colors.blue}
+            onClick={closeModal}
           />
         </Modal>
       )}

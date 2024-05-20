@@ -38,6 +38,7 @@ export const S = {
       border: 1px solid #e4e4e4;
       border-radius: 3rem;
       padding: 1.2rem;
+      cursor: pointer;
     }
   `,
 }
