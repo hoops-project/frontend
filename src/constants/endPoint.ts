@@ -11,7 +11,7 @@ export const END_POINT = deepFreeze({
     DEACTIVATE: 'api/user/deactivate',
     FIND_ID: 'api/user/find/id',
     FIND_PASSWORD: 'api/user/find/password',
-    USER_INFO: 'api/user/info',
+    USER_INFO: 'api/auth/info',
   },
   AUTH: {
     LOGIN: 'api/auth/login',
