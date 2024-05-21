@@ -39,8 +39,8 @@ export const OPTIONS = {
   GAME_TIME: generateGameTimeObjects(),
   TOTAL_PLAYERS: generateTotalPlayersObjects(),
   ADD_FRIEND: [
-    { NAME: '허용', VALUE: 'ALLOW' },
-    { NAME: '불가', VALUE: 'DISALLOW' },
+    { NAME: '허용', VALUE: 'TRUE' },
+    { NAME: '불가', VALUE: 'FALSE' },
     { NAME: '선택취소', VALUE: '' },
   ],
   GAME_PLACE: [

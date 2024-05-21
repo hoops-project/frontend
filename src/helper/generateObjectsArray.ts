@@ -31,7 +31,7 @@ export const generateNextTwoWeeksDates = () => {
 export const generateTotalPlayersObjects = () => {
   const totalPlayers = []
 
-  for (let i = 1; i <= 12; i++) {
+  for (let i = 6; i <= 15; i++) {
     totalPlayers.push({ NAME: `${i}명`, VALUE: `${i}` })
   }
 

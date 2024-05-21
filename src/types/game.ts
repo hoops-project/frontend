@@ -18,3 +18,21 @@ export interface MyGameUserList {
     rate: number
   }[]
 }
+
+export interface GameData {
+  addFriends: string
+  address: string
+  date: string
+  gamePlace: string
+  gameType: string
+  gender: string
+  lat: string
+  lng: string
+  placeName: string
+  region: string
+  showOver: string
+  time: string
+  title: string
+  content: string
+  totalPlayers: string
+}

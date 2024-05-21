@@ -9,9 +9,13 @@ import { theme } from '../../styles/theme.ts'
 import { AddressProps } from '../../types/map.ts'
 import LocationSearchForm from '../../components/LocationSearchForm/LocationSearchForm.tsx'
 import { useState } from 'react'
+import BasicTextArea from '../../components/common/BasicTextArea/BasicTextArea.tsx'
+import useToast from '../../hooks/useToast.ts'
+import { useAddGameQuery } from '../../hooks/query/useAddGameQuery.ts'
 
 export default function AddGame() {
   const [gameTitle, setGameTitle] = useState<string>('')
+  const [gameContent, setGameContent] = useState<string>('')
 
   const [address, setAddress] = useState<AddressProps>({
     placeName: '',
@@ -20,10 +24,42 @@ export default function AddGame() {
     lng: '',
   })
   const useGameSelect = useSelectBox()
+  const { toastError } = useToast()
+  const { addGameMutation } = useAddGameQuery()
 
   const handleAddGame = () => {
-    // NOTICE: 서버에 보내야할 정보는 address 와 useGameSelect,gameTitle 에 담겨 있음
-    // TODO: 빈값 체크 후 서버에 보내는 로직을 이 아래부터 작성
+    const headCount = useGameSelect.totalPlayers
+    const matchFormat = useGameSelect.gameType
+
+    if (matchFormat === 'THREEONTHREE') {
+      if (Number(headCount) < 6 || Number(headCount) > 9) {
+        toastError('3대3에서의 인원은 6~9명 사이 입니다.')
+        return
+      }
+    } else if (matchFormat === 'FIVEONFIVE') {
+      if (Number(headCount) < 10 || Number(headCount) > 15) {
+        toastError('5대5에서의 인원은 10~15명 사이 입니다.')
+        return
+      }
+    }
+
+    const combineData = {
+      ...address,
+      ...useGameSelect,
+      title: gameTitle,
+      content: gameContent,
+      region: 'temp',
+      showOver: 'temp',
+    }
+
+    for (const value of Object.values(combineData)) {
+      if (typeof value === 'string' && value.trim() === '') {
+        toastError('모든 정보를 입력해 주세요!')
+        return
+      }
+    }
+
+    addGameMutation(combineData)
   }
 
   return (
@@ -40,6 +76,12 @@ export default function AddGame() {
               type={'text'}
               id={'game-title'}
               placeholder={'모임 이름을 설정하세요.'}
+            />
+            <label htmlFor={'game-content'}>모임 이름</label>
+            <BasicTextArea
+              content={gameContent}
+              setContent={setGameContent}
+              placeholder={'경기 규칙을 적어주세요.'}
             />
           </S.InputWrapper>
           <LocationSearchForm address={address} setAddress={setAddress} />
