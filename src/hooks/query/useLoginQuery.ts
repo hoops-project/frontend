@@ -1,4 +1,4 @@
-import { defaultAxios } from "../../api/axiosInstance";
+import { axiosAccess, defaultAxios } from "../../api/axiosInstance";
 import { SignInType, SignInResponseType } from "../../types/auth";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
@@ -10,11 +10,21 @@ import{ useToast } from "../useToast";
 const memberLogin = async (data: SignInType): Promise<SignInResponseType> => {
   const { id, password } = data;
 
-  const res = await defaultAxios.post(`${END_POINT.AUTH.LOGIN}`, { id, password }
-  );
+  const res = await defaultAxios.post(`${END_POINT.AUTH.LOGIN}`, { id, password });
 
-  return res.data;
+  // 응답 헤더에서 Authorization 토큰을 추출
+  const authorizationHeader = res.headers['authorization'];
+
+  const accessToken = authorizationHeader;
+
+
+  return {
+    accessToken,
+    headers: { authorization: authorizationHeader },
+    userInfo: res.data
+  };
 };
+
 
 
 export default function useLoginQuery() {
@@ -31,6 +41,7 @@ export default function useLoginQuery() {
     mutationKey: [QUERY_KEYS.LOGIN],
     mutationFn: memberLogin,
     onSuccess: async (data, variables) => {
+
       const accessToken = data.accessToken;
 
       if (variables.rememberMe) {
@@ -38,8 +49,8 @@ export default function useLoginQuery() {
       } else {
         sessionStorage.setItem("Access-Token", accessToken);
       }
-      //TODO: 현재 사용자 상태 업데이트하기..
-      // const userInfo = await axiosAuth
+      // TODO: 현재 사용자 상태 업데이트하기..
+      // const userInfo = await axiosAccess
       //   .get(END_POINT.USER.USER_INFO)
       //   .then((res) => res.data);
 

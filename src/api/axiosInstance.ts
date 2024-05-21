@@ -7,7 +7,7 @@ export const defaultAxios = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: true,
+    withCredentials: true,
 });
 
 export const axiosAuth = axios.create({
@@ -79,7 +79,7 @@ axiosAccess.interceptors.request.use(
   (config) => {
     const accessToken = localStorage.getItem("Access-Token");
     if (accessToken) {
-      config.headers["Access-Token"] = `${accessToken}`;
+      config.headers["Access-Token"] = `Bearer ${accessToken}`;
     }
     return config;
   },

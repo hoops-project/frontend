@@ -41,11 +41,11 @@ export type InputName =
   isLogin: boolean
   }
   export interface TokenType {
-    "access-token": string;
+    authorization: string;
   }
   
   export interface SignInResponseType {
-    accessToken: any
-    headers: TokenType;
-    userInfo: UserInfoType;
+    accessToken: string
+    headers: TokenType
+    userInfo: UserInfoType
   }
