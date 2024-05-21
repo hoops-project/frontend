@@ -21,3 +21,37 @@ export const convertGameType = (value: string) => {
       return null
   }
 }
+
+export const convertPlayStyle = (style: string) => {
+  switch (style) {
+    case '공격적':
+      return 'AGGRESSIVE'
+    case '벨런스':
+      return 'BALANCE'
+    case '수비적':
+      return 'DEFENSIVE'
+    default:
+      throw new Error('Invalid play style')
+  }
+}
+
+export const convertAttribute = (attribute: string) => {
+  switch (attribute) {
+    case '슛':
+      return 'SHOOT'
+    case '패스':
+      return 'PASS'
+    case '드리블':
+      return 'DRIBBLE'
+    case '체력':
+      return 'HEALTH'
+    case '스피드':
+      return 'SPEED'
+    case '피지컬':
+      return 'PHYSICAL'
+    case '리바운드':
+      return 'REBOUND'
+    default:
+      throw new Error('Invalid attribute')
+  }
+}
