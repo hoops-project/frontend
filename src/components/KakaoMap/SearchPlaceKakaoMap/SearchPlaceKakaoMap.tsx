@@ -1,5 +1,5 @@
 import { Map, MapMarker } from 'react-kakao-maps-sdk'
-import { useSearchPlaces } from '../../../hooks/UseSearchPlacesOptions.ts'
+import { useSearchPlaces } from '../../../hooks/useSearchPlacesOptions.ts'
 import { S } from './SearchPlaceKakaoMap.style.ts'
 import BasicButton from '../../common/BasicButton/BasicButton.tsx'
 import { theme } from '../../../styles/theme.ts'

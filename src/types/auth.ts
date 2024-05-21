@@ -4,6 +4,12 @@ export interface SignInType {
   rememberMe: boolean
 }
 
+export interface SignUpSelectInfo {
+  gender: string
+  playStyle: string
+  abilities: string
+}
+
 export interface SignUpType {
   id: string
   email: string
@@ -24,20 +30,20 @@ export type InputName =
   | 'birthday'
   | 'rememberMe'
 
-  export interface UserInfoType {
+export interface UserInfoType {
   userId: number
-	id: string
-	password: string
-	email: string
-	name: string
-	birthday: string
-	gender: string
-	nickName: string
-	createdAt: string
-	playStyle: string
-	ability: string
-	refreshToken: string
-	roles: string
+  id: string
+  password: string
+  email: string
+  name: string
+  birthday: string
+  gender: string
+  nickName: string
+  createdAt: string
+  playStyle: string
+  ability: string
+  refreshToken: string
+  roles: string
   isLogin: boolean
   }
   export interface TokenType {

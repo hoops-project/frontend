@@ -63,14 +63,17 @@ export default function ReportItem({ report }: ReportItemProps) {
       </S.SubmitWrapper>
       {/* 임의의 데이터를 넣으면 될거 같아요 */}
       {isModalOpen && ( // 모달 열렸을 때만 모달 표시
-        <Modal
-          $width='52rem'
-          $height='32rem'
-          onClose={closeModal}
-          confirmButtonText='확인'
-        >
+        <Modal $width='52rem' $height='32rem' onClose={closeModal}>
           <ModalTit title='신고 내용' />
           <ModalSubText content='제가 욕을 했어요' />
+          <BasicButton
+            children={'확인'}
+            $bgColor={theme.colors.blue}
+            $fontcolor={theme.colors.white}
+            type='button'
+            $width='100%'
+            onClick={closeModal}
+          />
         </Modal>
       )}
     </S.ContentBox>
