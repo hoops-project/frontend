@@ -7,12 +7,13 @@ import { useForm } from 'react-hook-form'
 import { SignInType, SignUpType } from '../../types/auth.ts'
 import { useSelect } from '../../hooks/useSelect.ts'
 import { useEffect } from 'react'
-import { useDuplicate } from '../../hooks/useDuplicate.ts'
 import { S } from './SignUpForm.style.ts'
 import { CS } from '../../styles/commonStyle.ts'
 import { findSelectIndexes } from '../../helper/findSelectIndex.ts'
 import { mergeObjects } from '../../helper/mergeObject.ts'
 import { useSignUpQuery } from '../../hooks/query/useSignUpQuery.ts'
+import useToast from '../../hooks/useToast.ts'
+import { REGEX } from '../../constants/regex.ts'
 
 export default function SignUpForm() {
   const {
@@ -41,22 +42,24 @@ export default function SignUpForm() {
     defaultValue: findSelectIndexes('남자', '공격적', '슛'),
   })
 
-  const { emailPassed, idPassed, nicknamePassed } = useDuplicate()
-
   const {
     idDuplicateMutation,
     emailDuplicateMutation,
     nickNameDuplicateMutation,
     signUpMutation,
+    emailPassed,
+    idPassed,
+    nicknamePassed,
   } = useSignUpQuery()
+
+  const { toastError } = useToast()
 
   const handleSignUp = (sigInData: SignUpType) => {
     const finalData = mergeObjects(sigInData, selectedValue.select)
 
-    console.log(finalData)
-
     if (!emailPassed && !idPassed && !nicknamePassed) {
-      alert('모든 중복 검사를 완료해 주세요.')
+      toastError('모든 중복검사를 완료해 주세요!')
+      return
     }
 
     signUpMutation(finalData)
@@ -65,15 +68,14 @@ export default function SignUpForm() {
   const handleIdDuplicate = (buttonId: string) => {
     switch (buttonId) {
       case 'id':
-        // 아이디 중복검사 mutation 로직
         idDuplicateMutation(id)
         break
       case 'email':
-        // 이메일 중복검사 mutation 로직
-        emailDuplicateMutation(email)
+        REGEX.EMAIL.test(email)
+          ? emailDuplicateMutation(email)
+          : toastError('올바른 이메일을 입력해 주세요.')
         break
       case 'nickname':
-        // 닉네임 중복검사 mutation 로직
         nickNameDuplicateMutation(nickName)
         break
       default:
@@ -94,7 +96,7 @@ export default function SignUpForm() {
           <CS.InputLabel htmlFor={'id'}>아이디</CS.InputLabel>
           {errors.id?.message && <span>{errors.id.message}</span>}
         </CS.ValidWrapper>
-        <S.DuplicateWrapper>
+        <S.DuplicateWrapper $readOnly={idPassed}>
           <AuthInput
             id={'id'}
             type={'text'}
@@ -120,7 +122,7 @@ export default function SignUpForm() {
           <CS.InputLabel htmlFor={'email'}>이메일</CS.InputLabel>
           {errors.email?.message && <span>{errors.email.message}</span>}
         </CS.ValidWrapper>
-        <S.DuplicateWrapper>
+        <S.DuplicateWrapper $readOnly={emailPassed}>
           <AuthInput
             id={'email'}
             type={'email'}
@@ -192,7 +194,7 @@ export default function SignUpForm() {
           <CS.InputLabel htmlFor={'nickname'}>닉네임</CS.InputLabel>
           {errors.nickname?.message && <span>{errors.nickname.message}</span>}
         </CS.ValidWrapper>
-        <S.DuplicateWrapper>
+        <S.DuplicateWrapper $readOnly={nicknamePassed}>
           <AuthInput
             id={'nickname'}
             type={'text'}
