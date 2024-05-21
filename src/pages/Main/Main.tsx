@@ -10,7 +10,7 @@ import { CS } from '../../styles/commonStyle.ts'
 import { S } from './Main.style.ts'
 import { theme } from '../../styles/theme.ts'
 import { useDateStore } from '../../store/calender.ts'
-import { useGameList } from '../../hooks/query/useGameList.ts'
+import { useGetGameList } from '../../hooks/query/useGetGameList.ts'
 import { useInfiniteScroll } from '../../hooks/useInfiniteScroll.ts'
 import MatchItem from '../../components/MatchItem/MatchItem.tsx'
 import { Match } from '../../types/match.ts'
@@ -33,7 +33,7 @@ export default function Main() {
     matchFormat: selected.gameType,
   }
 
-  const { data, fetchNextPage, hasNextPage } = useGameList({
+  const { data, fetchNextPage, hasNextPage } = useGetGameList({
     gameFilter,
   })
 
