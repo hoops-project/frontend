@@ -23,3 +23,29 @@ export type InputName =
   | 'nickname'
   | 'birthday'
   | 'rememberMe'
+
+  export interface UserInfoType {
+  userId: number
+	id: string
+	password: string
+	email: string
+	name: string
+	birthday: string
+	gender: string
+	nickName: string
+	createdAt: string
+	playStyle: string
+	ability: string
+	refreshToken: string
+	roles: string
+  isLogin: boolean
+  }
+  export interface TokenType {
+    "access-token": string;
+  }
+  
+  export interface SignInResponseType {
+    accessToken: any
+    headers: TokenType;
+    userInfo: UserInfoType;
+  }
