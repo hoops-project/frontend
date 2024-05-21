@@ -31,6 +31,16 @@ export default function AddGame() {
     const headCount = useGameSelect.totalPlayers
     const matchFormat = useGameSelect.gameType
 
+    if (gameTitle.length > 50) {
+      toastError('경기 제목은 500자 이하로 작성해 주세요.')
+      return
+    }
+
+    if (gameContent.length > 500) {
+      toastError('경기 규칙은 500자 이하로 작성해 주세요.')
+      return
+    }
+
     if (matchFormat === 'THREEONTHREE') {
       if (Number(headCount) < 6 || Number(headCount) > 9) {
         toastError('3대3에서의 인원은 6~9명 사이 입니다.')
@@ -43,7 +53,7 @@ export default function AddGame() {
       }
     }
 
-    const combineData = {
+    const finalData = {
       ...address,
       ...useGameSelect,
       title: gameTitle,
@@ -52,14 +62,14 @@ export default function AddGame() {
       showOver: 'temp',
     }
 
-    for (const value of Object.values(combineData)) {
+    for (const value of Object.values(finalData)) {
       if (typeof value === 'string' && value.trim() === '') {
         toastError('모든 정보를 입력해 주세요!')
         return
       }
     }
 
-    addGameMutation(combineData)
+    addGameMutation(finalData)
   }
 
   return (
@@ -77,7 +87,7 @@ export default function AddGame() {
               id={'game-title'}
               placeholder={'모임 이름을 설정하세요.'}
             />
-            <label htmlFor={'game-content'}>모임 이름</label>
+            <label htmlFor={'game-content'}>경기 규칙</label>
             <BasicTextArea
               content={gameContent}
               setContent={setGameContent}
