@@ -45,13 +45,13 @@ export interface UserInfoType {
   refreshToken: string
   roles: string
   isLogin: boolean
-}
-export interface TokenType {
-  'access-token': string
-}
-
-export interface SignInResponseType {
-  accessToken: any
-  headers: TokenType
-  userInfo: UserInfoType
-}
+  }
+  export interface TokenType {
+    authorization: string;
+  }
+  
+  export interface SignInResponseType {
+    accessToken: string
+    headers: TokenType
+    userInfo: UserInfoType
+  }

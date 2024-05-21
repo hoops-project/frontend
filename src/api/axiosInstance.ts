@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { useUserStore } from '../store/store';
 import { END_POINT } from '../constants/endPoint';
 
@@ -7,7 +7,7 @@ export const defaultAxios = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: true,
+    withCredentials: true,
 });
 
 export const axiosAuth = axios.create({
@@ -41,13 +41,17 @@ axiosAuth.interceptors.request.use(
   }
 );
 
-const refreshToken = async (req: any) => {
+const refreshToken = async (req: AxiosRequestConfig) => {
   const updateUser = useUserStore.getState().updateUser;
   try {
     const res = await axiosAccess.post(`${END_POINT.AUTH.REFRESH_TOKEN}`);
     const newACToken = res.headers["access-token"];
     localStorage.setItem("Access-Token", newACToken);
-
+    
+   // headers가 undefined인 경우 초기화  
+    if (!req.headers) {
+      req.headers = {};
+    }
     req.headers.Authorization = `Bearer ${newACToken}`;
     return await axiosAuth(req);
   } catch (err) {
@@ -77,17 +81,17 @@ axiosAuth.interceptors.response.use(
 // 주로 토큰 재발급 요청 처리 => 요청 시 Access-Token 헤더를 설정하며, 토큰이 만료되었을 때 새로운 토큰
 axiosAccess.interceptors.request.use(
   (config) => {
-    const accessToken = localStorage.getItem("Access-Token");
+    const accessToken = localStorage.getItem('Access-Token')
     if (accessToken) {
-      config.headers["Access-Token"] = `${accessToken}`;
+      config.headers.Authorization = `Bearer ${accessToken}`
     }
-    return config;
+    return config
   },
   (error) => {
-    console.log(error);
-    return Promise.reject(error);
+    console.log(error)
+    return Promise.reject(error)
   }
-);
+)
 
 axiosAccess.interceptors.response.use(
   (response) => response,
