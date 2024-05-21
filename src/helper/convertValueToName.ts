@@ -45,7 +45,7 @@ export const convertAttribute = (attribute: string) => {
       return 'DRIBBLE'
     case '체력':
       return 'HEALTH'
-    case '속도':
+    case '스피드':
       return 'SPEED'
     case '피지컬':
       return 'PHYSICAL'

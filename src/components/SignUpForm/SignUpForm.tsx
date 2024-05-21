@@ -10,7 +10,6 @@ import { useEffect } from 'react'
 import { S } from './SignUpForm.style.ts'
 import { CS } from '../../styles/commonStyle.ts'
 import { findSelectIndexes } from '../../helper/findSelectIndex.ts'
-import { mergeObjects } from '../../helper/mergeObject.ts'
 import { useSignUpQuery } from '../../hooks/query/useSignUpQuery.ts'
 import useToast from '../../hooks/useToast.ts'
 import { REGEX } from '../../constants/regex.ts'
@@ -47,6 +46,7 @@ export default function SignUpForm() {
     emailDuplicateMutation,
     nickNameDuplicateMutation,
     signUpMutation,
+    signUpPending,
     emailPassed,
     idPassed,
     nicknamePassed,
@@ -55,7 +55,7 @@ export default function SignUpForm() {
   const { toastError } = useToast()
 
   const handleSignUp = (sigInData: SignUpType) => {
-    const finalData = mergeObjects(sigInData, selectedValue.select)
+    const finalData = { ...sigInData, ...selectedValue.select }
 
     if (!emailPassed && !idPassed && !nicknamePassed) {
       toastError('모든 중복검사를 완료해 주세요!')
@@ -233,13 +233,14 @@ export default function SignUpForm() {
       <UserInfoSelect selected={selectedValue} />
 
       <BasicButton
+        disabled={signUpPending}
         type={'submit'}
         $bgColor={theme.colors.blue}
         $fontcolor={theme.colors.white}
         $width={'100%'}
         $height={'5rem'}
       >
-        회원가입
+        {signUpPending ? '회원가입중...' : '회원가입'}
       </BasicButton>
     </form>
   )

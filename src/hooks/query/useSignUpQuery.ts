@@ -71,7 +71,7 @@ export const useSignUpQuery = () => {
     },
     onError: (error) => {
       toastError('일시적 오류가 발생했습니다.')
-      throw error
+      console.error(error)
     },
   })
 
@@ -87,7 +87,7 @@ export const useSignUpQuery = () => {
     },
     onError: (error) => {
       toastError('일시적 오류가 발생했습니다.')
-      throw error
+      console.error(error)
     },
   })
 
@@ -103,11 +103,11 @@ export const useSignUpQuery = () => {
     },
     onError: (error) => {
       toastError('일시적 오류가 발생했습니다.')
-      throw error
+      console.error(error)
     },
   })
 
-  const { mutate: signUpMutation } = useMutation({
+  const { mutate: signUpMutation, isPending: signUpPending } = useMutation({
     mutationFn: signUp,
     onSuccess: () => {
       toastSuccess('회원가입 성공. 가입한 메일함을 확인해 주세요.')
@@ -115,7 +115,7 @@ export const useSignUpQuery = () => {
     },
     onError: (error) => {
       toastError('회원가입중 일시적 문제가 발생했습니다.')
-      throw error
+      console.error(error)
     },
   })
 
@@ -124,6 +124,7 @@ export const useSignUpQuery = () => {
     emailDuplicateMutation,
     nickNameDuplicateMutation,
     signUpMutation,
+    signUpPending,
     emailPassed,
     idPassed,
     nicknamePassed,
