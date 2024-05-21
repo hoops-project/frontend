@@ -14,7 +14,7 @@ interface GameListProps {
   }
 }
 
-export const useGetGameList = ({ gameFilter }: GameListProps) => {
+export const useGetGameListQuery = ({ gameFilter }: GameListProps) => {
   const queryClient = useQueryClient()
 
   const getGameList = async (page = 1, size = 2) => {
