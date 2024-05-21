@@ -12,5 +12,9 @@ export const S = {
     outline: none;
     font-size: 1.6rem;
     border-radius: 0.8rem;
+
+    &::placeholder {
+      color: ${theme.colors.gray_400};
+    }
   `,
 }
