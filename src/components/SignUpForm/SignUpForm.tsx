@@ -11,6 +11,8 @@ import { useDuplicate } from '../../hooks/useDuplicate.ts'
 import { S } from './SignUpForm.style.ts'
 import { CS } from '../../styles/commonStyle.ts'
 import { findSelectIndexes } from '../../helper/findSelectIndex.ts'
+import { mergeObjects } from '../../helper/mergeObject.ts'
+import { useSignUpQuery } from '../../hooks/query/useSignUpQuery.ts'
 
 export default function SignUpForm() {
   const {
@@ -30,46 +32,60 @@ export default function SignUpForm() {
     },
   })
 
+  const password = watch('password')
+  const id = watch('id')
+  const nickName = watch('nickname')
+  const email = watch('email')
+
   const selectedValue = useSelect({
     defaultValue: findSelectIndexes('남자', '공격적', '슛'),
   })
+
+  const { emailPassed, idPassed, nicknamePassed } = useDuplicate()
+
+  const {
+    idDuplicateMutation,
+    emailDuplicateMutation,
+    nickNameDuplicateMutation,
+    signUpMutation,
+  } = useSignUpQuery()
+
+  const handleSignUp = (sigInData: SignUpType) => {
+    const finalData = mergeObjects(sigInData, selectedValue.select)
+
+    console.log(finalData)
+
+    if (!emailPassed && !idPassed && !nicknamePassed) {
+      alert('모든 중복 검사를 완료해 주세요.')
+    }
+
+    signUpMutation(finalData)
+  }
+
+  const handleIdDuplicate = (buttonId: string) => {
+    switch (buttonId) {
+      case 'id':
+        // 아이디 중복검사 mutation 로직
+        idDuplicateMutation(id)
+        break
+      case 'email':
+        // 이메일 중복검사 mutation 로직
+        emailDuplicateMutation(email)
+        break
+      case 'nickname':
+        // 닉네임 중복검사 mutation 로직
+        nickNameDuplicateMutation(nickName)
+        break
+      default:
+        throw new Error('존재하지 않는 중복검사 항목입니다.')
+    }
+  }
 
   useEffect(() => {
     if (Object.keys(errors).length > 0) {
       window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
     }
   }, [errors])
-
-  const password = watch('password')
-
-  const { emailPassed, idPassed, nicknamePassed } = useDuplicate()
-
-  const handleSignUp = (sigInData: SignInType) => {
-    console.log(sigInData)
-    console.log(selectedValue.select)
-
-    if (!emailPassed && !idPassed && !nicknamePassed) {
-      alert('모든 중복 검사를 완료해 주세요.')
-    }
-
-    // TODO: 서버에 보내기전 모든 항목 공백제거 후 보낼것
-  }
-
-  const handleIdDuplicate = (id: string) => {
-    switch (id) {
-      case 'id':
-        // 아이디 중복검사 mutation 로직
-        break
-      case 'email':
-        // 이메일 중복검사 mutation 로직
-        break
-      case 'nickname':
-        // 닉네임 중복검사 mutation 로직
-        break
-      default:
-        throw new Error('존재하지 않는 중복검사 항목입니다.')
-    }
-  }
 
   return (
     <form onSubmit={handleSubmit(handleSignUp)}>
@@ -84,6 +100,7 @@ export default function SignUpForm() {
             type={'text'}
             name={'id'}
             control={control}
+            readonly={idPassed}
             placeholder={'아이디를 입력해 주세요.'}
             rules={VALID_RULES.ID}
           />
@@ -109,6 +126,7 @@ export default function SignUpForm() {
             type={'email'}
             name={'email'}
             control={control}
+            readonly={emailPassed}
             placeholder={'이메일을 입력해 주세요.'}
             rules={VALID_RULES.EMAIL}
           />
@@ -180,6 +198,7 @@ export default function SignUpForm() {
             type={'text'}
             name={'nickname'}
             control={control}
+            readonly={nicknamePassed}
             placeholder={'닉네임을 입력해 주세요.'}
             rules={VALID_RULES.NICKNAME}
           />
