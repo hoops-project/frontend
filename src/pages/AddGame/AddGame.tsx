@@ -6,23 +6,21 @@ import BasicInput from '../../components/common/BasicInput/BasicInput.tsx'
 import { S } from './AddGame.style.ts'
 import BasicButton from '../../components/common/BasicButton/BasicButton.tsx'
 import { theme } from '../../styles/theme.ts'
-import { AddressProps } from '../../types/map.ts'
 import LocationSearchForm from '../../components/LocationSearchForm/LocationSearchForm.tsx'
-import { useState } from 'react'
 import BasicTextArea from '../../components/common/BasicTextArea/BasicTextArea.tsx'
 import useToast from '../../hooks/useToast.ts'
 import { useAddGameQuery } from '../../hooks/query/useAddGameQuery.ts'
+import { useGameInfo } from '../../hooks/useGameInfo.ts'
 
 export default function AddGame() {
-  const [gameTitle, setGameTitle] = useState<string>('')
-  const [gameContent, setGameContent] = useState<string>('')
-
-  const [address, setAddress] = useState<AddressProps>({
-    placeName: '',
-    address: '',
-    lat: '',
-    lng: '',
-  })
+  const {
+    gameTitle,
+    gameContent,
+    address,
+    handleGameTitleChange,
+    setGameContent,
+    setAddress,
+  } = useGameInfo()
   const useGameSelect = useSelectBox()
   const { toastError } = useToast()
   const { addGameMutation } = useAddGameQuery()
@@ -82,7 +80,7 @@ export default function AddGame() {
             <label htmlFor={'game-title'}>모임 이름</label>
             <BasicInput
               value={gameTitle}
-              onChange={(e) => setGameTitle(e.target.value)}
+              onChange={handleGameTitleChange}
               type={'text'}
               id={'game-title'}
               placeholder={'모임 이름을 설정하세요.'}
