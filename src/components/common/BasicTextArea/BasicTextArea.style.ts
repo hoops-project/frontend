@@ -3,7 +3,7 @@ import { theme } from '../../../styles/theme.ts'
 
 export const S = {
   TextArea: styled.textarea`
-    width: 100%;
+    width: calc(100% - 3rem);
     min-height: 30rem;
     resize: none;
     border: 0.1rem solid ${theme.colors.gray_400};
