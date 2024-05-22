@@ -23,19 +23,19 @@ export default function MainRouter() {
         <Route path={'/'} element={<Main />}></Route>
         <Route path={'/sign-in'} element={<SignIn />} />
         <Route path={'/sign-up'} element={<SignUp />} />
+        <Route
+          path={'/detail/:id'}
+          element={
+            <ChangeBgLayout $bg={theme.colors.default_gray_bg}>
+              <Detail />
+            </ChangeBgLayout>
+          }
+        />        
         <Route element={<PrivateRoute />}>
           <Route path={'/add-game'} element={<AddGame />} />
           <Route path={'/admin/report'} element={<Report />} />
           <Route path={'/search'} element={<SearchTab />} />
           <Route path={'/my-last-game'} element={<MyLastGameList />} />
-          <Route
-            path={'/detail/:id'}
-            element={
-              <ChangeBgLayout $bg={theme.colors.default_gray_bg}>
-                <Detail />
-              </ChangeBgLayout>
-            }
-          />
           <Route
             path={'/my-page'}
             element={
@@ -52,11 +52,11 @@ export default function MainRouter() {
               </ChangeBgLayout>
             }
           >
-            <Route path={'/my-game'} element={<WaitChatSelect />} />
-            <Route path={'/my-game/:id'} element={<GameChat />} />
-          </Route>
+          <Route path={'/my-game'} element={<WaitChatSelect />} />
+          <Route path={'/my-game/:id'} element={<GameChat />} />
+        </Route>
       </Route>
-      </Route>
-    </Routes>
+    </Route>
+  </Routes>
   )
 }

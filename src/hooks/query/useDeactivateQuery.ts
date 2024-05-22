@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { END_POINT } from "../../constants/endPoint";
 import { QUERY_KEYS } from "../../constants/queryKeys";
 import useToast from "../useToast";
+import { useQueryClient } from "@tanstack/react-query";
 
 const fetchAPI = async () => {
   const res = await axiosAccess.post(`${END_POINT.USER.DEACTIVATE}`)
@@ -13,6 +14,7 @@ const fetchAPI = async () => {
 const useDeactivateQuery = () => {
   const { toastSuccess } = useToast()
   const navigate = useNavigate()
+  const queryClient = useQueryClient()
 
   const { mutate: deactivateMutate } = useMutation({
     mutationKey: [QUERY_KEYS.DEACTIVATE],
@@ -20,6 +22,10 @@ const useDeactivateQuery = () => {
     onSuccess: () => {
       localStorage.removeItem("Access-Token");
       localStorage.removeItem("userInfo");
+      queryClient.removeQueries({
+        queryKey: [QUERY_KEYS.GET_USER_INFO],
+        exact: true,
+      })
       toastSuccess("회원탈퇴가 완료되었습니다.");
       navigate("/", { replace: true });
     },
