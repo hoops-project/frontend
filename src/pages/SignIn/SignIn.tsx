@@ -4,8 +4,21 @@ import BasicButton from '../../components/common/BasicButton/BasicButton.tsx'
 import { theme } from '../../styles/theme.ts'
 import kakao from '../../assets/kakao.svg'
 import SignInForm from '../../components/SignInForm/SignInForm.tsx'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function SignIn() {
+  const navigate = useNavigate()
+  
+  // 로그인 상태일 시 로그인 화면 경로 제어 
+  const isAuthenticated = localStorage.getItem('Access-Token');
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/', { replace: true });
+    }
+  }, []);
+
   return (
     <CS.DefaultContainer>
       <S.Wrapper>
