@@ -14,12 +14,12 @@ import {
   convertGender,
 } from '../../helper/convertValueToName.ts'
 import dayjs from 'dayjs'
-import { useGetUserInfo } from '../../hooks/query/useGetUserInfo.ts'
+import { useUserInfoQuery } from '../../hooks/query/useUserInfoQuery.ts'
 
 export default function Detail() {
   const { id } = useParams()
   const { gameDetail }: { gameDetail: GameDetails } = useGameDetailQuery(id)
-  const { userInfo } = useGetUserInfo()
+  const { userInfo } = useUserInfoQuery()
 
   const restCount =
     gameDetail?.headCount - gameDetail?.participantUserList.length
