@@ -9,10 +9,10 @@ import { reportDetail } from '../../mock/data.ts'
 interface JoinGame {
   date: string
   title: string
-  location: string
+  restCount: number
 }
 
-export default function JoinGame({ date, title, location }: JoinGame) {
+export default function JoinGame({ date, title, restCount }: JoinGame) {
   const { isModalOpen, openModal, closeModal } = useModal()
   const gameAddress = reportDetail[0].address
 
@@ -21,12 +21,11 @@ export default function JoinGame({ date, title, location }: JoinGame) {
       <S.PlaceInfo>
         <p>{date}</p>
         <p>{title}</p>
-        <p>{location}</p>
       </S.PlaceInfo>
       <S.JoinWrapper>
         <div>
           <p>마감까지</p>
-          <p>6자리 남았어요!</p>
+          <p>{`${restCount}자리 남았어요!`}</p>
         </div>
         <BasicButton
           type={'button'}

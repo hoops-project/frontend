@@ -19,11 +19,7 @@ export const S = {
     }
     & > p:nth-child(2) {
       font-size: 2.2rem;
-      margin-bottom: 1.8rem;
-    }
-    & > p:nth-child(3) {
-      font-size: 1.4rem;
-      color: ${(props) => props.theme.colors.gray_700};
+      margin-bottom: 1rem;
     }
   `,
   JoinWrapper: styled.div`

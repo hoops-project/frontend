@@ -7,10 +7,11 @@ import { S } from './MatchPoint.style.ts'
 
 // TODO: 임시 데이터 타입 추후 수정 필요
 interface MatchPointProps {
-  playType: string
-  gender: string
-  place: string
-  addFriend: string
+  playType: string | null
+  gender: string | null
+  place: string | null
+  addFriend: string | null
+  femaleUser: number | null
 }
 
 export default function MatchPoint({
@@ -45,7 +46,7 @@ export default function MatchPoint({
       </S.PointWrapper>
       <S.Girl>
         <img src={girl} alt={'여성 아이콘'} />
-        <p>아직 여성 플레이어는 0명이에요.</p>
+        <p>{`아직 여성 플레이어는 ${matchPoint.femaleUser}명이에요.`}</p>
       </S.Girl>
     </S.MatchPoint>
   )
