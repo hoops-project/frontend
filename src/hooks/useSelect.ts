@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { abilities, gender, playStyle } from '../constants/signUpSelect.ts'
 
 interface SelectedInfo {
@@ -18,6 +18,18 @@ export const useSelect = ({ defaultValue }: { defaultValue: number[] }) => {
     playStyle: playStyle[defaultPlayStyle],
     abilities: abilities[defaultAbilities],
   })
+
+  useEffect(() => {
+    setSelect({
+      gender: gender[defaultGender],
+      playStyle: playStyle[defaultPlayStyle],
+      abilities: abilities[defaultAbilities],
+    })
+
+    setGenderSelected(defaultGender)
+    setStyleSelected(defaultPlayStyle)
+    setAbilitiesSelected(defaultAbilities)
+  }, [defaultGender, defaultPlayStyle, defaultAbilities])
 
   const handleGenderSelect = (index: number) => {
     setGenderSelected(index)
