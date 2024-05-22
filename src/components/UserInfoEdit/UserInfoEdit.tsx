@@ -2,27 +2,37 @@ import { S } from './UserInfoEdit.style.ts'
 import { useForm } from 'react-hook-form'
 import { SignInType, SignUpType } from '../../types/auth.ts'
 import AuthInput from '../common/AuthInput/AuthInput.tsx'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { VALID_RULES } from '../../constants/validRules.ts'
 import UserInfoSelect from '../common/UserInfoSelect/UserInfoSelect.tsx'
 import { useSelect } from '../../hooks/useSelect.ts'
 import { CS } from '../../styles/commonStyle.ts'
-import { findSelectIndexes } from '../../helper/findSelectIndex.ts'
 import BasicButton from '../common/BasicButton/BasicButton.tsx'
 import { theme } from '../../styles/theme.ts'
+import { useUserInfoQuery } from '../../hooks/query/useUserInfoQuery.ts'
+import dayjs from 'dayjs'
+import { findSelectIndexes } from '../../helper/findSelectIndex.ts'
+import {
+  convertAttributeToKorean,
+  convertGenderToKorean,
+  convertPlayStyleToKorean,
+} from '../../helper/convertValueToName.ts'
 
 export default function UserInfoEdit() {
   const [edit, setEdit] = useState<boolean>(true)
+  const { userInfo, patchedUserInfo } = useUserInfoQuery()
+
   const {
     handleSubmit,
     control,
     formState: { errors },
+    setValue,
   } = useForm<SignInType & SignUpType>({
     defaultValues: {
-      password: 'Qwerty123!',
-      name: '오신웅',
-      nickname: '시눙하이',
-      birthday: '19960328',
+      password: '',
+      name: '',
+      nickname: '',
+      birthday: '',
     },
   })
 
@@ -30,8 +40,20 @@ export default function UserInfoEdit() {
    * NOTICE: findSelectIndexes 함수를 이용하여 서버에서 받은 데이터를 넣어
    * 속성에 해당하는 인덱스배열(defaultValue)을 받환 받은 후 useSelect 에 전달해야 합니다.
    * */
-  const defaultValue = findSelectIndexes('여자', '수비적', '드리볼')
-  const selectedValue = useSelect({ defaultValue })
+  const defaultValue = findSelectIndexes(
+    convertGenderToKorean(userInfo?.gender),
+    convertPlayStyleToKorean(userInfo?.playStyle),
+    convertAttributeToKorean(userInfo?.ability)
+  )
+  const selectedValue = useSelect({ defaultValue: defaultValue })
+
+  useEffect(() => {
+    if (userInfo) {
+      setValue('name', userInfo.name)
+      setValue('nickname', userInfo.nickName)
+      setValue('birthday', dayjs(userInfo.birthday).format('YYYYMMDD'))
+    }
+  }, [userInfo, setValue])
 
   const handelEditUserInfo = (data: SignInType & SignUpType) => {
     if (edit) {
@@ -40,9 +62,9 @@ export default function UserInfoEdit() {
     }
     setEdit(true)
 
-    // TODO: 이후 프로필 수정 패칭 로직 작성
+    const finalData = { ...data, ...selectedValue.select }
 
-    console.log(data, selectedValue.select)
+    patchedUserInfo(finalData)
   }
 
   return (
@@ -50,7 +72,7 @@ export default function UserInfoEdit() {
       <S.Form onSubmit={handleSubmit(handelEditUserInfo)}>
         <S.InputWrapper $readonly={edit}>
           <CS.ValidWrapper>
-            <CS.InputLabel htmlFor={'userName'}>아이디</CS.InputLabel>
+            <CS.InputLabel htmlFor={'userName'}>이름</CS.InputLabel>
             {errors.name?.message && <span>{errors.name.message}</span>}
           </CS.ValidWrapper>
           <AuthInput
@@ -87,7 +109,7 @@ export default function UserInfoEdit() {
             control={control}
             type={'password'}
             id={'password'}
-            rules={VALID_RULES.PASSWORD}
+            rules={!edit && VALID_RULES.PASSWORD}
           />
         </S.InputWrapper>
         <S.InputWrapper $readonly={edit}>
