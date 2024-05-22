@@ -37,7 +37,7 @@ export const END_POINT = deepFreeze({
   },
   GAME_CREATOR: {
     CREATE_GAME: 'api/game-creator/game/create',
-    GAME_DETAILS: 'api/game-creator/game-creator/detail/gameId=?',
+    GAME_DETAILS: 'api/game-creator/game/detail?gameId=',
     GAME_UPDATE: 'api/game-creator/game/update',
     GAME_DELETE: 'api/game-creator/game/delete',
     GAME_PARTICIPANT_LIST: 'api/game-creator/participant/list/gameId=?',
