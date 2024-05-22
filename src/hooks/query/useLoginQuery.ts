@@ -1,11 +1,11 @@
-import { axiosAccess, defaultAxios } from "../../api/axiosInstance";
+import { defaultAxios } from "../../api/axiosInstance";
 import { SignInType, SignInResponseType } from "../../types/auth";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { QUERY_KEYS } from "../../constants/queryKeys";
 import { END_POINT } from "../../constants/endPoint";
 import{ useToast } from "../useToast";
-import { useUserStore } from "../../store/store";
+
 
 const memberLogin = async (data: SignInType): Promise<SignInResponseType> => {
   const { id, password } = data;
@@ -30,8 +30,6 @@ const memberLogin = async (data: SignInType): Promise<SignInResponseType> => {
 export default function useLoginQuery() {
   const navigate = useNavigate();
   const { toastSuccess, toastError } = useToast();
-  const updateUser = useUserStore((state) => state.updateUser);
-
   const {
     data: loginData,
     mutate: loginMutate,
@@ -49,13 +47,6 @@ export default function useLoginQuery() {
       }
 
       localStorage.setItem('Access-Token', accessToken)
-      //현재 사용자 상태 업데이트
-      const { data: userInfoData } = await axiosAccess.get(
-        END_POINT.USER.USER_INFO
-      )
-      //현재 사용자 상태 전역 관리
-      updateUser(userInfoData)
-      console.log(data.userInfo)
 
       navigate('/', { replace: true })
       toastSuccess('로그인에 성공하셨습니다 💪🏻')
