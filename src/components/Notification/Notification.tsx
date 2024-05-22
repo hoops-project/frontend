@@ -6,8 +6,8 @@ import { END_POINT } from '../../constants/endPoint.ts'
 import { useUserInfoQuery } from '../../hooks/query/useUserInfoQuery.ts'
 import { axiosAccess } from '../../api/axiosInstance.ts'
 import { useNavigate } from 'react-router-dom'
-import useDeactivateQuery from '../../hooks/query/useDeActivateQuery.ts'
 import useToast from '../../hooks/useToast.ts'
+import useDeactivateQuery from '../../hooks/query/useDeactivateQuery.ts'
 
 export default function Notification() {
   const { toastSuccess } = useToast()
@@ -19,21 +19,19 @@ export default function Notification() {
     const checkLogout = window.confirm('로그아웃을 하시겠습니까?')
     if (checkLogout) {
       await axiosAccess.post(`${END_POINT.AUTH.LOGOUT}`).then(() => {
-
-        localStorage.removeItem("Access-Token")
-      });
+        localStorage.removeItem('Access-Token')
+      })
       toastSuccess('로그아웃이 성공적으로 완료되었습니다 💪🏻')
-      navigate("/", { replace: true })
+      navigate('/', { replace: true })
     }
-  };
+  }
 
   const handleDeactivate = () => {
-    const checkWithdraw = window.confirm("정말 회원 탈퇴를 하시겠습니까?")
+    const checkWithdraw = window.confirm('정말 회원 탈퇴를 하시겠습니까?')
     if (checkWithdraw) {
       deactivateMutate()
     }
-  };
-
+  }
 
   return (
     <S.Wrapper>
@@ -58,7 +56,8 @@ export default function Notification() {
         ))}
       </S.NoticeBody>
       <S.Logout>
-        <span onClick={handleSignOut}>로그아웃</span> <span>|</span> <span onClick={handleDeactivate}>회원탈퇴</span>
+        <span onClick={handleSignOut}>로그아웃</span> <span>|</span>{' '}
+        <span onClick={handleDeactivate}>회원탈퇴</span>
       </S.Logout>
     </S.Wrapper>
   )
