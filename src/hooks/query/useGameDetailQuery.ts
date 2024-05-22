@@ -3,7 +3,7 @@ import { END_POINT } from '../../constants/endPoint.ts'
 import { useQuery } from '@tanstack/react-query'
 import { QUERY_KEYS } from '../../constants/queryKeys.ts'
 
-export const useGameDetailQuery = (gameId: string) => {
+export const useGameDetailQuery = (gameId: string | undefined) => {
   const getGameDetail = async () => {
     const { data } = await defaultAxios.get(
       `${END_POINT.GAME_CREATOR.GAME_DETAILS}${gameId}`
@@ -11,10 +11,10 @@ export const useGameDetailQuery = (gameId: string) => {
     return data
   }
 
-  const { data } = useQuery({
+  const { data: gameDetail } = useQuery({
     queryKey: [QUERY_KEYS.GET_GAME_DETAIL],
     queryFn: getGameDetail,
   })
 
-  return { data }
+  return { gameDetail }
 }

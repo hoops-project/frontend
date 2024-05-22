@@ -7,6 +7,7 @@ import DetailTopTitle from '../../components/DetailTopTitle/DetailTopTitle.tsx'
 import JoinGame from '../../components/JoinGame/JoinGame.tsx'
 import MatchData from '../../components/MatchData/MatchData.tsx'
 import { useParams } from 'react-router-dom'
+import { useGameDetailQuery } from '../../hooks/query/useGameDetailQuery.ts'
 
 export default function Detail() {
   // TODO: 임시 데이터입니다. 이후 페이지 id에 따라서 데이터 받아온 후 화면에 뿌릴것
@@ -23,9 +24,9 @@ export default function Detail() {
     location: '서울 강남',
   }
   const { id } = useParams()
-  //const { data } = useGameDetailQuery(id as string)
+  const { gameDetail } = useGameDetailQuery(id)
 
-  console.log(id)
+  console.log(gameDetail)
 
   // TODO: 각각의 영역마다 컴포넌트로 나눠서 관리 할 수 있을듯
   return (

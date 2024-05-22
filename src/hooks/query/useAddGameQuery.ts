@@ -23,6 +23,7 @@ export const useAddGameQuery = () => {
       matchFormat: gameData.gameType,
       latitude: gameData.lat,
       longitude: gameData.lng,
+      // placeName: gameData.placeName,
     })
 
     return data
