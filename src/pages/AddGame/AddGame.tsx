@@ -6,24 +6,68 @@ import BasicInput from '../../components/common/BasicInput/BasicInput.tsx'
 import { S } from './AddGame.style.ts'
 import BasicButton from '../../components/common/BasicButton/BasicButton.tsx'
 import { theme } from '../../styles/theme.ts'
-import { AddressProps } from '../../types/map.ts'
 import LocationSearchForm from '../../components/LocationSearchForm/LocationSearchForm.tsx'
-import { useState } from 'react'
+import BasicTextArea from '../../components/common/BasicTextArea/BasicTextArea.tsx'
+import useToast from '../../hooks/useToast.ts'
+import { useAddGameQuery } from '../../hooks/query/useAddGameQuery.ts'
+import { useGameInfo } from '../../hooks/useGameInfo.ts'
 
 export default function AddGame() {
-  const [gameTitle, setGameTitle] = useState<string>('')
-
-  const [address, setAddress] = useState<AddressProps>({
-    placeName: '',
-    address: '',
-    lat: '',
-    lng: '',
-  })
+  const {
+    gameTitle,
+    gameContent,
+    address,
+    handleGameTitleChange,
+    setGameContent,
+    setAddress,
+  } = useGameInfo()
   const useGameSelect = useSelectBox()
+  const { toastError } = useToast()
+  const { addGameMutation } = useAddGameQuery()
 
   const handleAddGame = () => {
-    // NOTICE: 서버에 보내야할 정보는 address 와 useGameSelect,gameTitle 에 담겨 있음
-    // TODO: 빈값 체크 후 서버에 보내는 로직을 이 아래부터 작성
+    const headCount = useGameSelect.totalPlayers
+    const matchFormat = useGameSelect.gameType
+
+    if (gameTitle.length > 50) {
+      toastError('경기 제목은 500자 이하로 작성해 주세요.')
+      return
+    }
+
+    if (gameContent.length > 500) {
+      toastError('경기 규칙은 500자 이하로 작성해 주세요.')
+      return
+    }
+
+    if (matchFormat === 'THREEONTHREE') {
+      if (Number(headCount) < 6 || Number(headCount) > 9) {
+        toastError('3대3에서의 인원은 6~9명 사이 입니다.')
+        return
+      }
+    } else if (matchFormat === 'FIVEONFIVE') {
+      if (Number(headCount) < 10 || Number(headCount) > 15) {
+        toastError('5대5에서의 인원은 10~15명 사이 입니다.')
+        return
+      }
+    }
+
+    const finalData = {
+      ...address,
+      ...useGameSelect,
+      title: gameTitle,
+      content: gameContent,
+      region: 'temp',
+      showOver: 'temp',
+    }
+
+    for (const value of Object.values(finalData)) {
+      if (typeof value === 'string' && value.trim() === '') {
+        toastError('모든 정보를 입력해 주세요!')
+        return
+      }
+    }
+
+    addGameMutation(finalData)
   }
 
   return (
@@ -36,10 +80,16 @@ export default function AddGame() {
             <label htmlFor={'game-title'}>모임 이름</label>
             <BasicInput
               value={gameTitle}
-              onChange={(e) => setGameTitle(e.target.value)}
+              onChange={handleGameTitleChange}
               type={'text'}
               id={'game-title'}
               placeholder={'모임 이름을 설정하세요.'}
+            />
+            <label htmlFor={'game-content'}>경기 규칙</label>
+            <BasicTextArea
+              content={gameContent}
+              setContent={setGameContent}
+              placeholder={'경기 규칙을 적어주세요.'}
             />
           </S.InputWrapper>
           <LocationSearchForm address={address} setAddress={setAddress} />

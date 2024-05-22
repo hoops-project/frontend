@@ -4,7 +4,7 @@ export const REGEX = {
   UPPERCASE: /[A-Z]/,
   LOWERCASE: /[a-z]/,
   INCLUDE_NUMBER: /\d/,
-  SPECIAL_SYMBOL: /[@$!%*?&]/,
+  SPECIAL_SYMBOL: /[@$!%*?&#]/,
 }
 
 Object.freeze(REGEX)

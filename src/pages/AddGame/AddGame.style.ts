@@ -14,7 +14,7 @@ export const S = {
 
     & > label {
       display: block;
-      padding: 1rem 0 1rem 0;
+      padding: 2rem 0 2rem 0;
       color: ${(props) => props.theme.colors.gray_700};
     }
   `,
