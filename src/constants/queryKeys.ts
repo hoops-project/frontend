@@ -4,6 +4,7 @@ export const QUERY_KEYS = {
   GET_GAME_LIST: 'GET_GAME_LIST',
   LOGIN: 'LOGIN',
   GET_USER_INFO: 'GET_USER_INFO',
+  DEACTIVATE: 'DEACTIVATE',
 }
 
 Object.freeze(QUERY_KEYS)

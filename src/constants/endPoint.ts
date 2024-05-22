@@ -8,7 +8,7 @@ export const END_POINT = deepFreeze({
     SIGN_UP: 'api/user/signup',
     EMAIL_CONFIRM: 'api/user/signup/confirm',
     USER_EDIT: 'api/auth/user/edit',
-    DEACTIVATE: 'api/user/deactivate',
+    DEACTIVATE: 'api/auth/deactivate',
     FIND_ID: 'api/user/find/id',
     FIND_PASSWORD: 'api/user/find/password',
     USER_INFO: 'api/auth/user/info',

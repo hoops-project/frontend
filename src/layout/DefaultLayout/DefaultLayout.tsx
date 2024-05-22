@@ -15,6 +15,7 @@ export default function DefaultLayout() {
         autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
+        limit={1}
         closeOnClick
         rtl={false}
         pauseOnFocusLoss

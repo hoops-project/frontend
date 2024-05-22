@@ -1,5 +1,4 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { useUserStore } from '../store/store';
 import { END_POINT } from '../constants/endPoint';
 
 export const defaultAxios = axios.create({
@@ -40,28 +39,24 @@ axiosAuth.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-
 const refreshToken = async (req: AxiosRequestConfig) => {
-  const updateUser = useUserStore.getState().updateUser;
   try {
     const res = await axiosAccess.post(`${END_POINT.AUTH.REFRESH_TOKEN}`);
     const newACToken = res.headers["access-token"];
     localStorage.setItem("Access-Token", newACToken);
-    
-   // headers가 undefined인 경우 초기화  
+
+    // headers가 undefined인 경우 초기화
     if (!req.headers) {
       req.headers = {};
     }
     req.headers.Authorization = `Bearer ${newACToken}`;
     return await axiosAuth(req);
   } catch (err) {
-    updateUser({ isLogin: false });
-    alert("로그인을 다시 진행해주세요.");
-    window.location.replace("/sign-in");
+    alert('다시 로그인해주세요!');
+    window.location.replace('/sign-in');
     throw err;
   }
 };
-
 // access-token 만료시 refresh-token 사용해서 재발급
 axiosAuth.interceptors.response.use(
   (response) => response,
