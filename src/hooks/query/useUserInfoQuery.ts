@@ -23,6 +23,7 @@ interface UserInfoProps {
 
 export const useUserInfoQuery = () => {
   const { toastError, toastSuccess } = useToast()
+  const token = localStorage.getItem('Access-Token')
 
   const getUserInfo = async () => {
     const { data } = await axiosAuth.get(END_POINT.USER.USER_INFO)
@@ -45,6 +46,7 @@ export const useUserInfoQuery = () => {
   const { data: userInfo } = useQuery({
     queryKey: [QUERY_KEYS.GET_USER_INFO],
     queryFn: getUserInfo,
+    enabled: !!token,
   })
 
   const { mutate: patchedUserInfo } = useMutation({

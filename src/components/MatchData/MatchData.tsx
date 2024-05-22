@@ -65,8 +65,7 @@ export default function MatchData({
             (acc: number, curr: number) => acc + curr,
             0
           )
-          const percentage = ((value / total) * 100).toFixed(2) + '%' // 퍼센테이지 계산
-          return percentage
+          return ((value / total) * 100).toFixed(2) + '%' // 퍼센테이지 계산
         },
       },
       tooltip: {
