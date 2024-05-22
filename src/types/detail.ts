@@ -25,4 +25,5 @@ export interface GameDetails {
   startDateTime: string
   title: string
   userId: number
+  placeName: string
 }

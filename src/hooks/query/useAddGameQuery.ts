@@ -14,16 +14,16 @@ export const useAddGameQuery = () => {
     const { data } = await axiosAuth.post(END_POINT.GAME_CREATOR.CREATE_GAME, {
       title: gameData.title,
       content: gameData.content,
-      headCount: gameData.totalPlayers,
+      headCount: Number(gameData.totalPlayers),
       fieldStatus: gameData.gamePlace,
       gender: gameData.gender,
       startDateTime: `${gameData.date}T${gameData.time}:00`,
       inviteYn: gameData.addFriends === 'TRUE',
       address: gameData.address,
       matchFormat: gameData.gameType,
-      latitude: gameData.lat,
-      longitude: gameData.lng,
-      // placeName: gameData.placeName,
+      latitude: Number(gameData.lat),
+      longitude: Number(gameData.lng),
+      placeName: gameData.placeName,
     })
 
     return data

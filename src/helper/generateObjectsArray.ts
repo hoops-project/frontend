@@ -1,10 +1,11 @@
 export const generateGameTimeObjects = () => {
   const gameTimeObjects: { NAME: string; VALUE: string }[] = []
 
-  for (let hour = 6; hour <= 24; hour++) {
+  for (let hour = 6; hour <= 23; hour++) {
     const time = `${('0' + hour).slice(-2)}:00`
     gameTimeObjects.push({ NAME: time, VALUE: time })
   }
+  gameTimeObjects.push({ NAME: '00:00', VALUE: '00:00' })
 
   return gameTimeObjects
 }
