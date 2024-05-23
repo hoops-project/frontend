@@ -7,12 +7,12 @@ import { useUserInfoQuery } from '../../hooks/query/useUserInfoQuery.ts'
 import { axiosAccess } from '../../api/axiosInstance.ts'
 import { useNavigate } from 'react-router-dom'
 import useToast from '../../hooks/useToast.ts'
-import useDeactivateQuery from '../../hooks/query/useDeActivateQuery.ts'
+import useDeactivateQuery from '../../hooks/query/useDeactivateQuery.ts'
 import { useQueryClient } from '@tanstack/react-query'
 import { QUERY_KEYS } from '../../constants/queryKeys.ts'
 
 export default function Notification() {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
   const { toastSuccess } = useToast()
   const navigate = useNavigate()
   const { userInfo } = useUserInfoQuery()
@@ -29,7 +29,7 @@ export default function Notification() {
         })
       })
       toastSuccess('로그아웃이 성공적으로 완료되었습니다 💪🏻')
-      
+
       navigate('/', { replace: true })
     }
   }
