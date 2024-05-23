@@ -4,14 +4,14 @@ import BasicInput from '../common/BasicInput/BasicInput.tsx'
 import BasicButton from '../common/BasicButton/BasicButton.tsx'
 import { theme } from '../../styles/theme.ts'
 import React, { useState } from 'react'
-import { useFindUserIdQuery } from '../../hooks/query/useFindUserIdQuery.ts'
+import { useFindAccount } from '../../hooks/query/useFindAccount.ts'
 import { REGEX } from '../../constants/regex.ts'
 import useToast from '../../hooks/useToast.ts'
 import { CS } from '../../styles/commonStyle.ts'
 
 export default function FindUserIdForm() {
   const [email, setEmail] = useState<string>('')
-  const { findUserIdMutation, userId } = useFindUserIdQuery()
+  const { findUserIdMutation, userId, idPending } = useFindAccount()
   const { toastError } = useToast()
 
   const handleFindUserId = (e: React.FormEvent<HTMLFormElement>) => {
@@ -36,12 +36,13 @@ export default function FindUserIdForm() {
           onChange={(e) => setEmail(e.target.value)}
         />
         <BasicButton
+          disabled={idPending}
           type={'submit'}
           $bgColor={theme.colors.blue_100}
-          $fontcolor={theme.colors.blue}
+          $fontcolor={idPending ? theme.colors.white : theme.colors.blue}
           $width={'15%'}
         >
-          찾기
+          {idPending ? '찾는중...' : '찾기'}
         </BasicButton>
       </S.Form>
       {userId && typeof userId !== 'object' ? (

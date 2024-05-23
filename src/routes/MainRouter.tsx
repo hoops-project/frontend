@@ -17,6 +17,7 @@ import MyLastGameList from '../pages/MyLastGame/MyLastGame.tsx'
 import PrivateRoute from '../routes/PrivateRoute.tsx'
 import EditGame from '../pages/EditGame/EditGame.tsx'
 import FindUserId from '../pages/FindUserId/FindUserId.tsx'
+import FIndUserPassword from '../pages/FIndUserPassword/FIndUserPassword.tsx'
 
 export default function MainRouter() {
   return (
@@ -26,6 +27,7 @@ export default function MainRouter() {
         <Route path={'/sign-in'} element={<SignIn />} />
         <Route path={'/sign-up'} element={<SignUp />} />
         <Route path={'/account'} element={<FindUserId />} />
+        <Route path={'/password'} element={<FIndUserPassword />} />
         <Route
           path={'/detail/:id'}
           element={
