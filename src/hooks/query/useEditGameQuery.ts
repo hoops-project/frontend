@@ -1,14 +1,16 @@
 import { axiosAuth } from '../../api/axiosInstance.ts'
 import { END_POINT } from '../../constants/endPoint.ts'
 import { GameData } from '../../types/game.ts'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import useToast from '../useToast.ts'
 import { useNavigate } from 'react-router-dom'
+import { QUERY_KEYS } from '../../constants/queryKeys.ts'
 
 export const useEditGameQuery = () => {
   const { toastError, toastSuccess } = useToast()
   const navigate = useNavigate()
+  const queryClient = useQueryClient()
 
   const editGame = async (gameData: Partial<GameData>) => {
     const { data } = await axiosAuth.put(END_POINT.GAME_CREATOR.GAME_UPDATE, {
@@ -32,12 +34,16 @@ export const useEditGameQuery = () => {
 
   const { mutate: editGameMutation } = useMutation({
     mutationFn: editGame,
-    onSuccess: (data) => {
+    onSuccess: (data, variables) => {
       if (data.statusCode === 400) {
         toastError(`${data.errorMessage}`)
         return
       }
-      navigate('/')
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.GET_GAME_LIST] })
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_GAME_DETAIL],
+      })
+      navigate(`/detail/${variables.gameId}`)
       toastSuccess('경기가 수정되었습니다!')
     },
     onError: (error: AxiosError) => {

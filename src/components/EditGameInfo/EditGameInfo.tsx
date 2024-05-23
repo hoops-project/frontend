@@ -39,7 +39,7 @@ export default function EditGameInfo() {
     placeName: gameDetail?.placeName,
     address: gameDetail?.address,
     lat: String(gameDetail?.latitude),
-    lng: String(gameDetail?.latitude),
+    lng: String(gameDetail?.longitude),
   })
   const useGameSelect = useSelectBox()
 
@@ -73,7 +73,6 @@ export default function EditGameInfo() {
       }
     }
 
-    console.log(finalData)
     editGameMutation(finalData)
   }
 
