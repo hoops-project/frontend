@@ -37,3 +37,23 @@ export interface GameData {
   totalPlayers: string
   gameId?: number
 }
+
+export interface GameListData {
+  gameId: number
+  gameOwnerId: number
+  myId: number
+  title: string
+  content: string
+  headCount: number
+  fieldStatus: string
+  gender: string
+  startDateTime: string
+  createdDateTime: string
+  deletedDateTime: string
+  inviteYn: boolean
+  address: string
+  latitude: number
+  longitude: number
+  cityName: string
+  matchFormat: string
+}
