@@ -16,6 +16,7 @@ import SearchTab from '../components/SearchTab/SearchTab.tsx'
 import MyLastGameList from '../pages/MyLastGame/MyLastGame.tsx'
 import PrivateRoute from '../routes/PrivateRoute.tsx'
 import EditGame from '../pages/EditGame/EditGame.tsx'
+import FindUserId from '../pages/FindUserId/FindUserId.tsx'
 
 export default function MainRouter() {
   return (
@@ -24,6 +25,7 @@ export default function MainRouter() {
         <Route path={'/'} element={<Main />}></Route>
         <Route path={'/sign-in'} element={<SignIn />} />
         <Route path={'/sign-up'} element={<SignUp />} />
+        <Route path={'/account'} element={<FindUserId />} />
         <Route
           path={'/detail/:id'}
           element={
