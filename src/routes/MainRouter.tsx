@@ -15,6 +15,7 @@ import WaitChatSelect from '../components/WaitChatSelect/WaitChatSelect.tsx'
 import SearchTab from '../components/SearchTab/SearchTab.tsx'
 import MyLastGameList from '../pages/MyLastGame/MyLastGame.tsx'
 import PrivateRoute from '../routes/PrivateRoute.tsx'
+import EditGame from '../pages/EditGame/EditGame.tsx'
 
 export default function MainRouter() {
   return (
@@ -30,12 +31,13 @@ export default function MainRouter() {
               <Detail />
             </ChangeBgLayout>
           }
-        />        
+        />
         <Route element={<PrivateRoute />}>
           <Route path={'/add-game'} element={<AddGame />} />
           <Route path={'/admin/report'} element={<Report />} />
           <Route path={'/search'} element={<SearchTab />} />
           <Route path={'/my-last-game'} element={<MyLastGameList />} />
+          <Route path={'/edit-game/:id'} element={<EditGame />} />
           <Route
             path={'/my-page'}
             element={
@@ -52,11 +54,11 @@ export default function MainRouter() {
               </ChangeBgLayout>
             }
           >
-          <Route path={'/my-game'} element={<WaitChatSelect />} />
-          <Route path={'/my-game/:id'} element={<GameChat />} />
+            <Route path={'/my-game'} element={<WaitChatSelect />} />
+            <Route path={'/my-game/:id'} element={<GameChat />} />
+          </Route>
         </Route>
       </Route>
-    </Route>
-  </Routes>
+    </Routes>
   )
 }

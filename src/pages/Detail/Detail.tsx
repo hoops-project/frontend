@@ -14,7 +14,10 @@ import {
   convertGender,
 } from '../../helper/convertValueToName.ts'
 import dayjs from 'dayjs'
+import 'dayjs/locale/ko'
 import { useUserInfoQuery } from '../../hooks/query/useUserInfoQuery.ts'
+
+dayjs.locale('ko')
 
 export default function Detail() {
   const { id } = useParams()
@@ -37,7 +40,6 @@ export default function Detail() {
     participantUserList: ParticipantUser[],
     loggedInUserId: number
   ): boolean => {
-    console.log(loggedInUserId)
     return participantUserList?.some((user) => user.userId === loggedInUserId)
   }
 
@@ -62,7 +64,10 @@ export default function Detail() {
               gameDetail?.participantUserList,
               userInfo?.userId ?? 0
             ) ? (
-              <MatchData userList={gameDetail?.participantUserList} />
+              <MatchData
+                userList={gameDetail?.participantUserList}
+                content={gameDetail?.content}
+              />
             ) : (
               <LockMatchData />
             )}
@@ -70,9 +75,11 @@ export default function Detail() {
             <KakaoMap lat={gameDetail?.latitude} lng={gameDetail?.longitude} />
           </div>
           <JoinGame
-            date={dayjs(gameDetail?.startDateTime).format('YYYY-MM-DD / HH:mm')}
+            date={dayjs(gameDetail?.startDateTime).format('M월 D일 ddd HH:mm')}
             title={gameDetail?.placeName}
             restCount={restCount}
+            address={gameDetail?.address}
+            isCreator={userInfo?.userId === gameDetail?.userId}
           />
         </S.InfoWrapper>
       </S.Wrapper>

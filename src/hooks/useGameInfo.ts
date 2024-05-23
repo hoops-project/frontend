@@ -1,10 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AddressProps } from '../types/map.ts'
 
 export const useGameInfo = (
   initialGameTitle = '',
   initialGameContent = '',
-  initialAddress: Partial<AddressProps> = {}
+  initialAddress: AddressProps = {
+    placeName: '',
+    address: '',
+    lat: '',
+    lng: '',
+  }
 ) => {
   const [gameTitle, setGameTitle] = useState<string>(initialGameTitle)
   const [gameContent, setGameContent] = useState<string>(initialGameContent)
@@ -14,6 +19,18 @@ export const useGameInfo = (
     lat: initialAddress.lat || '',
     lng: initialAddress.lng || '',
   })
+
+  useEffect(() => {
+    setGameTitle(initialGameTitle)
+    setGameContent(initialGameContent)
+    setAddress(initialAddress)
+  }, [
+    initialGameTitle,
+    initialGameContent,
+    initialAddress.address,
+    initialAddress.lat,
+    initialAddress.lng,
+  ])
 
   const handleGameTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value

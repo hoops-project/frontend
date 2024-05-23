@@ -35,4 +35,5 @@ export interface GameData {
   title: string
   content: string
   totalPlayers: string
+  gameId?: number
 }
