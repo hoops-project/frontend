@@ -10,6 +10,7 @@ import useGetMyLastGameListQuery from '../../../hooks/query/useGetMyLastGameList
 import { GameListData } from '../../../types/game'
 import Badge from '../Badge/Badge'
 import dayjs from 'dayjs'
+import { OPTIONS } from '../../../constants/selectOption'
 
 export default function MyLastGame() {
   const { isModalOpen, openModal, closeModal } = useModal()
@@ -40,7 +41,8 @@ export default function MyLastGame() {
             const isLastElement = myLastGameListData.pages.length - 1 === pageIndex && page.content.length - 1 === gameIndex;
             const formattedDate = dayjs(game.startDateTime).format('YYYY년 MM월 DD일')
             const formattedTime = dayjs(game.startDateTime).format('HH:mm')
-
+            const genderOption = OPTIONS.GENDER.find(option => option.VALUE === game.gender)?.NAME || game.gender
+            const matchFormatOption = OPTIONS.GAME_TYPE.find(option => option.VALUE === game.matchFormat)?.NAME || game.matchFormat
             return (
               <div key={game.gameId} ref={loader}>
                 <S.Date>{formattedDate}</S.Date>
@@ -49,8 +51,8 @@ export default function MyLastGame() {
                   <S.LastGameItem>
                     <p>{game.title}</p>
                     <S.Match>
-                      📍 {game.gender}&nbsp;
-                      🪄 {game.matchFormat}&nbsp;&nbsp;
+                      📍 {genderOption}&nbsp;
+                      🪄 {matchFormatOption}&nbsp;&nbsp;
                       <Badge 
                         $bgColor={game.inviteYn ? theme.colors.green : theme.colors.gray_300}
                         $fontcolor={theme.colors.white}
