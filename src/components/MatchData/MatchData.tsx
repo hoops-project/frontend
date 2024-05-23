@@ -1,5 +1,4 @@
 import { S } from './MatchData.style.ts'
-import { participantGameUserList } from '../../mock/data'
 import { Pie } from 'react-chartjs-2'
 import {
   ArcElement,
@@ -17,8 +16,10 @@ ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels)
 
 export default function MatchData({
   userList,
+  content,
 }: {
   userList: ParticipantUser[]
+  content: string
 }) {
   // `playStyle` 빈도 계산
   const playStyleCounts: Record<string, number> = userList.reduce(
@@ -89,7 +90,12 @@ export default function MatchData({
   return (
     <S.MatchData>
       <p>메치 데이터</p>
-      <span>총인원 : {participantGameUserList.length}</span>
+      <S.MatchContent>
+        <p>경기 규칙</p>
+        <br />
+        {content}
+      </S.MatchContent>
+      <span>총인원 : {userList.length}</span>
       <div>
         <Pie data={data} options={options} />
       </div>

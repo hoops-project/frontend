@@ -62,7 +62,10 @@ export default function Detail() {
               gameDetail?.participantUserList,
               userInfo?.userId ?? 0
             ) ? (
-              <MatchData userList={gameDetail?.participantUserList} />
+              <MatchData
+                userList={gameDetail?.participantUserList}
+                content={gameDetail?.content}
+              />
             ) : (
               <LockMatchData />
             )}
