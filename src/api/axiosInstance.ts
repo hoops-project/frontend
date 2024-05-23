@@ -6,7 +6,7 @@ export const defaultAxios = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-    withCredentials: true,
+  withCredentials: true,
 });
 
 export const axiosAuth = axios.create({
@@ -39,6 +39,7 @@ axiosAuth.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+
 const refreshToken = async (req: AxiosRequestConfig) => {
   try {
     const res = await axiosAccess.post(`${END_POINT.AUTH.REFRESH_TOKEN}`);
@@ -52,22 +53,29 @@ const refreshToken = async (req: AxiosRequestConfig) => {
     req.headers.Authorization = `Bearer ${newACToken}`;
     return await axiosAuth(req);
   } catch (err) {
-    alert('다시 로그인해주세요!');
+    alert('세션이 만료되었습니다. 다시 로그인해주세요!');
+    localStorage.removeItem('Access-Token');
+    localStorage.removeItem('Refresh-Token');
     window.location.replace('/sign-in');
     throw err;
   }
 };
+
 // access-token 만료시 refresh-token 사용해서 재발급
 axiosAuth.interceptors.response.use(
   (response) => response,
   async (error) => {
     console.log(error);
-    const errorCode = error.response.data.errorCode;
+    const errorCode = error.response?.data?.errorCode;
 
     const req = error.config;
 
     if (errorCode === "ACCESS_TOKEN_EXPIRED") {
-      return refreshToken(req);
+      try {
+        return await refreshToken(req);
+      } catch (refreshError) {
+        return Promise.reject(refreshError);
+      }
     }
     return Promise.reject(error);
   }
@@ -92,12 +100,16 @@ axiosAccess.interceptors.response.use(
   (response) => response,
   async (error) => {
     console.log(error);
-    const errorCode = error.response.data.errorCode;
+    const errorCode = error.response?.data?.errorCode;
 
     const req = error.config;
 
     if (errorCode === "ACCESS_TOKEN_EXPIRED") {
-      return refreshToken(req);
+      try {
+        return await refreshToken(req);
+      } catch (refreshError) {
+        return Promise.reject(refreshError);
+      }
     }
     return Promise.reject(error);
   }
