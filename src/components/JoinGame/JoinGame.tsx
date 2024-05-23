@@ -5,14 +5,25 @@ import useModal from '../../hooks/useModal.ts'
 import Modal from '../common/Modal/Modal.tsx'
 import ModalTit from '../common/ModalTit/ModalTit'
 import { reportDetail } from '../../mock/data.ts'
+import { CS } from '../../styles/commonStyle.ts'
+import { useParams } from 'react-router-dom'
 
 interface JoinGame {
   date: string
   title: string
   restCount: number
+  address: string
+  isCreator: boolean
 }
 
-export default function JoinGame({ date, title, restCount }: JoinGame) {
+export default function JoinGame({
+  date,
+  title,
+  restCount,
+  address,
+  isCreator,
+}: JoinGame) {
+  const { id } = useParams()
   const { isModalOpen, openModal, closeModal } = useModal()
   const gameAddress = reportDetail[0].address
 
@@ -21,17 +32,24 @@ export default function JoinGame({ date, title, restCount }: JoinGame) {
       <S.PlaceInfo>
         <p>{date}</p>
         <p>{title}</p>
+        <p>{address}</p>
       </S.PlaceInfo>
       <S.JoinWrapper>
         <div>
           <p>마감까지</p>
           <p>{`${restCount}자리 남았어요!`}</p>
+          {isCreator && (
+            <CS.Link to={`/edit-game/${id}`}>
+              <u>경기 수정</u>
+            </CS.Link>
+          )}
         </div>
         <BasicButton
           type={'button'}
           $bgColor={theme.colors.blue}
           $fontcolor={theme.colors.white}
           $width={'40%'}
+          $height={'4.5rem'}
           onClick={openModal}
         >
           참가

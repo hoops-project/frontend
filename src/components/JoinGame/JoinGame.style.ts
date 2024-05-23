@@ -39,6 +39,12 @@ export const S = {
       color: ${(props) => props.theme.colors.red};
       font-weight: bold;
     }
+    & > div > a {
+      display: block;
+      margin-top: 3rem;
+      font-size: 1.4rem;
+      color: ${(props) => props.theme.colors.gray_500};
+    }
   `,
   BasicButtonWrapper: styled.div`
     display: flex;
