@@ -40,9 +40,10 @@ export const S = {
     align-items: center;
   `,
   Match: styled.span`
+    display: flex;
     font-size: 1.5rem;
     margin-top: 2rem;
-    padding-right: 1rem;
+    padding-right: 2rem;
   `,
   LastGameList: styled.div`
     display: flex;

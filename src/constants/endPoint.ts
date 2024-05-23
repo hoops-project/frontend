@@ -33,7 +33,7 @@ export const END_POINT = deepFreeze({
     GAME_IN_OUT: 'api/game-user/game-out-out',
     RATE_MANNER: 'api/game-user/rate-manner',
     CURRENT_GAME_LIST: 'api/game-user/current/list',
-    PAST_GAME_LIST: 'api/game-user/past/list',
+    PAST_GAME_LIST: 'api/game-user/my-last-game-list',
   },
   GAME_CREATOR: {
     CREATE_GAME: 'api/game-creator/game/create',
