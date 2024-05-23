@@ -9,15 +9,15 @@ import { useNavigate } from 'react-router-dom'
 
 export default function SignIn() {
   const navigate = useNavigate()
-  
-  // 로그인 상태일 시 로그인 화면 경로 제어 
-  const isAuthenticated = localStorage.getItem('Access-Token');
+
+  // 로그인 상태일 시 로그인 화면 경로 제어
+  const isAuthenticated = localStorage.getItem('Access-Token')
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/', { replace: true });
+      navigate('/', { replace: true })
     }
-  }, []);
+  }, [])
 
   return (
     <CS.DefaultContainer>
