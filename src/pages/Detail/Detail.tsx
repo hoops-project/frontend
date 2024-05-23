@@ -40,7 +40,6 @@ export default function Detail() {
     participantUserList: ParticipantUser[],
     loggedInUserId: number
   ): boolean => {
-    console.log(loggedInUserId)
     return participantUserList?.some((user) => user.userId === loggedInUserId)
   }
 
