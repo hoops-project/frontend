@@ -41,7 +41,11 @@ export default function useLoginQuery() {
     onSuccess: async (data, variables) => {
       const accessToken = data.accessToken
       // Bearer ${accessToken}
-
+      
+      if (data.userInfo.statusCode) {
+        toastError(`${data.userInfo.errorMessage}`)
+        return
+      }
       if (variables.rememberMe) {
         localStorage.setItem('userId', data.userInfo.id)
       }
