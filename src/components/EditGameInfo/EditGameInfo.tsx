@@ -96,7 +96,7 @@ export default function EditGameInfo() {
       navigate('/')
       toastError('수정 권한이 없습니다.')
     }
-  }, [gameDetail])
+  }, [gameDetail, navigate, toastError, useGameSelect, userInfo?.userId])
 
   return (
     <S.Container>
