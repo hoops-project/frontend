@@ -10,7 +10,6 @@ import BasicInput from '../common/BasicInput/BasicInput.tsx'
 import send from '../../assets/send.svg'
 import React, { useState } from 'react'
 import Modal from '../common/Modal/Modal.tsx'
-import FriendModalList from '../common/FriendModalList/FriendModalList.tsx'
 import ModalTit from '../common/ModalTit/ModalTit.tsx'
 import useModal from '../../hooks/useModal.ts'
 import MyFriend from '../common/MyFriend/MyFriend.tsx'
@@ -95,7 +94,7 @@ export default function GameChat() {
       {isModalOpen && (
         <Modal $width='102.4rem' $height='50rem' onClose={closeModal}>
           <ModalTit title='내 친구들' />
-          <FriendModalList />
+          <MyFriend />
           <BasicButton
             type='button'
             children={'확인'}

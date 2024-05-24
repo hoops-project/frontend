@@ -6,7 +6,7 @@ export const defaultAxios = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-    withCredentials: true,
+  withCredentials: true,
 });
 
 export const axiosAuth = axios.create({
@@ -25,7 +25,7 @@ export const axiosAccess = axios.create({
   withCredentials: true,
 });
 
-// 일반적으로 인증이 필요한 API 요청을 처리 => 요청 시 Authorization 헤더를 설정하며, 토큰이 만료되었을 때 토큰을 재발급
+// 일반적으로 인증이 필요한 API 요청을 처리 => 요청 시 Authorization 헤더를 설정
 axiosAuth.interceptors.request.use(
   (config) => {
     const accessToken = localStorage.getItem("Access-Token");
@@ -39,10 +39,21 @@ axiosAuth.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+
 const refreshToken = async (req: AxiosRequestConfig) => {
   try {
-    const res = await axiosAccess.post(`${END_POINT.AUTH.REFRESH_TOKEN}`);
-    const newACToken = res.headers["access-token"];
+    const refreshToken = localStorage.getItem("Refresh-Token");
+    if (!refreshToken) {
+      throw new Error("Refresh token not available");
+    }
+
+    const res = await axiosAccess.post(`${END_POINT.AUTH.REFRESH_TOKEN}`, null, {
+      headers: {
+        'Authorization': `Bearer ${refreshToken}`
+      }
+    });
+    
+    const newACToken = res.data.accessToken; // 보통 access token은 body에서 받아옵니다.
     localStorage.setItem("Access-Token", newACToken);
 
     // headers가 undefined인 경우 초기화
@@ -52,21 +63,21 @@ const refreshToken = async (req: AxiosRequestConfig) => {
     req.headers.Authorization = `Bearer ${newACToken}`;
     return await axiosAuth(req);
   } catch (err) {
-    alert('다시 로그인해주세요!');
-    window.location.replace('/sign-in');
+    localStorage.removeItem('Access-Token');
+    localStorage.removeItem('Refresh-Token');
     throw err;
   }
 };
+
 // access-token 만료시 refresh-token 사용해서 재발급
 axiosAuth.interceptors.response.use(
   (response) => response,
   async (error) => {
     console.log(error);
     const errorCode = error.response.data.errorCode;
-
     const req = error.config;
 
-    if (errorCode === "ACCESS_TOKEN_EXPIRED") {
+    if (errorCode === "EXPIRED_TOKEN") {
       return refreshToken(req);
     }
     return Promise.reject(error);
@@ -76,27 +87,26 @@ axiosAuth.interceptors.response.use(
 // 주로 토큰 재발급 요청 처리 => 요청 시 Access-Token 헤더를 설정하며, 토큰이 만료되었을 때 새로운 토큰
 axiosAccess.interceptors.request.use(
   (config) => {
-    const accessToken = localStorage.getItem('Access-Token')
+    const accessToken = localStorage.getItem('Access-Token');
     if (accessToken) {
-      config.headers.Authorization = `Bearer ${accessToken}`
+      config.headers.Authorization = `Bearer ${accessToken}`;
     }
-    return config
+    return config;
   },
   (error) => {
-    console.log(error)
-    return Promise.reject(error)
+    console.log(error);
+    return Promise.reject(error);
   }
-)
+);
 
 axiosAccess.interceptors.response.use(
   (response) => response,
   async (error) => {
     console.log(error);
     const errorCode = error.response.data.errorCode;
-
     const req = error.config;
 
-    if (errorCode === "ACCESS_TOKEN_EXPIRED") {
+    if (errorCode === "EXPIRED_TOKEN") {
       return refreshToken(req);
     }
     return Promise.reject(error);

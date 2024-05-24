@@ -6,7 +6,7 @@ export const S = {
     margin: 0 auto;
   `,
   TitWrapperText: styled.p`
-    font-size: 1.6rem;
+    font-size: 2rem;
     font-weight: 700;
     color: ${theme.colors.black};
   `,

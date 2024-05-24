@@ -30,27 +30,31 @@ export type InputName =
   | 'birthday'
   | 'rememberMe'
 
-export interface UserInfoType {
-  userId: number
-  id: string
-  password: string
-  email: string
-  name: string
-  birthday: string
-  gender: string
-  nickName: string
-  createdAt: string
-  playStyle: string
-  ability: string
-  refreshToken: string
-  roles: string
-  isLogin: boolean
+  export interface UserInfoType {
+    userId: number
+    id: string
+    password: string
+    email: string
+    name: string
+    birthday: string
+    gender: string
+    nickName: string
+    createdAt: string
+    playStyle: string
+    ability: string
+    refreshToken: string
+    roles: string
+    isLogin: boolean
+    statusCode?: number
+    errorMessage?: string
   }
+
   export interface TokenType {
     authorization: string;
   }
   
   export interface SignInResponseType {
+    refreshToken: string
     accessToken: string
     headers: TokenType
     userInfo: UserInfoType

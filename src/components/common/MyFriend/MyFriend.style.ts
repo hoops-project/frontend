@@ -10,7 +10,6 @@ export const S = {
   `,
   TopTit: styled.div`
     display: flex;
-    margin-top: 5rem;
     margin-bottom: 2rem;
     font-weight: 700;
     font-size: 2rem;
