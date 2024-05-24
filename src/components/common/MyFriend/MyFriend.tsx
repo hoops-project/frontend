@@ -25,20 +25,18 @@ export default function MyFriend() {
             <BasicButton
               type='button'
               $bgColor={
-                user.isRequestFriend
-                  ? theme.colors.blue
-                  : theme.colors.light_blue
+                user.isRequestFriend ? theme.colors.blue : theme.colors.red
               }
               $borderColor={theme.colors.white}
               $width='10rem'
               $hoverBgColor={
                 user.isRequestFriend
                   ? theme.colors.gray_300
-                  : theme.colors.gray_200
+                  : theme.colors.gray_300
               }
               $fontcolor={theme.colors.white}
             >
-              {user.isRequestFriend ? '친구 초대' : '초대 완료'}
+              {user.isRequestFriend ? '친구 신청' : '친구 삭제'}
             </BasicButton>
           </S.ListItem>
         ))}

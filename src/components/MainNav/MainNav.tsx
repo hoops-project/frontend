@@ -4,9 +4,15 @@ import myGame from '../../assets/my-game.jpg'
 import lastGame from '../../assets/last-game.svg'
 import friends from '../../assets/friends.svg'
 import { CS } from '../../styles/commonStyle.ts'
+import useModal from '../../hooks/useModal.ts'
+import Modal from '../common/Modal/Modal.tsx'
+import MyFriend from '../common/MyFriend/MyFriend.tsx'
+import ModalTit from '../common/ModalTit/ModalTit.tsx'
 
 export default function MainNav() {
+  const { isModalOpen, openModal, closeModal } = useModal()
   return (
+    <>
     <S.NavContainer>
       <CS.Link to={'/add-game'}>
         <div>
@@ -26,12 +32,24 @@ export default function MainNav() {
           <p>지난 경기</p>
         </div>
       </CS.Link>
-      <CS.Link to={'/'}>
-        <div>
+      <CS.Link to={''}>
+        <div onClick={openModal}>
           <img src={friends} alt={'친구'} />
           <p>친구</p>
         </div>
       </CS.Link>
     </S.NavContainer>
+    {isModalOpen &&  
+        <Modal $width="auto" $height="auto" onClose={closeModal}>
+          <ModalTit title='내 친구 목록'/>
+          <CS.Link to={'/search'}>
+            <S.MoreSearch>
+              <p>🏀 더 많은 친구 찾아보기</p>
+            </S.MoreSearch>
+          </CS.Link>
+          <MyFriend />
+        </Modal>
+      }
+  </>  
   )
 }

@@ -13,6 +13,7 @@ export const S = {
     justify-content: center;
     align-items: center;
     background: rgba(0, 0, 0, 0.5);
+    z-index:1000;
   `,
 
   CloseBtnContainer: styled.div`
@@ -43,7 +44,7 @@ export const S = {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 30px;
+    gap: 3rem;
     border-radius: 1rem;
     }
 
