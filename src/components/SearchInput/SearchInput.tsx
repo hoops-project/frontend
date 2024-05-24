@@ -21,8 +21,6 @@ export default function SearchInput() {
     setSearchValue('')
   }
 
-  console.log(searchResult)
-
   return (
     <S.InputContainer>
       <S.SearchIcon src={SearchIcon} alt='Search icon' />
