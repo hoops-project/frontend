@@ -13,6 +13,7 @@ import Modal from '../common/Modal/Modal.tsx'
 import ModalTit from '../common/ModalTit/ModalTit.tsx'
 import useModal from '../../hooks/useModal.ts'
 import MyFriend from '../common/MyFriend/MyFriend.tsx'
+import FriendList from '../FriendList/FriendList.tsx'
 
 export default function GameChat() {
   const params = useParams()
@@ -94,7 +95,9 @@ export default function GameChat() {
       {isModalOpen && (
         <Modal $width='102.4rem' $height='50rem' onClose={closeModal}>
           <ModalTit title='내 친구들' />
-          <MyFriend />
+          <MyFriend>
+            <FriendList isAddFriend={false} />
+          </MyFriend>
           <BasicButton
             type='button'
             children={'확인'}
@@ -106,7 +109,9 @@ export default function GameChat() {
       {isFriendModalOpen && (
         <Modal $width='102.4rem' $height='50rem' onClose={closeFriendModal}>
           <ModalTit title='친구 초대' />
-          <MyFriend />
+          <MyFriend>
+            <FriendList isAddFriend={false} />
+          </MyFriend>
         </Modal>
       )}
     </S.Wrapper>
