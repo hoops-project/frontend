@@ -43,6 +43,9 @@ export const useEditGameQuery = () => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.GET_GAME_DETAIL],
       })
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.SEARCH_GAME],
+      })
       navigate(`/detail/${variables.gameId}`)
       toastSuccess('경기가 수정되었습니다!')
     },
