@@ -14,12 +14,14 @@ const memberLogin = async (data: SignInType): Promise<SignInResponseType> => {
 
   // 응답 헤더에서 Authorization 토큰을 추출
   const authorizationHeader = res.headers['authorization'];
-
+  const authorizationBody = res.data.refreshToken
   const accessToken = authorizationHeader;
+  const refreshToken = authorizationBody
 
 
   return {
     accessToken,
+    refreshToken,
     headers: { authorization: authorizationHeader },
     userInfo: res.data
   };
@@ -40,8 +42,9 @@ export default function useLoginQuery() {
     mutationFn: memberLogin,
     onSuccess: async (data, variables) => {
       const accessToken = data.accessToken
+      const refreshToken = data.refreshToken
       // Bearer ${accessToken}
-      
+
       if (data.userInfo.statusCode) {
         toastError(`${data.userInfo.errorMessage}`)
         return
@@ -51,6 +54,7 @@ export default function useLoginQuery() {
       }
 
       localStorage.setItem('Access-Token', accessToken)
+      localStorage.setItem('Refresh-Token', refreshToken)
 
       navigate('/', { replace: true })
       toastSuccess('로그인에 성공하셨습니다 💪🏻')

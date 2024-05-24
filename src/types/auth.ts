@@ -48,12 +48,13 @@ export type InputName =
     statusCode?: number
     errorMessage?: string
   }
-  
+
   export interface TokenType {
     authorization: string;
   }
   
   export interface SignInResponseType {
+    refreshToken: string
     accessToken: string
     headers: TokenType
     userInfo: UserInfoType
