@@ -49,20 +49,23 @@ const refreshToken = async (req: AxiosRequestConfig) => {
 
     const res = await axiosAccess.post(`${END_POINT.AUTH.REFRESH_TOKEN}`, null, {
       headers: {
-        'Authorization': `Bearer ${refreshToken}`
+        'Authorization': `Bearer ${refreshToken}`, 
+        "Refresh-Token": `${refreshToken}`
       }
     });
     
-    const newACToken = res.data.accessToken; // 보통 access token은 body에서 받아옵니다.
+    const newACToken = res.data.accessToken; // 보통 access token은 body
     localStorage.setItem("Access-Token", newACToken);
 
     // headers가 undefined인 경우 초기화
     if (!req.headers) {
       req.headers = {};
     }
+
     req.headers.Authorization = `Bearer ${newACToken}`;
     return await axiosAuth(req);
   } catch (err) {
+    alert('로그인을 다시 진행해주세요!')
     localStorage.removeItem('Access-Token');
     localStorage.removeItem('Refresh-Token');
     throw err;
@@ -80,7 +83,7 @@ axiosAuth.interceptors.response.use(
     if (errorCode === "EXPIRED_TOKEN") {
       return refreshToken(req);
     }
-    return Promise.reject(error);
+    return Promise.reject(error('AUTH 리퀘스트 에러'));
   }
 );
 
@@ -94,7 +97,7 @@ axiosAccess.interceptors.request.use(
     return config;
   },
   (error) => {
-    console.log(error);
+    console.log(error('ACCESS 리퀘스트 에러'));
     return Promise.reject(error);
   }
 );
@@ -109,6 +112,6 @@ axiosAccess.interceptors.response.use(
     if (errorCode === "EXPIRED_TOKEN") {
       return refreshToken(req);
     }
-    return Promise.reject(error);
+    return Promise.reject(error('ACCESS 리스폰스 에러'));
   }
 );
