@@ -3,11 +3,12 @@ import MyGameItem from '../MyGameItem/MyGameItem.tsx'
 import React, { useState } from 'react'
 import { Pagination, Stack } from '@mui/material'
 import GameUserList from '../GameUserList/GameUserList.tsx'
-import { TestData2 } from '../../hooks/temp.ts'
 import { useGetChatListQuery } from '../../hooks/query/useGetChatListQuery.ts'
 import { GameListData } from '../../types/game.ts'
+import { useParams } from 'react-router-dom'
 
 export default function MyGameList() {
+  const { id } = useParams()
   const [selected, setSelected] = useState<number>(0)
   const [page, setPage] = React.useState(1)
 
@@ -18,7 +19,9 @@ export default function MyGameList() {
     setPage(value)
   }
 
-  const { chatList } = useGetChatListQuery(page, 5)
+  const { chatList, joinUser } = useGetChatListQuery(page, 5, id)
+
+  console.log(joinUser)
 
   return (
     <S.Wrapper>
@@ -54,7 +57,7 @@ export default function MyGameList() {
           </Stack>
         </div>
       </S.ListContainer>
-      <GameUserList userInfo={TestData2} />
+      <GameUserList userInfo={joinUser} />
     </S.Wrapper>
   )
 }

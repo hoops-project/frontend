@@ -41,6 +41,7 @@ export const END_POINT = deepFreeze({
     GAME_UPDATE: 'api/game-creator/game/update',
     GAME_DELETE: 'api/game-creator/game/delete',
     GAME_PARTICIPANT_LIST: 'api/game-creator/participant/list?gameId=',
+    GAME_JOINED_USER: 'api/game-creator/participant/accept/list?gameId=',
     ACCEPT_PARTICIPANT: 'api/game-creator/participant/accept',
     REJECT_PARTICIPANT: 'api/game-creator/participant/reject',
     KICK_OUT: 'api/game-creator/participant/kickout',

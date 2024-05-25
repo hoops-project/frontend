@@ -8,22 +8,28 @@ import ModalTit from '../common/ModalTit/ModalTit.tsx'
 import ModalSubText from '../common/ModalSubText/ModalSubText.tsx'
 import ModalTextBox from '../common/ModalTextBox/ModalTextBox.tsx'
 import { PiSirenThin } from 'react-icons/pi'
+import { useUserInfoQuery } from '../../hooks/query/useUserInfoQuery.ts'
 
 export default function GameUserList({ userInfo }: MyGameUserList) {
-  const userId = 1
   const { isModalOpen, openModal, closeModal } = useModal()
+
+  const { userInfo: currentUser } = useUserInfoQuery()
 
   return (
     <S.Wrapper>
       <p>유저 목록</p>
       <div>
-        {userInfo.map(
+        {userInfo?.map(
           (info) =>
-            userId !== info.userId && (
-              <S.UserInfo key={info.userId}>
-                <p>{info.name}</p>
-                {userId === info.gameId ? <p>팀장</p> : <p>팀원</p>}
-                <p>{info.rate}</p>
+            currentUser?.userId !== info.participantId && (
+              <S.UserInfo key={info.participantId}>
+                <p>{info.nickName}</p>
+                {currentUser?.userId === info.participantId ? (
+                  <p>팀장</p>
+                ) : (
+                  <p>팀원</p>
+                )}
+                <p>{info.mannerPoint ? info.mannerPoint : '0.0'}</p>
                 <BasicButton
                   type={'button'}
                   $bgColor={theme.colors.blue}

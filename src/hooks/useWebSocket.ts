@@ -16,7 +16,6 @@ export const useWebSocket = (chatRoomId: string, accessToken: string) => {
       return
     }
 
-    // console.log('useEffect 실행됨', chatRoomId)
     client.current = Stomp.over(() => new SockJS(SOCKET_URL))
     const headers = {
       Authorization: `Bearer ${accessToken}`,
