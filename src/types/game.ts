@@ -12,6 +12,7 @@ export interface MyGameItemProps {
 
 export interface MyGameUserList {
   userInfo: {
+    userId: number
     ability: string
     createdDateTime: string
     gender: string

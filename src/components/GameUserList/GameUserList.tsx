@@ -21,10 +21,10 @@ export default function GameUserList({ userInfo }: MyGameUserList) {
       <div>
         {userInfo?.map(
           (info) =>
-            currentUser?.userId !== info.participantId && (
+            currentUser?.userId !== info.userId && (
               <S.UserInfo key={info.participantId}>
                 <p>{info.nickName}</p>
-                {currentUser?.userId === info.participantId ? (
+                {currentUser?.userId === info.userId ? (
                   <p>팀장</p>
                 ) : (
                   <p>팀원</p>
