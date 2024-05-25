@@ -1,9 +1,15 @@
 import { S } from './ChatList.style.ts'
 
-export default function ChatList() {
+interface ChatListProps {
+  message: { sender: string; content: string }[]
+}
+
+export default function ChatList({ message }: ChatListProps) {
   // const params = useParams()
 
   // TODO: 이곳에서 gameId를 이용해서 채팅방 연결 gameId는 params.id임
+
+  console.log(message)
 
   return (
     <S.Wrapper>

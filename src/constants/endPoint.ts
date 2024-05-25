@@ -32,7 +32,7 @@ export const END_POINT = deepFreeze({
     FRIEND_INVITE: 'api/game-user/friend-invite',
     GAME_IN_OUT: 'api/game-user/game-out-out',
     RATE_MANNER: 'api/game-user/rate-manner',
-    CURRENT_GAME_LIST: 'api/game-user/current/list',
+    CURRENT_GAME_LIST: 'api/game-user/my-current-game-list',
     PAST_GAME_LIST: 'api/game-user/my-last-game-list',
   },
   GAME_CREATOR: {
@@ -40,7 +40,7 @@ export const END_POINT = deepFreeze({
     GAME_DETAILS: 'api/game-creator/game/detail?gameId=',
     GAME_UPDATE: 'api/game-creator/game/update',
     GAME_DELETE: 'api/game-creator/game/delete',
-    GAME_PARTICIPANT_LIST: 'api/game-creator/participant/list/gameId=?',
+    GAME_PARTICIPANT_LIST: 'api/game-creator/participant/list?gameId=',
     ACCEPT_PARTICIPANT: 'api/game-creator/participant/accept',
     REJECT_PARTICIPANT: 'api/game-creator/participant/reject',
     KICK_OUT: 'api/game-creator/participant/kickout',
