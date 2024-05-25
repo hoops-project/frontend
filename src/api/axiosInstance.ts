@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { END_POINT } from '../constants/endPoint';
 
 export const defaultAxios = axios.create({
-  baseURL: '/',
+  baseURL: '/api',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -10,7 +10,7 @@ export const defaultAxios = axios.create({
 });
 
 export const axiosAuth = axios.create({
-  baseURL: '/',
+  baseURL: '/api',
   headers: {
     "Content-Type": "application/json",
   },
@@ -18,7 +18,7 @@ export const axiosAuth = axios.create({
 });
 
 export const axiosAccess = axios.create({
-  baseURL: '/',
+  baseURL: '/api',
   headers: {
     "Content-Type": "application/json",
   },
@@ -47,10 +47,9 @@ const refreshToken = async (req: AxiosRequestConfig) => {
       throw new Error("Refresh token not available");
     }
 
-    const res = await axiosAccess.post(`${END_POINT.AUTH.REFRESH_TOKEN}`, null, {
+    const res = await axiosAccess.post(`${END_POINT.AUTH.REFRESH_TOKEN}`,{
       headers: {
-        'Authorization': `Bearer ${refreshToken}`, 
-        "Refresh-Token": `${refreshToken}`
+        'Authorization': `Bearer ${refreshToken}`
       }
     });
     

@@ -1,17 +1,19 @@
-import { S } from './MainNav.style.ts'
-import makeGroup from '../../assets/make-group.svg'
-import myGame from '../../assets/my-game.jpg'
-import lastGame from '../../assets/last-game.svg'
-import friends from '../../assets/friends.svg'
-import { CS } from '../../styles/commonStyle.ts'
-import useModal from '../../hooks/useModal.ts'
-import Modal from '../common/Modal/Modal.tsx'
-import MyFriend from '../common/MyFriend/MyFriend.tsx'
-import ModalTit from '../common/ModalTit/ModalTit.tsx'
-import FriendList from '../FriendList/FriendList.tsx'
+import { S } from './MainNav.style.ts';
+import makeGroup from '../../assets/make-group.svg';
+import myGame from '../../assets/my-game.jpg';
+import lastGame from '../../assets/last-game.svg';
+import friends from '../../assets/friends.svg';
+import { CS } from '../../styles/commonStyle.ts';
+import useModal from '../../hooks/useModal.ts';
+import Modal from '../common/Modal/Modal.tsx';
+import MyFriend from '../common/MyFriend/MyFriend.tsx';
+import ModalTit from '../common/ModalTit/ModalTit.tsx';
+import FriendList from '../FriendList/FriendList.tsx';
 
 export default function MainNav() {
-  const { isModalOpen, openModal, closeModal } = useModal()
+  const { isModalOpen, openModal, closeModal } = useModal();
+
+
   return (
     <>
       <S.NavContainer>
@@ -54,5 +56,5 @@ export default function MainNav() {
         </Modal>
       )}
     </>
-  )
+  );
 }

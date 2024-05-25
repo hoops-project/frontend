@@ -31,6 +31,8 @@ export type InputName =
   | 'rememberMe'
 
   export interface UserInfoType {
+    friendId: number | null
+    rating: number
     userId: number
     id: string
     password: string
@@ -47,6 +49,7 @@ export type InputName =
     isLogin: boolean
     statusCode?: number
     errorMessage?: string
+    isRequestFriend:boolean
   }
 
   export interface TokenType {
