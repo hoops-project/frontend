@@ -51,7 +51,7 @@ export default function MainNav() {
             </S.MoreSearch>
           </CS.Link>
           <MyFriend>
-            <FriendList isAddFriend={true} />
+            <FriendList isAddFriend />
           </MyFriend>
         </Modal>
       )}
