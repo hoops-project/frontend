@@ -1,6 +1,7 @@
 import { axiosAuth } from '../../api/axiosInstance.ts'
 import { END_POINT } from '../../constants/endPoint.ts'
 import { useQuery } from '@tanstack/react-query'
+import { QUERY_KEYS } from '../../constants/queryKeys.ts'
 
 export const useNotificationQuery = () => {
   const getNotification = async () => {
@@ -11,7 +12,7 @@ export const useNotificationQuery = () => {
   }
 
   const { data: notificationsResult } = useQuery({
-    queryKey: [''],
+    queryKey: [QUERY_KEYS.GET_NOTIFICATION],
     queryFn: getNotification,
   })
 

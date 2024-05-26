@@ -7,6 +7,7 @@ import { EventSourcePolyfill, NativeEventSource } from 'event-source-polyfill'
 import { END_POINT } from '../../constants/endPoint.ts'
 import { useQueryClient } from '@tanstack/react-query'
 import { useAuthStore } from '../../store/store.ts'
+import { QUERY_KEYS } from '../../constants/queryKeys.ts'
 
 export default function DefaultLayout() {
   const EventSource = EventSourcePolyfill || NativeEventSource
@@ -44,7 +45,7 @@ export default function DefaultLayout() {
             }
 
             queryClient.invalidateQueries({
-              queryKey: ['temp'],
+              queryKey: [QUERY_KEYS.GET_NOTIFICATION],
             })
           }
 
