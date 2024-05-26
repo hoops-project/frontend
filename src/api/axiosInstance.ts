@@ -128,9 +128,9 @@ axiosAccess.interceptors.response.use(
 
 axiosRequest.interceptors.request.use(
   (config) => {
-    const accessToken = localStorage.getItem("Refresh-token");
-    if (accessToken) {
-      config.headers.Authorization = `Bearer ${accessToken}`;
+    const refreshToken = localStorage.getItem("Refresh-Token");
+    if (refreshToken) {
+      config.headers.Authorization = `Bearer ${refreshToken}`;
     }
     return config;
   },
@@ -147,7 +147,7 @@ axiosRequest.interceptors.response.use(
     const errorCode = error.response.data.errorCode;
     const req = error.config;
 
-    if (errorCode) {
+    if (errorCode === "EXPIRED_TOKEN") {
       return console.log(error);
     }
     return Promise.reject(error);
