@@ -13,9 +13,14 @@ export interface MyGameItemProps {
 export interface MyGameUserList {
   userInfo: {
     userId: number
-    name: string
-    gameId: number
-    rate: number
+    ability: string
+    createdDateTime: string
+    gender: string
+    mannerPoint: number | null
+    nickName: string
+    participantId: number
+    playStyle: string
+    status: string
   }[]
 }
 

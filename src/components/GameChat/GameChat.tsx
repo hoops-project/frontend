@@ -14,10 +14,13 @@ import ModalTit from '../common/ModalTit/ModalTit.tsx'
 import useModal from '../../hooks/useModal.ts'
 import MyFriend from '../common/MyFriend/MyFriend.tsx'
 import FriendList from '../FriendList/FriendList.tsx'
+import { useWebSocket } from '../../hooks/useWebSocket.ts'
 
 export default function GameChat() {
   const params = useParams()
+  const accessToken = localStorage.getItem('Access-Token')
   const [chat, setChat] = useState<string>('')
+
   const {
     isModalOpen,
     openModal,
@@ -27,11 +30,21 @@ export default function GameChat() {
     closeFriendModal,
   } = useModal()
 
+  const { messages, sendMessage, stompClient } = useWebSocket(
+    params.id as string,
+    accessToken as string
+  )
+
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(chat)
-    setChat('')
+    if (chat.trim()) {
+      sendMessage(chat)
+      setChat('')
+    }
   }
+
+  console.log('WebSocket connection status:', stompClient !== null)
+  // 채팅 보내는 요청
 
   return (
     <S.Wrapper>
@@ -74,7 +87,7 @@ export default function GameChat() {
         </S.GameTitle>
       </S.TopTitleContainer>
       {/* NOTICE: <ChatList />는 웹소켓 연결 및 채팅 내용을 렌더링하는 컴포넌트*/}
-      <ChatList />
+      <ChatList message={messages} />
       <S.ChatSendForm onSubmit={handleSendMessage}>
         <S.InputWrapper>
           <BasicInput

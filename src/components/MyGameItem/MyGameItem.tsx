@@ -4,6 +4,7 @@ import { theme } from '../../styles/theme.ts'
 import { MyGameItemProps } from '../../types/game.ts'
 import { useNavigate } from 'react-router-dom'
 import { PiArrowSquareInLight } from 'react-icons/pi'
+import dayjs from 'dayjs'
 
 export default function MyGameItem({
   gameInfo,
@@ -18,6 +19,7 @@ export default function MyGameItem({
   const handleGameItem = () => {
     setSelected(gameInfo.gameId)
     navigate(`/my-game/${gameInfo.gameId}`)
+    // 웹소켓 채팅방 입장 요청
   }
 
   return (
@@ -36,7 +38,7 @@ export default function MyGameItem({
       </div>
       <div>
         <p>날짜</p>
-        <p>{gameInfo.startDateTime}</p>
+        <p>{dayjs(gameInfo.startDateTime).format('YYYY.MM.DD')}</p>
       </div>
       <PiArrowSquareInLight />
     </S.GameItem>

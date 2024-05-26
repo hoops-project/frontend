@@ -1,14 +1,16 @@
 import { axiosAuth } from '../../api/axiosInstance.ts'
 import { END_POINT } from '../../constants/endPoint.ts'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { GameData } from '../../types/game.ts'
 import useToast from '../useToast.ts'
 import { AxiosError } from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { QUERY_KEYS } from '../../constants/queryKeys.ts'
 
 export const useAddGameQuery = () => {
   const { toastError, toastSuccess } = useToast()
   const navigate = useNavigate()
+  const queryClient = useQueryClient()
 
   const addGame = async (gameData: Partial<GameData>) => {
     const { data } = await axiosAuth.post(END_POINT.GAME_CREATOR.CREATE_GAME, {
@@ -35,6 +37,17 @@ export const useAddGameQuery = () => {
       if (data.statusCode === 400) {
         toastError(`${data.errorMessage}`)
         return
+      }
+      if (data.gameId) {
+        const addNewChat = async (gameId: number) => {
+          const { data } = await axiosAuth.post(END_POINT.CHAT.CREATE_CHAT, {
+            gameId,
+          })
+
+          return data
+        }
+        addNewChat(data.gameId)
+        queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.GET_CHAT_LIST] })
       }
       navigate('/my-game')
       toastSuccess('경기가 생성되었습니다!')

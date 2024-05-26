@@ -42,6 +42,8 @@ const FriendList: React.FC<FriendListProps> = ({ isAddFriend }) => {
   const friends = friendsListData?.pages.flatMap(page => page.myFriendList) ?? [];
   console.log(friends);
 
+  // 친구 목록 / 검색 결과
+
   return (
     <S.ListBox>
       {friends.map((user: UserInfoType) => (
