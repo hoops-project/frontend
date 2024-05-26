@@ -10,6 +10,8 @@ import useToast from '../../hooks/useToast.ts'
 import useDeactivateQuery from '../../hooks/query/useDeactivateQuery.ts'
 import { useQueryClient } from '@tanstack/react-query'
 import { QUERY_KEYS } from '../../constants/queryKeys.ts'
+import { useNotificationQuery } from '../../hooks/query/useNotificationQuery.ts'
+import { Notifications } from '../../types/notification.ts'
 
 export default function Notification() {
   const queryClient = useQueryClient()
@@ -42,6 +44,11 @@ export default function Notification() {
     }
   }
 
+  const { notificationsResult }: { notificationsResult: Notifications[] } =
+    useNotificationQuery()
+
+  console.log(notificationsResult)
+
   return (
     <S.Wrapper>
       <S.UserInfo>
@@ -55,11 +62,11 @@ export default function Notification() {
         <p>알림 목록</p>
       </S.NoticeTitle>
       <S.NoticeBody>
-        {Array.from({ length: 10 }, (_, index) => (
-          <CS.Link to={'/'} key={index}>
-            <S.NoticeItem key={index}>
+        {notificationsResult?.map((notice) => (
+          <CS.Link to={'/'} key={notice.id}>
+            <S.NoticeItem>
               <PiInfoLight />
-              <p>{`시눙하이 님이 초대를 보냈습니다.`}</p>
+              <p>{notice.content}</p>
             </S.NoticeItem>
           </CS.Link>
         ))}
