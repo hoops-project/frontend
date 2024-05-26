@@ -17,7 +17,7 @@ export const END_POINT = deepFreeze({
     LOGIN: 'api/auth/login',
     LOGOUT: 'api/auth/logout',
     REFRESH_TOKEN: 'api/auth/refresh-token',
-    OAUTH: 'api/auth/login/kakao',
+    OAUTH: 'api/oauth2/login/kakao',
   },
   MANAGER: {
     DELETE: 'api/manager',
@@ -30,7 +30,7 @@ export const END_POINT = deepFreeze({
     GAME_SEARCH: 'api/game-user/search',
     ADDRESS_SEARCH: 'api/game-user/search-address?address=',
     FRIEND_INVITE: 'api/game-user/friend-invite',
-    GAME_IN_OUT: 'api/game-user/game-out-out',
+    GAME_IN_OUT: 'api/game-user/game-in-out',
     RATE_MANNER: 'api/game-user/rate-manner',
     CURRENT_GAME_LIST: 'api/game-user/current/list',
     PAST_GAME_LIST: 'api/game-user/my-last-game-list',
