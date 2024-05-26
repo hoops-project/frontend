@@ -7,9 +7,20 @@ import ModalTit from '../ModalTit/ModalTit.tsx'
 import MyPageUserInfo from '../MyPageUserInfo/MyPageUserInfo.tsx'
 import { PiInfoLight } from 'react-icons/pi'
 import { FriendRequest } from '../../../types/friendRequest.ts'
+import { useFriendRequestQuery } from '../../../hooks/query/useFriendRequestQuery.ts'
 
 export default function RequestItem({ info }: { info: FriendRequest }) {
   const { isModalOpen, openModal, closeModal } = useModal()
+
+  const { acceptRequestMutation, denyRequestMutation } = useFriendRequestQuery()
+
+  const handleAccept = () => {
+    acceptRequestMutation(info?.friendId)
+  }
+
+  const handleDeny = () => {
+    denyRequestMutation(info?.friendId)
+  }
 
   return (
     <S.RequestItem>
@@ -22,6 +33,7 @@ export default function RequestItem({ info }: { info: FriendRequest }) {
           $bgColor={theme.colors.blue}
           $fontcolor={theme.colors.white}
           $width={'6rem'}
+          onClick={handleAccept}
         >
           수락
         </BasicButton>
@@ -30,6 +42,7 @@ export default function RequestItem({ info }: { info: FriendRequest }) {
           $bgColor={theme.colors.red}
           $fontcolor={theme.colors.white}
           $width={'6rem'}
+          onClick={handleDeny}
         >
           거절
         </BasicButton>

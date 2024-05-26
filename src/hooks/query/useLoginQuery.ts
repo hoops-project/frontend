@@ -56,6 +56,7 @@ export default function useLoginQuery() {
 
       localStorage.setItem('Access-Token', accessToken)
       localStorage.setItem('Refresh-Token', refreshToken)
+      localStorage.setItem('userPK', String(data.userInfo.userId))
 
       setLoginState()
 

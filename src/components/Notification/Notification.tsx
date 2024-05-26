@@ -28,6 +28,7 @@ export default function Notification() {
       await axiosAccess.post(`${END_POINT.AUTH.LOGOUT}`).then(() => {
         localStorage.removeItem('Access-Token')
         localStorage.removeItem('Refresh-Token')
+        localStorage.removeItem('userPK')
         queryClient.removeQueries({
           queryKey: [QUERY_KEYS.GET_USER_INFO],
           exact: true,
