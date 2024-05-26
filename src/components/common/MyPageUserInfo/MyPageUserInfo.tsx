@@ -1,19 +1,22 @@
 import { S } from './MyPageUserInfo.style.ts'
-import { userInfoData } from '../../../mock/data'
-export default function MyPageUserInfo() {
+import { FriendRequest } from '../../../types/friendRequest.ts'
+
+export default function MyPageUserInfo({
+  userInfo,
+}: {
+  userInfo: FriendRequest
+}) {
   return (
     <div>
       <S.Wrapper>
         <S.ListBox>
-          {userInfoData.map((user) => (
-            <S.ListItem key={user.userId}>
-              <p className='nickname'>{user.nickName}</p>
-              <p className='rating'>{user.rating}</p>
-              <p>{user.gender}</p>
-              <p>{user.playStyle}</p>
-              <p>{user.ability}</p>
-            </S.ListItem>
-          ))}
+          <S.ListItem key={userInfo.userId}>
+            <p className='nickname'>{userInfo.nickName}</p>
+            <p className='rating'>{userInfo.score}</p>
+            <p>{userInfo.gender}</p>
+            <p>{userInfo.playStyle}</p>
+            <p>{userInfo.ability}</p>
+          </S.ListItem>
         </S.ListBox>
       </S.Wrapper>
     </div>
