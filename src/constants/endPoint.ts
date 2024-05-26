@@ -67,5 +67,6 @@ export const END_POINT = deepFreeze({
   },
   NOTIFICATION: {
     SUBSCRIBE: 'api/subscribe',
+    GET_NOTIFICATION: 'api/notifications',
   },
 })
