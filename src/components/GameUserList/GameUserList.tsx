@@ -35,28 +35,34 @@ export default function GameUserList({ userInfo }: MyGameUserList) {
     <S.Wrapper>
       <p>유저 목록</p>
       <div>
-        {userInfo?.map((info) => (
-          // currentUser?.userId !== info.userId && (
-          <S.UserInfo key={info.participantId}>
-            <p>{info.nickName}</p>
-            {currentUser?.userId === info.userId ? <p>팀장</p> : <p>팀원</p>}
-            <p>{info.mannerPoint ? info.mannerPoint : '0.0'}</p>
-            <BasicButton
-              type={'button'}
-              $bgColor={theme.colors.blue}
-              $fontcolor={theme.colors.white}
-              $width={'7rem'}
-            >
-              친구 추가
-            </BasicButton>
-            <PiSirenThin
-              onClick={() => {
-                openModal()
-                setReportedId(info.userId)
-              }}
-            />
-          </S.UserInfo>
-        ))}
+        {userInfo?.map(
+          (info) =>
+            currentUser?.userId !== info.userId && (
+              <S.UserInfo key={info.participantId}>
+                <p>{info.nickName}</p>
+                {currentUser?.userId === info.userId ? (
+                  <p>팀장</p>
+                ) : (
+                  <p>팀원</p>
+                )}
+                <p>{info.mannerPoint ? info.mannerPoint : '0.0'}</p>
+                <BasicButton
+                  type={'button'}
+                  $bgColor={theme.colors.blue}
+                  $fontcolor={theme.colors.white}
+                  $width={'7rem'}
+                >
+                  친구 추가
+                </BasicButton>
+                <PiSirenThin
+                  onClick={() => {
+                    openModal()
+                    setReportedId(info.userId)
+                  }}
+                />
+              </S.UserInfo>
+            )
+        )}
       </div>
       {isModalOpen && (
         <Modal $width='50rem' $height='30rem' onClose={closeModal}>
