@@ -123,7 +123,7 @@ export default function GameChat() {
         <Modal $width='102.4rem' $height='50rem' onClose={closeFriendModal}>
           <ModalTit title='친구 초대' />
           <MyFriend>
-            <FriendList isAddFriend={false} />
+            <div></div>
           </MyFriend>
         </Modal>
       )}
