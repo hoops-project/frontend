@@ -13,13 +13,19 @@ import Modal from '../common/Modal/Modal.tsx'
 import ModalTit from '../common/ModalTit/ModalTit.tsx'
 import useModal from '../../hooks/useModal.ts'
 import MyFriend from '../common/MyFriend/MyFriend.tsx'
-import FriendList from '../FriendList/FriendList.tsx'
 import { useWebSocket } from '../../hooks/useWebSocket.ts'
+import InviteFriendList from '../InviteFriendList/InviteFriendList.tsx'
+import { useGameDetailQuery } from '../../hooks/query/useGameDetailQuery.ts'
+import KakaoMap from '../KakaoMap/KakaoMap.tsx'
+import { GameDetails } from '../../types/detail.ts'
 
 export default function GameChat() {
   const params = useParams()
   const accessToken = localStorage.getItem('Access-Token')
   const [chat, setChat] = useState<string>('')
+  const { gameDetail }: { gameDetail: GameDetails } = useGameDetailQuery(
+    params.id
+  )
 
   const {
     isModalOpen,
@@ -57,7 +63,7 @@ export default function GameChat() {
                 role='button'
                 tabIndex={0}
                 onClick={openModal}
-                aria-label='친구 초대'
+                aria-label='지도 보기'
               >
                 <img src={pin} alt={'핀 아이콘'} />
                 <p>지도</p>
@@ -83,7 +89,7 @@ export default function GameChat() {
           </S.TopNavContainer>
         </div>
         <S.GameTitle>
-          <p>경기장 이름{params.id}</p>
+          <p>{gameDetail?.placeName}</p>
         </S.GameTitle>
       </S.TopTitleContainer>
       {/* NOTICE: <ChatList />는 웹소켓 연결 및 채팅 내용을 렌더링하는 컴포넌트*/}
@@ -107,15 +113,11 @@ export default function GameChat() {
       </S.ChatSendForm>
       {isModalOpen && (
         <Modal $width='102.4rem' $height='50rem' onClose={closeModal}>
-          <ModalTit title='내 친구들' />
-          <MyFriend>
-            <FriendList isAddFriend={false} />
-          </MyFriend>
-          <BasicButton
-            type='button'
-            children={'확인'}
-            $fontcolor={theme.colors.white}
-            $bgColor={theme.colors.blue}
+          <ModalTit title='위치 정보' />
+          <KakaoMap
+            lat={gameDetail?.latitude}
+            lng={gameDetail?.longitude}
+            height={'450px'}
           />
         </Modal>
       )}
@@ -123,7 +125,7 @@ export default function GameChat() {
         <Modal $width='102.4rem' $height='50rem' onClose={closeFriendModal}>
           <ModalTit title='친구 초대' />
           <MyFriend>
-            <FriendList isAddFriend={false} />
+            <InviteFriendList />
           </MyFriend>
         </Modal>
       )}

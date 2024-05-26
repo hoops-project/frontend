@@ -21,8 +21,6 @@ export default function MyGameList() {
 
   const { chatList, joinUser } = useGetChatListQuery(page, 5, id)
 
-  console.log(joinUser)
-
   return (
     <S.Wrapper>
       <p>나의 경기</p>
