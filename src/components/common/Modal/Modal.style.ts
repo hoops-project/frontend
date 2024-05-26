@@ -40,7 +40,7 @@ export const S = {
     background-color: ${(props) => props.theme.colors.white};
     padding: 3rem;
     text-align: center;
-    z-index: 1;
+    z-index: 999;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
