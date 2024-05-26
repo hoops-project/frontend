@@ -4,9 +4,9 @@ import { S } from './JoinGame.style.ts'
 import useModal from '../../hooks/useModal.ts'
 import Modal from '../common/Modal/Modal.tsx'
 import ModalTit from '../common/ModalTit/ModalTit'
-import { reportDetail } from '../../mock/data.ts'
 import { CS } from '../../styles/commonStyle.ts'
 import { useParams } from 'react-router-dom'
+import useJoinGameQuery from '../../hooks/query/useJoinGameQuery.ts'
 
 interface JoinGame {
   date: string
@@ -23,9 +23,17 @@ export default function JoinGame({
   address,
   isCreator,
 }: JoinGame) {
-  const { id } = useParams()
+  const { id } = useParams<{ id: string }>()
   const { isModalOpen, openModal, closeModal } = useModal()
-  const gameAddress = reportDetail[0].address
+  const { joinGame } = useJoinGameQuery();
+
+  const handleJoinGame = () => {
+    if (id) {
+      joinGame(id);
+      closeModal();
+    }
+  }
+
 
   return (
     <S.StickyDiv>
@@ -58,7 +66,7 @@ export default function JoinGame({
       {isModalOpen && ( // 모달 열렸을 때만 모달 표시
         <Modal $width='52rem' $height='24rem' onClose={closeModal}>
           <ModalTit title='참가 신청' />
-          <p className='address'>{gameAddress}</p>
+          <p className='address'>{address}</p>
           <p className='submit'>
             참가 신청을 보낼까요?
             <br />
@@ -80,7 +88,7 @@ export default function JoinGame({
               $fontcolor={theme.colors.white}
               type='button'
               // 참가 신청 완료 된 페이지로 연결해야됨
-              onClick={closeModal}
+              onClick={handleJoinGame}
             />
           </S.BasicButtonWrapper>
         </Modal>

@@ -15,7 +15,7 @@ export default function KakaoMap({
   })
   return (
     <div style={{ marginTop: '1rem' }}>
-      <Map center={{ lat, lng }} style={{ width: '100%', height }} level={4}>
+      <Map center={{ lat, lng }} style={{ width: '100%', height,zIndex:0 }} level={4}>
         <MapMarker
           position={{
             lat,
