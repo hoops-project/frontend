@@ -17,7 +17,7 @@ interface GameListProps {
 export const useGetGameListQuery = ({ gameFilter }: GameListProps) => {
   const queryClient = useQueryClient()
 
-  const getGameList = async (page = 1, size = 2) => {
+  const getGameList = async (page = 1, size = 10) => {
     try {
       const response = await defaultAxios.get(
         `${END_POINT.GAME_USER.GAME_SEARCH}?localDate=${gameFilter.localData}&cityName=${gameFilter.cityName}&fieldStatus=${gameFilter.fieldStatus}&gender=${gameFilter.gender}&matchFormat=${gameFilter.matchFormat}&page=${page}&size=${size}`
@@ -31,7 +31,7 @@ export const useGetGameListQuery = ({ gameFilter }: GameListProps) => {
   const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
     queryKey: [QUERY_KEYS.GET_GAME_LIST],
 
-    queryFn: ({ pageParam = 1 }) => getGameList(pageParam, 2),
+    queryFn: ({ pageParam = 1 }) => getGameList(pageParam, 10),
 
     getNextPageParam: (lastPage, allPages) => {
       const nextPage = allPages.length + 1

@@ -34,6 +34,7 @@ export const END_POINT = deepFreeze({
     RATE_MANNER: 'api/game-user/rate-manner',
     CURRENT_GAME_LIST: 'api/game-user/my-current-game-list',
     PAST_GAME_LIST: 'api/game-user/my-last-game-list',
+    INVITE_FRIENDS_LIST: 'api/friend/invite/list?gameId=',
   },
   GAME_CREATOR: {
     CREATE_GAME: 'api/game-creator/game/create',
@@ -60,5 +61,8 @@ export const END_POINT = deepFreeze({
     CREATE_CHAT: 'api/chat/create',
     JOIN_CHAT: '/pub/enter/',
     SEND_CHAT: '/pub/send/',
+  },
+  INVITE: {
+    REQUEST: 'api/invite/request',
   },
 })

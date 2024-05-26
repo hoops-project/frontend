@@ -30,35 +30,46 @@ export type InputName =
   | 'birthday'
   | 'rememberMe'
 
-  export interface UserInfoType {
-    friendId: number | null
-    rating: number
-    userId: number
-    id: string
-    password: string
-    email: string
-    name: string
-    birthday: string
-    gender: string
-    nickName: string
-    createdAt: string
-    playStyle: string
-    ability: string
-    refreshToken: string
-    roles: string
-    isLogin: boolean
-    statusCode?: number
-    errorMessage?: string
-    isRequestFriend:boolean
-  }
+export interface UserInfoType {
+  friendId: number | null
+  rating: number
+  userId: number
+  id: string
+  password: string
+  email: string
+  name: string
+  birthday: string
+  gender: string
+  nickName: string
+  createdAt: string
+  playStyle: string
+  ability: string
+  refreshToken: string
+  roles: string
+  isLogin: boolean
+  statusCode?: number
+  errorMessage?: string
+  isRequestFriend: boolean
+}
 
-  export interface TokenType {
-    authorization: string;
-  }
-  
-  export interface SignInResponseType {
-    refreshToken: string
-    accessToken: string
-    headers: TokenType
-    userInfo: UserInfoType
-  }
+export interface TokenType {
+  authorization: string
+}
+
+export interface SignInResponseType {
+  refreshToken: string
+  accessToken: string
+  headers: TokenType
+  userInfo: UserInfoType
+}
+
+export interface InviteFriendType {
+  userId: number
+  birthday: string
+  gender: 'MALE' | 'FEMALE'
+  nickName: string
+  playStyle: string
+  ability: string
+  mannerPoint?: number | null
+  status?: 'REQUEST' | null
+}

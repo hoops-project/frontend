@@ -13,8 +13,8 @@ import Modal from '../common/Modal/Modal.tsx'
 import ModalTit from '../common/ModalTit/ModalTit.tsx'
 import useModal from '../../hooks/useModal.ts'
 import MyFriend from '../common/MyFriend/MyFriend.tsx'
-import FriendList from '../FriendList/FriendList.tsx'
 import { useWebSocket } from '../../hooks/useWebSocket.ts'
+import InviteFriendList from '../InviteFriendList/InviteFriendList.tsx'
 
 export default function GameChat() {
   const params = useParams()
@@ -57,7 +57,7 @@ export default function GameChat() {
                 role='button'
                 tabIndex={0}
                 onClick={openModal}
-                aria-label='친구 초대'
+                aria-label='지도 보기'
               >
                 <img src={pin} alt={'핀 아이콘'} />
                 <p>지도</p>
@@ -107,23 +107,14 @@ export default function GameChat() {
       </S.ChatSendForm>
       {isModalOpen && (
         <Modal $width='102.4rem' $height='50rem' onClose={closeModal}>
-          <ModalTit title='내 친구들' />
-          <MyFriend>
-            <FriendList isAddFriend={false} />
-          </MyFriend>
-          <BasicButton
-            type='button'
-            children={'확인'}
-            $fontcolor={theme.colors.white}
-            $bgColor={theme.colors.blue}
-          />
+          <ModalTit title='위치 정보' />
         </Modal>
       )}
       {isFriendModalOpen && (
         <Modal $width='102.4rem' $height='50rem' onClose={closeFriendModal}>
           <ModalTit title='친구 초대' />
           <MyFriend>
-            <div></div>
+            <InviteFriendList />
           </MyFriend>
         </Modal>
       )}
