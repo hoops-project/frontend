@@ -12,6 +12,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import { QUERY_KEYS } from '../../constants/queryKeys.ts'
 import { useNotificationQuery } from '../../hooks/query/useNotificationQuery.ts'
 import { Notifications } from '../../types/notification.ts'
+import { useAuthStore } from '../../store/store.ts'
 
 export default function Notification() {
   const queryClient = useQueryClient()
@@ -19,6 +20,7 @@ export default function Notification() {
   const navigate = useNavigate()
   const { userInfo } = useUserInfoQuery()
   const { deactivateMutate } = useDeactivateQuery()
+  const setLoginState = useAuthStore((state) => state.logout)
 
   const handleSignOut = async () => {
     const checkLogout = window.confirm('로그아웃을 하시겠습니까?')
@@ -32,7 +34,7 @@ export default function Notification() {
         })
       })
       toastSuccess('로그아웃이 성공적으로 완료되었습니다 💪🏻')
-
+      setLoginState()
       navigate('/', { replace: true })
     }
   }

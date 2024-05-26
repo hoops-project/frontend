@@ -56,6 +56,7 @@ export const END_POINT = deepFreeze({
     FRIEND_DELETE: 'api/friend/delete',
     FRIEND_SEARCH: 'api/friend/search?nickName=',
     FRIEND_LIST: 'api/friend/myfriends?',
+    REQUEST_FRIENDS_LIST: 'api/friend/requestFriendList',
   },
   CHAT: {
     CREATE_CHAT: 'api/chat/create',

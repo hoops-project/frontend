@@ -18,44 +18,53 @@ export default function DefaultLayout() {
   console.log(isLoggedIn)
 
   useEffect(() => {
-    if (isLoggedIn) {
-      console.log('SSE작동 시작!')
-      let eventSource: EventSourcePolyfill
-      const fetchSse = async () => {
-        try {
-          const lastEventID = localStorage.getItem('sseLastEventID') || null
+    let eventSource: EventSourcePolyfill
 
-          eventSource = new EventSource(
-            `api/${END_POINT.NOTIFICATION.SUBSCRIBE}`,
-            {
-              headers: {
-                Authorization: `Bearer ${accessToken}`,
-                LastEventID: JSON.stringify({ lastEventID }),
-              },
-              withCredentials: true,
-            }
-          )
+    const setupSSE = async () => {
+      try {
+        const lastEventID = localStorage.getItem('sseLastEventID') || null
 
-          eventSource.onmessage = async (event) => {
-            const res = await event.data
-            console.log(res)
+        eventSource = new EventSource(
+          `api/${END_POINT.NOTIFICATION.SUBSCRIBE}`,
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+              LastEventID: JSON.stringify({ lastEventID }),
+            },
+            withCredentials: true,
+            heartbeatTimeout: 120000000,
+          }
+        )
 
-            if (event.lastEventId) {
-              localStorage.setItem('sseLastEventID', event.lastEventId)
-            }
+        eventSource.onmessage = async (event) => {
+          const res = await event.data
+          console.log(res)
 
-            queryClient.invalidateQueries({
-              queryKey: [QUERY_KEYS.GET_NOTIFICATION],
-            })
+          if (event.lastEventId) {
+            localStorage.setItem('sseLastEventID', event.lastEventId)
           }
 
-          eventSource.onerror = async () => {}
-        } catch (error) {
-          console.log(error)
+          queryClient.invalidateQueries({
+            queryKey: [QUERY_KEYS.GET_NOTIFICATION],
+          })
         }
+
+        eventSource.onerror = async () => {}
+      } catch (error) {
+        console.log(error)
       }
-      fetchSse()
-      return () => eventSource.close()
+    }
+
+    if (isLoggedIn) {
+      console.log('SSE작동 시작!')
+      setupSSE()
+    }
+
+    return () => {
+      if (eventSource) {
+        eventSource.close()
+        console.log('SSE작동 끝남!')
+      }
     }
   }, [isLoggedIn])
 

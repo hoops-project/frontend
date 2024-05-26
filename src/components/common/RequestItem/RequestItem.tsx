@@ -6,15 +6,16 @@ import Modal from '../../common/Modal/Modal.tsx'
 import ModalTit from '../ModalTit/ModalTit.tsx'
 import MyPageUserInfo from '../MyPageUserInfo/MyPageUserInfo.tsx'
 import { PiInfoLight } from 'react-icons/pi'
+import { FriendRequest } from '../../../types/friendRequest.ts'
 
-export default function RequestItem() {
+export default function RequestItem({ info }: { info: FriendRequest }) {
   const { isModalOpen, openModal, closeModal } = useModal()
 
   return (
     <S.RequestItem>
-      <p>{`오신웅`}</p>
+      <p>{info?.nickName}</p>
       <PiInfoLight onClick={openModal} />
-      <p>{`4.9`}</p>
+      <p>{info?.score}</p>
       <S.ButtonWrapper>
         <BasicButton
           type={'button'}
@@ -36,7 +37,7 @@ export default function RequestItem() {
       {isModalOpen && (
         <Modal $width='50rem' $height='30rem' onClose={closeModal}>
           <ModalTit title='유저 정보' />
-          <MyPageUserInfo />
+          <MyPageUserInfo userInfo={info} />
           <BasicButton
             type='button'
             children={'닫기'}
