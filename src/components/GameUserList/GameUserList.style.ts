@@ -24,8 +24,13 @@ export const S = {
     align-items: center;
     padding: 1.5rem;
 
-    & > img {
+    & > svg {
       cursor: pointer;
+    }
+  `,
+  Report: styled.div`
+    & > textarea {
+      margin-top: 1.5rem;
     }
   `,
 }

@@ -7,6 +7,10 @@ const env = loadEnv(process.env.NODE_ENV as string, process.cwd(), '')
 export default defineConfig({
   plugins: [react()],
 
+  define: {
+    global: {},
+  },
+
   server: {
     proxy: {
       '/api': {

@@ -32,15 +32,17 @@ export const END_POINT = deepFreeze({
     FRIEND_INVITE: 'api/game-user/friend-invite',
     GAME_IN_OUT: 'api/game-user/game-in-out',
     RATE_MANNER: 'api/game-user/rate-manner',
-    CURRENT_GAME_LIST: 'api/game-user/current/list',
+    CURRENT_GAME_LIST: 'api/game-user/my-current-game-list',
     PAST_GAME_LIST: 'api/game-user/my-last-game-list',
+    INVITE_FRIENDS_LIST: 'api/friend/invite/list?gameId=',
   },
   GAME_CREATOR: {
     CREATE_GAME: 'api/game-creator/game/create',
     GAME_DETAILS: 'api/game-creator/game/detail?gameId=',
     GAME_UPDATE: 'api/game-creator/game/update',
     GAME_DELETE: 'api/game-creator/game/delete',
-    GAME_PARTICIPANT_LIST: 'api/game-creator/participant/list/gameId=?',
+    GAME_PARTICIPANT_LIST: 'api/game-creator/participant/list?gameId=',
+    GAME_JOINED_USER: 'api/game-creator/participant/accept/list?gameId=',
     ACCEPT_PARTICIPANT: 'api/game-creator/participant/accept',
     REJECT_PARTICIPANT: 'api/game-creator/participant/reject',
     KICK_OUT: 'api/game-creator/participant/kickout',
@@ -59,5 +61,8 @@ export const END_POINT = deepFreeze({
     CREATE_CHAT: 'api/chat/create',
     JOIN_CHAT: '/pub/enter/',
     SEND_CHAT: '/pub/send/',
+  },
+  INVITE: {
+    REQUEST: 'api/invite/request',
   },
 })
