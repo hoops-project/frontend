@@ -27,6 +27,7 @@ export default function GameUserList({ userInfo }: MyGameUserList) {
       return
     }
     reportMutation({ content: reportContent, userId: reportedId })
+    setReportContent('')
     closeModal()
   }
 
