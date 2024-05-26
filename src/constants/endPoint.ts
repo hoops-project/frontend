@@ -65,6 +65,7 @@ export const END_POINT = deepFreeze({
   },
   INVITE: {
     REQUEST: 'api/invite/request',
+    INVITE_LIST: 'api/invite/myList',
   },
   NOTIFICATION: {
     SUBSCRIBE: 'api/subscribe',

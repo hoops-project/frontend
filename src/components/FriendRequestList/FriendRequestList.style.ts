@@ -13,4 +13,14 @@ export const S = {
       font-size: 1.8rem;
     }
   `,
+  Invite: styled.div`
+    display: flex;
+  `,
+  ButtonWrapper: styled.div`
+    display: flex;
+    flex-direction: column;
+    & > button:first-child {
+      margin-bottom: 1rem;
+    }
+  `,
 }
