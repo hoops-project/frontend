@@ -15,11 +15,17 @@ import useModal from '../../hooks/useModal.ts'
 import MyFriend from '../common/MyFriend/MyFriend.tsx'
 import { useWebSocket } from '../../hooks/useWebSocket.ts'
 import InviteFriendList from '../InviteFriendList/InviteFriendList.tsx'
+import { useGameDetailQuery } from '../../hooks/query/useGameDetailQuery.ts'
+import KakaoMap from '../KakaoMap/KakaoMap.tsx'
+import { GameDetails } from '../../types/detail.ts'
 
 export default function GameChat() {
   const params = useParams()
   const accessToken = localStorage.getItem('Access-Token')
   const [chat, setChat] = useState<string>('')
+  const { gameDetail }: { gameDetail: GameDetails } = useGameDetailQuery(
+    params.id
+  )
 
   const {
     isModalOpen,
@@ -83,7 +89,7 @@ export default function GameChat() {
           </S.TopNavContainer>
         </div>
         <S.GameTitle>
-          <p>경기장 이름{params.id}</p>
+          <p>{gameDetail?.placeName}</p>
         </S.GameTitle>
       </S.TopTitleContainer>
       {/* NOTICE: <ChatList />는 웹소켓 연결 및 채팅 내용을 렌더링하는 컴포넌트*/}
@@ -108,6 +114,11 @@ export default function GameChat() {
       {isModalOpen && (
         <Modal $width='102.4rem' $height='50rem' onClose={closeModal}>
           <ModalTit title='위치 정보' />
+          <KakaoMap
+            lat={gameDetail?.latitude}
+            lng={gameDetail?.longitude}
+            height={'450px'}
+          />
         </Modal>
       )}
       {isFriendModalOpen && (
