@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from 'axios'
 import { END_POINT } from '../constants/endPoint'
 
 export const defaultAxios = axios.create({
-  baseURL: '/api',
+  baseURL: '/',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -10,7 +10,7 @@ export const defaultAxios = axios.create({
 })
 
 export const axiosAuth = axios.create({
-  baseURL: '/api',
+  baseURL: '/',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -18,7 +18,7 @@ export const axiosAuth = axios.create({
 })
 
 export const axiosAccess = axios.create({
-  baseURL: '/api',
+  baseURL: '/',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -26,7 +26,7 @@ export const axiosAccess = axios.create({
 })
 
 export const axiosRequest = axios.create({
-  baseURL: '/api',
+  baseURL: '/',
   headers: {
     'Content-Type': 'application/json',
   },
