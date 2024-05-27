@@ -71,7 +71,7 @@ export const END_POINT = deepFreeze({
     REJECT: 'api/invite/receive/reject',
   },
   NOTIFICATION: {
-    SUBSCRIBE: '/subscribe',
+    SUBSCRIBE: 'api/subscribe',
     GET_NOTIFICATION: 'api/notifications',
   },
 })
