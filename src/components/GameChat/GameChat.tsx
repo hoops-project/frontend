@@ -23,9 +23,6 @@ export default function GameChat() {
   const params = useParams()
   const accessToken = localStorage.getItem('Access-Token')
   const [chat, setChat] = useState<string>('')
-  const { gameDetail }: { gameDetail: GameDetails } = useGameDetailQuery(
-    params.id
-  )
 
   const {
     isModalOpen,
@@ -36,9 +33,12 @@ export default function GameChat() {
     closeFriendModal,
   } = useModal()
 
-  const { messages, sendMessage, stompClient } = useWebSocket(
+  const { messages, sendMessage } = useWebSocket(
     params.id as string,
     accessToken as string
+  )
+  const { gameDetail }: { gameDetail: GameDetails } = useGameDetailQuery(
+    params.id
   )
 
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
@@ -49,8 +49,7 @@ export default function GameChat() {
     }
   }
 
-  console.log('WebSocket connection status:', stompClient !== null)
-  // 채팅 보내는 요청
+  console.log('호출')
 
   return (
     <S.Wrapper>
@@ -106,6 +105,7 @@ export default function GameChat() {
             type={'submit'}
             $bgColor={theme.colors.blue}
             $fontcolor={theme.colors.white}
+            onClick={() => sendMessage(chat)}
           >
             <img src={send} alt={'메시지 보내기 아이콘'} />
           </BasicButton>
