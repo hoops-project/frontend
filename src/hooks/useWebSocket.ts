@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import SockJS from 'sockjs-client'
 import { CompatClient, Stomp } from '@stomp/stompjs'
 
-const SOCKET_URL = `${import.meta.env.VITE_HOOPS_API_URL}/ws`
+const SOCKET_URL = `${import.meta.env.VITE_HOOPS_CHAT_API}/ws`
 
 export const useWebSocket = (
   chatRoomId: string,
