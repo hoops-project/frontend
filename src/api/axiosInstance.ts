@@ -1,8 +1,10 @@
 import axios, { AxiosRequestConfig } from 'axios'
 import { END_POINT } from '../constants/endPoint'
 
+const BASE_URL = import.meta.env.VITE_HOOPS_API_URL
+
 export const defaultAxios = axios.create({
-  baseURL: '/',
+  baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -10,7 +12,7 @@ export const defaultAxios = axios.create({
 })
 
 export const axiosAuth = axios.create({
-  baseURL: '/',
+  baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -18,7 +20,7 @@ export const axiosAuth = axios.create({
 })
 
 export const axiosAccess = axios.create({
-  baseURL: '/',
+  baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -26,7 +28,7 @@ export const axiosAccess = axios.create({
 })
 
 export const axiosRequest = axios.create({
-  baseURL: '/',
+  baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },

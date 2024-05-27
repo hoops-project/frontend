@@ -1,9 +1,5 @@
 {
   "rewrites": [
-    {
-      "source": "/api/:path*",
-      "destination": "https://hoops.services/api/:path*"
-    },
     {"source": "/(.*)", "destination": "/"}
   ]
 }
