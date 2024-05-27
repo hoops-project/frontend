@@ -24,17 +24,14 @@ export default function DefaultLayout() {
       try {
         const lastEventID = localStorage.getItem('sseLastEventID') || null
 
-        eventSource = new EventSource(
-          `api/${END_POINT.NOTIFICATION.SUBSCRIBE}`,
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-              LastEventID: JSON.stringify({ lastEventID }),
-            },
-            withCredentials: true,
-            heartbeatTimeout: 120000000,
-          }
-        )
+        eventSource = new EventSource(`${END_POINT.NOTIFICATION.SUBSCRIBE}`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            LastEventID: JSON.stringify({ lastEventID }),
+          },
+          withCredentials: true,
+          heartbeatTimeout: 120000000,
+        })
 
         eventSource.onmessage = async (event) => {
           const res = await event.data
