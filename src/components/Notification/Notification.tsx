@@ -10,6 +10,9 @@ import useToast from '../../hooks/useToast.ts'
 import useDeactivateQuery from '../../hooks/query/useDeactivateQuery.ts'
 import { useQueryClient } from '@tanstack/react-query'
 import { QUERY_KEYS } from '../../constants/queryKeys.ts'
+import { useNotificationQuery } from '../../hooks/query/useNotificationQuery.ts'
+import { Notifications } from '../../types/notification.ts'
+import { useAuthStore } from '../../store/store.ts'
 
 export default function Notification() {
   const queryClient = useQueryClient()
@@ -17,6 +20,7 @@ export default function Notification() {
   const navigate = useNavigate()
   const { userInfo } = useUserInfoQuery()
   const { deactivateMutate } = useDeactivateQuery()
+  const setLoginState = useAuthStore((state) => state.logout)
 
   const handleSignOut = async () => {
     const checkLogout = window.confirm('로그아웃을 하시겠습니까?')
@@ -24,13 +28,14 @@ export default function Notification() {
       await axiosAccess.post(`${END_POINT.AUTH.LOGOUT}`).then(() => {
         localStorage.removeItem('Access-Token')
         localStorage.removeItem('Refresh-Token')
+        localStorage.removeItem('userPK')
         queryClient.removeQueries({
           queryKey: [QUERY_KEYS.GET_USER_INFO],
           exact: true,
         })
       })
       toastSuccess('로그아웃이 성공적으로 완료되었습니다 💪🏻')
-
+      setLoginState()
       navigate('/', { replace: true })
     }
   }
@@ -41,6 +46,11 @@ export default function Notification() {
       deactivateMutate()
     }
   }
+
+  const { notificationsResult }: { notificationsResult: Notifications[] } =
+    useNotificationQuery()
+
+  console.log(notificationsResult)
 
   return (
     <S.Wrapper>
@@ -55,11 +65,11 @@ export default function Notification() {
         <p>알림 목록</p>
       </S.NoticeTitle>
       <S.NoticeBody>
-        {Array.from({ length: 10 }, (_, index) => (
-          <CS.Link to={'/'} key={index}>
-            <S.NoticeItem key={index}>
+        {notificationsResult?.map((notice) => (
+          <CS.Link to={'/'} key={notice.id}>
+            <S.NoticeItem>
               <PiInfoLight />
-              <p>{`시눙하이 님이 초대를 보냈습니다.`}</p>
+              <p>{notice.content}</p>
             </S.NoticeItem>
           </CS.Link>
         ))}

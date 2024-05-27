@@ -14,6 +14,7 @@ export const useGameDetailQuery = (gameId: string | undefined) => {
   const { data: gameDetail } = useQuery({
     queryKey: [QUERY_KEYS.GET_GAME_DETAIL, gameId],
     queryFn: getGameDetail,
+    enabled: !!gameId,
   })
 
   return { gameDetail }

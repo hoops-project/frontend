@@ -1,37 +1,38 @@
-import { defaultAxios } from "../../api/axiosInstance";
-import { SignInType, SignInResponseType } from "../../types/auth";
-import { useMutation } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
-import { QUERY_KEYS } from "../../constants/queryKeys";
-import { END_POINT } from "../../constants/endPoint";
-import{ useToast } from "../useToast";
-
+import { defaultAxios } from '../../api/axiosInstance'
+import { SignInResponseType, SignInType } from '../../types/auth'
+import { useMutation } from '@tanstack/react-query'
+import { useNavigate } from 'react-router-dom'
+import { QUERY_KEYS } from '../../constants/queryKeys'
+import { END_POINT } from '../../constants/endPoint'
+import { useToast } from '../useToast'
+import { useAuthStore } from '../../store/store.ts'
 
 const memberLogin = async (data: SignInType): Promise<SignInResponseType> => {
-  const { id, password } = data;
+  const { id, password } = data
 
-  const res = await defaultAxios.post(`${END_POINT.AUTH.LOGIN}`, { id, password });
+  const res = await defaultAxios.post(`${END_POINT.AUTH.LOGIN}`, {
+    id,
+    password,
+  })
 
   // 응답 헤더에서 Authorization 토큰을 추출
-  const authorizationHeader = res.headers['authorization'];
+  const authorizationHeader = res.headers['authorization']
   const authorizationBody = res.data.refreshToken
-  const accessToken = authorizationHeader;
+  const accessToken = authorizationHeader
   const refreshToken = authorizationBody
-
 
   return {
     accessToken,
     refreshToken,
     headers: { authorization: authorizationHeader },
-    userInfo: res.data
-  };
-};
-
-
+    userInfo: res.data,
+  }
+}
 
 export default function useLoginQuery() {
-  const navigate = useNavigate();
-  const { toastSuccess, toastError } = useToast();
+  const navigate = useNavigate()
+  const { toastSuccess, toastError } = useToast()
+  const setLoginState = useAuthStore((state) => state.login)
   const {
     data: loginData,
     mutate: loginMutate,
@@ -55,15 +56,18 @@ export default function useLoginQuery() {
 
       localStorage.setItem('Access-Token', accessToken)
       localStorage.setItem('Refresh-Token', refreshToken)
+      localStorage.setItem('userPK', String(data.userInfo.userId))
+
+      setLoginState()
 
       navigate('/', { replace: true })
       toastSuccess('로그인에 성공하셨습니다 💪🏻')
     },
     onError: (error) => {
       console.log(error)
-      toastError('로그인에 실패 🚨 아이디와 비밀번호를 확인해주세요.');
+      toastError('로그인에 실패 🚨 아이디와 비밀번호를 확인해주세요.')
     },
   })
 
-  return { loginData, loginMutate, loginPending, loginError };
+  return { loginData, loginMutate, loginPending, loginError }
 }

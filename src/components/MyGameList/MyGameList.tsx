@@ -28,7 +28,7 @@ export default function MyGameList() {
         <div>
           {chatList ? (
             <>
-              {chatList?.map((gameItem: GameListData) => (
+              {chatList?.content.map((gameItem: GameListData) => (
                 <MyGameItem
                   key={gameItem.gameId}
                   gameInfo={gameItem}

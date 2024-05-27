@@ -6,21 +6,34 @@ import Modal from '../../common/Modal/Modal.tsx'
 import ModalTit from '../ModalTit/ModalTit.tsx'
 import MyPageUserInfo from '../MyPageUserInfo/MyPageUserInfo.tsx'
 import { PiInfoLight } from 'react-icons/pi'
+import { FriendRequest } from '../../../types/friendRequest.ts'
+import { useFriendRequestQuery } from '../../../hooks/query/useFriendRequestQuery.ts'
 
-export default function RequestItem() {
+export default function RequestItem({ info }: { info: FriendRequest }) {
   const { isModalOpen, openModal, closeModal } = useModal()
+
+  const { acceptRequestMutation, denyRequestMutation } = useFriendRequestQuery()
+
+  const handleAccept = () => {
+    acceptRequestMutation(info?.friendId)
+  }
+
+  const handleDeny = () => {
+    denyRequestMutation(info?.friendId)
+  }
 
   return (
     <S.RequestItem>
-      <p>{`오신웅`}</p>
+      <p>{info?.nickName}</p>
       <PiInfoLight onClick={openModal} />
-      <p>{`4.9`}</p>
+      <p>{info?.score}</p>
       <S.ButtonWrapper>
         <BasicButton
           type={'button'}
           $bgColor={theme.colors.blue}
           $fontcolor={theme.colors.white}
           $width={'6rem'}
+          onClick={handleAccept}
         >
           수락
         </BasicButton>
@@ -29,6 +42,7 @@ export default function RequestItem() {
           $bgColor={theme.colors.red}
           $fontcolor={theme.colors.white}
           $width={'6rem'}
+          onClick={handleDeny}
         >
           거절
         </BasicButton>
@@ -36,7 +50,7 @@ export default function RequestItem() {
       {isModalOpen && (
         <Modal $width='50rem' $height='30rem' onClose={closeModal}>
           <ModalTit title='유저 정보' />
-          <MyPageUserInfo />
+          <MyPageUserInfo userInfo={info} />
           <BasicButton
             type='button'
             children={'닫기'}

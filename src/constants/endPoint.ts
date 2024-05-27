@@ -47,6 +47,7 @@ export const END_POINT = deepFreeze({
     REJECT_PARTICIPANT: 'api/game-creator/participant/reject',
     KICK_OUT: 'api/game-creator/participant/kickout',
     GAME_INVITE: 'api/game-creator/game/invite',
+    GAME_JOIN_REQUEST_LIST: 'api/game-creator/participant/apply/list?gameId=',
   },
   FRIENDS: {
     APPLY_FRIEND: 'api/friend/apply',
@@ -56,6 +57,7 @@ export const END_POINT = deepFreeze({
     FRIEND_DELETE: 'api/friend/delete',
     FRIEND_SEARCH: 'api/friend/search?nickName=',
     FRIEND_LIST: 'api/friend/myfriends?',
+    REQUEST_FRIENDS_LIST: 'api/friend/requestFriendList',
   },
   CHAT: {
     CREATE_CHAT: 'api/chat/create',
@@ -64,5 +66,12 @@ export const END_POINT = deepFreeze({
   },
   INVITE: {
     REQUEST: 'api/invite/request',
+    INVITE_LIST: 'api/invite/myList',
+    ACCEPT: 'api/invite/receive/accept',
+    REJECT: 'api/invite/receive/reject',
+  },
+  NOTIFICATION: {
+    SUBSCRIBE: 'api/subscribe',
+    GET_NOTIFICATION: 'api/notifications',
   },
 })

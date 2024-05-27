@@ -2,7 +2,7 @@ import { S } from './GameChat.style.ts'
 import backGround from '../../assets/Background.png'
 import BasicButton from '../common/BasicButton/BasicButton.tsx'
 import { theme } from '../../styles/theme.ts'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import pin from '../../assets/pin.svg'
 import invite from '../../assets/invite.png'
 import ChatList from '../ChatList/ChatList.tsx'
@@ -18,15 +18,19 @@ import InviteFriendList from '../InviteFriendList/InviteFriendList.tsx'
 import { useGameDetailQuery } from '../../hooks/query/useGameDetailQuery.ts'
 import KakaoMap from '../KakaoMap/KakaoMap.tsx'
 import { GameDetails } from '../../types/detail.ts'
+import { useUserInfoQuery } from '../../hooks/query/useUserInfoQuery.ts'
+import { useExitGame } from '../../hooks/query/useExitGame.ts'
+import { useQueryClient } from '@tanstack/react-query'
+import { QUERY_KEYS } from '../../constants/queryKeys.ts'
 
 export default function GameChat() {
   const params = useParams()
   const accessToken = localStorage.getItem('Access-Token')
   const [chat, setChat] = useState<string>('')
-  const { gameDetail }: { gameDetail: GameDetails } = useGameDetailQuery(
-    params.id
-  )
-
+  const { userInfo } = useUserInfoQuery()
+  const { exitGameMutate } = useExitGame()
+  const queryClient = useQueryClient()
+  const navigate = useNavigate()
   const {
     isModalOpen,
     openModal,
@@ -36,9 +40,13 @@ export default function GameChat() {
     closeFriendModal,
   } = useModal()
 
-  const { messages, sendMessage, stompClient } = useWebSocket(
+  const { messages, sendMessage } = useWebSocket(
     params.id as string,
-    accessToken as string
+    accessToken as string,
+    userInfo?.nickName
+  )
+  const { gameDetail }: { gameDetail: GameDetails } = useGameDetailQuery(
+    params.id
   )
 
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
@@ -49,8 +57,13 @@ export default function GameChat() {
     }
   }
 
-  console.log('WebSocket connection status:', stompClient !== null)
-  // 채팅 보내는 요청
+  const handelExitGame = () => {
+    exitGameMutate(Number(params.id))
+    navigate('/my-game')
+    queryClient.invalidateQueries({
+      queryKey: [QUERY_KEYS.GET_GAME_LIST],
+    })
+  }
 
   return (
     <S.Wrapper>
@@ -83,6 +96,7 @@ export default function GameChat() {
               $bgColor={theme.colors.red}
               $fontcolor={theme.colors.white}
               $width={'10rem'}
+              onClick={handelExitGame}
             >
               나가기
             </BasicButton>
