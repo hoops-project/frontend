@@ -42,25 +42,28 @@ const refreshToken = async (req: AxiosRequestConfig) => {
 
     const res = await axiosRequest.post(`${END_POINT.AUTH.REFRESH_TOKEN}`);
     
-    const newACToken = res.data.accessToken; // 보통 access token은 body
-    localStorage.setItem("Access-Token", newACToken);
+    const authorizationHeader = res.headers['authorization'];
+    const authorizationBody = res.data.refreshToken;
+    const newACToken = authorizationHeader; 
+    const newRefreshToken = authorizationBody; 
 
-    // headers가 undefined인 경우 초기화
+    localStorage.setItem("Access-Token", newACToken);
+    localStorage.setItem("Refresh-Token", newRefreshToken);
+
     if (!req.headers) {
       req.headers = {};
     }
+    req.headers.Authorization = `Bearer ${newACToken}`; 
 
-    req.headers.Authorization = `Bearer ${newACToken}`;
     return await axios(req);
   } catch (err) {
-    alert('로그인을 다시 진행해주세요!')
+    alert('로그인을 다시 진행해주세요!');
     window.location.replace("/sign-in");
     localStorage.removeItem('Access-Token');
     localStorage.removeItem('Refresh-Token');
     throw err;
   }
-};
-
+}
 
 // 일반적으로 인증이 필요한 API 요청을 처리 => 요청 시 Authorization 헤더를 설정
 axiosAuth.interceptors.request.use(
