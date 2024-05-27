@@ -1,12 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import { GlobalStyle } from './styles/GlobalStyle';
-import { QueryClientProvider } from '@tanstack/react-query';
-import { BrowserRouter } from 'react-router-dom';
-import { queryClient } from './api/QueryClient';
-import { ThemeProvider } from 'styled-components';
-import { theme } from './styles/theme';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App'
+import { GlobalStyle } from './styles/GlobalStyle'
+import { QueryClientProvider } from '@tanstack/react-query'
+import { BrowserRouter } from 'react-router-dom'
+import { queryClient } from './api/QueryClient'
+import { ThemeProvider } from 'styled-components'
+import { theme } from './styles/theme'
 
 // MSW 설정을 제외합니다.
 // async function enableMocking() {
@@ -19,15 +19,13 @@ import { theme } from './styles/theme';
 
 // enableMocking().then(() => {
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </ThemeProvider>
-    </QueryClientProvider>
-  </React.StrictMode>
-);
+  <QueryClientProvider client={queryClient}>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ThemeProvider>
+  </QueryClientProvider>
+)
 // });

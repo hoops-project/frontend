@@ -105,7 +105,6 @@ export default function GameChat() {
             type={'submit'}
             $bgColor={theme.colors.blue}
             $fontcolor={theme.colors.white}
-            onClick={() => sendMessage(chat)}
           >
             <img src={send} alt={'메시지 보내기 아이콘'} />
           </BasicButton>

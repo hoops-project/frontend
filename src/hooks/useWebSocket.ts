@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 import SockJS from 'sockjs-client'
 import { CompatClient, Stomp } from '@stomp/stompjs'
 
-export const useWebSocket = (chatRoomId: string, accessToken: string) => {
-  const SOCKET_URL = `${import.meta.env.VITE_HOOPS_API_URL}/ws`
+const SOCKET_URL = `${import.meta.env.VITE_HOOPS_API_URL}/ws`
 
+export const useWebSocket = (chatRoomId: string, accessToken: string) => {
   const [messages, setMessages] = useState<
     { sender: string; content: string }[]
   >([])
@@ -40,7 +40,7 @@ export const useWebSocket = (chatRoomId: string, accessToken: string) => {
     }
 
     newClient.connect(headers, connectCallback, errorCallback)
-    setClient(newClient) // 새로운 클라이언트 인스턴스를 상태에 저장
+    setClient(newClient)
 
     return () => {
       // 연결 해제 로직을 명시적으로 disconnect 메서드 호출 전에 확인
@@ -50,7 +50,7 @@ export const useWebSocket = (chatRoomId: string, accessToken: string) => {
         })
       }
     }
-  }, [chatRoomId, accessToken])
+  }, [chatRoomId])
 
   const sendMessage = (message: string) => {
     // client 상태를 직접 사용하고 옵셔널 체이닝 연산자로 안전하게 확인
