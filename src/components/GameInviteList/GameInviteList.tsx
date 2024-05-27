@@ -9,7 +9,8 @@ import Modal from '../common/Modal/Modal.tsx'
 import ModalTit from '../common/ModalTit/ModalTit.tsx'
 
 export default function GameInviteList() {
-  const { inviteList } = useGameInviteQuery()
+  const { inviteList, acceptInviteMutation, denyMutation } =
+    useGameInviteQuery()
   const { isModalOpen, openModal, closeModal } = useModal()
 
   console.log(inviteList)
@@ -19,7 +20,7 @@ export default function GameInviteList() {
       <p>경기 초대 목록</p>
       {inviteList?.map((info: Invite) => (
         <S.Invite key={info.gameId}>
-          <p>{info.senderUserId}</p>
+          <p>{info.senderUserNickName}</p>
           <PiInfoLight onClick={openModal} />
           <S.ButtonWrapper>
             <BasicButton
@@ -27,6 +28,7 @@ export default function GameInviteList() {
               $bgColor={theme.colors.blue}
               $fontcolor={theme.colors.white}
               $width={'6rem'}
+              onClick={() => acceptInviteMutation(info.inviteId)}
             >
               수락
             </BasicButton>
@@ -35,6 +37,7 @@ export default function GameInviteList() {
               $bgColor={theme.colors.red}
               $fontcolor={theme.colors.white}
               $width={'6rem'}
+              onClick={() => denyMutation(info.inviteId)}
             >
               거절
             </BasicButton>
