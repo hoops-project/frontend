@@ -18,7 +18,7 @@ const useJoinGameQuery = () => {
   const { mutate: joinGame } = useMutation({
     mutationKey: [QUERY_KEYS.JOIN_GAME],
     mutationFn: (gameId: string) => fetchAPI(gameId),
-    onSuccess: (data,variables) => {
+    onSuccess: (_data,variables) => {
       toastSuccess("경기 참가 신청이 완료되었습니다🏀");
       navigate(`/detail/${variables}`);
     },
