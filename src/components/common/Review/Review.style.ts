@@ -17,14 +17,26 @@ export const S = {
     }
   `,
 
-  ImgContainer: styled.div`
-    display: flex;
-    gap: 5px;
+  StarContainer: styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`,
 
-    & img {
-      width: 30px;
-      height: 30px;
-      cursor: pointer;
-    }
-  `,
+  Star: styled.button`
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  &.on .star {
+    color: ${theme.colors.yellow}; // 활성화된 별 색상
+  }
+  &.off .star {
+    color: ${theme.colors.gray_300} // 비활성화된 별 색상
+  }
+  .star {
+    font-size: 3rem;
+  }
+`,
+
 }

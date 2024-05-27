@@ -1,31 +1,33 @@
 import { useState } from 'react'
 import { S } from './Review.style.ts'
-import coloredStar from '../../../assets/colored_star.svg'
-import emptyStar from '../../../assets/empty_star.svg'
-import { userInfoData } from '../../../mock/data.ts'
 
-export default function Review() {
-  const [rating, setRating] = useState<number>(0)
+interface StarRatingProps {
+  rating: number;
+  setRating: (rating: number) => void;
+}
 
-  const handleRatingChange = (selectedStars: number) => {
-    setRating(selectedStars)
-  }
-
-  const nickname = userInfoData[0].nickName
+const Review: React.FC<StarRatingProps> = ({ rating, setRating }) => {
+  const [hover, setHover] = useState(0);
 
   return (
-    <S.Wrapper>
-      <p>{nickname}</p>
-      <S.ImgContainer>
-        {[...Array(5)].map((_, index) => (
-          <img
+    <S.StarContainer>
+      {[...Array(5)].map((_, index) => {
+        index += 1;
+        return (
+          <S.Star
             key={index}
-            src={rating > index ? coloredStar : emptyStar}
-            alt={rating > index ? 'Filled Star' : 'Empty Star'}
-            onClick={() => handleRatingChange(index + 1)}
-          />
-        ))}
-      </S.ImgContainer>
-    </S.Wrapper>
-  )
+            type="button"
+            className={index <= (hover || rating) ? "on" : "off"}
+            onClick={() => setRating(index)}
+            onMouseEnter={() => setHover(index)}
+            onMouseLeave={() => setHover(rating)}
+          >
+            <span className="star">&#9733;</span>
+          </S.Star>
+        );
+      })}
+    </S.StarContainer>
+  );
 }
+
+export default Review

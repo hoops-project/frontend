@@ -31,7 +31,7 @@ export const END_POINT = deepFreeze({
     ADDRESS_SEARCH: 'api/game-user/search-address?address=',
     FRIEND_INVITE: 'api/game-user/friend-invite',
     GAME_IN_OUT: 'api/game-user/game-in-out',
-    RATE_MANNER: 'api/game-user/rate-manner',
+    RATE_MANNER: 'api/game-user/manner-point',
     CURRENT_GAME_LIST: 'api/game-user/my-current-game-list',
     PAST_GAME_LIST: 'api/game-user/my-last-game-list',
     INVITE_FRIENDS_LIST: 'api/friend/invite/list?gameId=',
