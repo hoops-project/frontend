@@ -4,7 +4,6 @@ import { Outlet } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { useEffect } from 'react'
 import { EventSourcePolyfill, NativeEventSource } from 'event-source-polyfill'
-import { END_POINT } from '../../constants/endPoint.ts'
 import { useQueryClient } from '@tanstack/react-query'
 import { useAuthStore } from '../../store/store.ts'
 import { QUERY_KEYS } from '../../constants/queryKeys.ts'
@@ -15,7 +14,7 @@ export default function DefaultLayout() {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn)
   const queryClient = useQueryClient()
 
-  console.log(isLoggedIn)
+  const URL = `${import.meta.env.VITE_HOOPS_API_URL}/subscribe`
 
   useEffect(() => {
     let eventSource: EventSourcePolyfill
@@ -24,7 +23,7 @@ export default function DefaultLayout() {
       try {
         const lastEventID = localStorage.getItem('sseLastEventID') || null
 
-        eventSource = new EventSource(`${END_POINT.NOTIFICATION.SUBSCRIBE}`, {
+        eventSource = new EventSource(URL, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
             LastEventID: JSON.stringify({ lastEventID }),
