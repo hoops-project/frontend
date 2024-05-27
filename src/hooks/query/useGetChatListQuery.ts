@@ -27,7 +27,6 @@ export const useGetChatListQuery = (
   const { data: chatList } = useQuery({
     queryKey: [QUERY_KEYS.GET_GAME_LIST, page],
     queryFn: getUserChatList,
-    select: (data) => data.content,
   })
 
   const { data: joinUser } = useQuery({

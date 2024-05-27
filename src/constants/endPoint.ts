@@ -47,6 +47,7 @@ export const END_POINT = deepFreeze({
     REJECT_PARTICIPANT: 'api/game-creator/participant/reject',
     KICK_OUT: 'api/game-creator/participant/kickout',
     GAME_INVITE: 'api/game-creator/game/invite',
+    GAME_JOIN_REQUEST_LIST: 'api/game-creator/participant/apply/list?gameId=',
   },
   FRIENDS: {
     APPLY_FRIEND: 'api/friend/apply',

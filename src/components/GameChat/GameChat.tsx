@@ -2,7 +2,7 @@ import { S } from './GameChat.style.ts'
 import backGround from '../../assets/Background.png'
 import BasicButton from '../common/BasicButton/BasicButton.tsx'
 import { theme } from '../../styles/theme.ts'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import pin from '../../assets/pin.svg'
 import invite from '../../assets/invite.png'
 import ChatList from '../ChatList/ChatList.tsx'
@@ -30,6 +30,7 @@ export default function GameChat() {
   const { userInfo } = useUserInfoQuery()
   const { exitGameMutate } = useExitGame()
   const queryClient = useQueryClient()
+  const navigate = useNavigate()
   const {
     isModalOpen,
     openModal,
@@ -58,7 +59,10 @@ export default function GameChat() {
 
   const handelExitGame = () => {
     exitGameMutate(Number(params.id))
-    queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.GET_CHAT_LIST] })
+    navigate('/my-game')
+    queryClient.invalidateQueries({
+      queryKey: [QUERY_KEYS.GET_GAME_LIST],
+    })
   }
 
   return (
