@@ -14,7 +14,7 @@ export default function DefaultLayout() {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn)
   const queryClient = useQueryClient()
 
-  const URL = `${import.meta.env.VITE_HOOPS_API_URL}/subscribe`
+  const URL = `${import.meta.env.VITE_HOOPS_API_URL}/api/subscribe`
 
   useEffect(() => {
     let eventSource: EventSourcePolyfill
