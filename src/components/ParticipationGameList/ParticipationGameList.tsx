@@ -39,9 +39,7 @@ export default function ParticipationGameList() {
     <S.Wrapper>
       <p>경기 참여 신청 목록</p>
       {!gameDetail?.userId ? (
-        <S.LockContainer>
-          <div>로딩....</div>
-        </S.LockContainer>
+        <S.LockContainer></S.LockContainer>
       ) : (
         <S.LockContainer>
           {userPk === String(gameDetail?.userId) ? (
