@@ -13,7 +13,7 @@ export const S = {
     justify-content: center;
     align-items: center;
     background: rgba(0, 0, 0, 0.5);
-    z-index:1000;
+    z-index: 1000;
   `,
 
   CloseBtnContainer: styled.div`
@@ -24,7 +24,7 @@ export const S = {
   CloseBtnButton: styled.button`
     color: #222;
     background-color: transparent;
-    ont-size: 1.2rem;
+    font-size: 1.2rem;
     font-weight: 700;
     border: none;
     cursor: pointer;
@@ -32,6 +32,7 @@ export const S = {
 
   Modal: styled.div<ModalProps>`
     position: absolute;
+      overflow-y: scroll;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

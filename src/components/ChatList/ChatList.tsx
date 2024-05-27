@@ -6,21 +6,20 @@ interface ChatListProps {
 
 export default function ChatList({ message }: ChatListProps) {
   return (
-    <S.Wrapper>
-      {message.map((msg, index) => (
-        <S.Chat key={index}>
-          <S.ChatUserInfo>
-            <div>
-              <span>팀장</span>
-            </div>
-            <p>{msg.sender}</p>
-          </S.ChatUserInfo>
-          <S.ContentWrapper>
-            <strong>{msg.content}</strong>
-          </S.ContentWrapper>
-          <p>2022.1.3</p>
-        </S.Chat>
-      ))}
-    </S.Wrapper>
+    <>
+      <S.Wrapper>
+        {message.map((msg, index) => (
+          <S.Chat key={index}>
+            <S.ChatUserInfo>
+              <div>✉️</div>
+              <p>{msg.sender}</p>
+            </S.ChatUserInfo>
+            <S.ContentWrapper>
+              <strong>{msg.content}</strong>
+            </S.ContentWrapper>
+          </S.Chat>
+        ))}
+      </S.Wrapper>
+    </>
   )
 }

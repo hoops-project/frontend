@@ -4,7 +4,11 @@ import { CompatClient, Stomp } from '@stomp/stompjs'
 
 const SOCKET_URL = `${import.meta.env.VITE_HOOPS_API_URL}/ws`
 
-export const useWebSocket = (chatRoomId: string, accessToken: string) => {
+export const useWebSocket = (
+  chatRoomId: string,
+  accessToken: string,
+  nickName: string
+) => {
   const [messages, setMessages] = useState<
     { sender: string; content: string }[]
   >([])
@@ -15,6 +19,7 @@ export const useWebSocket = (chatRoomId: string, accessToken: string) => {
       console.error('토큰값과 룸 아이디가 없음')
       return
     }
+    setMessages([])
 
     const newClient = Stomp.over(() => new SockJS(SOCKET_URL))
 
@@ -26,9 +31,10 @@ export const useWebSocket = (chatRoomId: string, accessToken: string) => {
       console.log('웹소켓 연결 성공!')
       // subscribe 메서드를 connectCallback 함수 내부에서 호출하도록 변경
       newClient.subscribe(
-        `"/topic/"${chatRoomId}`,
+        `/topic/${chatRoomId}`,
         (response) => {
           const message = JSON.parse(response.body)
+          console.log(message)
           setMessages((prevMessages) => [...prevMessages, message])
         },
         headers
@@ -55,9 +61,8 @@ export const useWebSocket = (chatRoomId: string, accessToken: string) => {
   const sendMessage = (message: string) => {
     // client 상태를 직접 사용하고 옵셔널 체이닝 연산자로 안전하게 확인
     if (client?.connected) {
-      const data = { sender: 'USER', content: message }
+      const data = { sender: nickName, content: message }
       client.send(`/app/sendMessage/${chatRoomId}`, {}, JSON.stringify(data))
-      setMessages((prevMessages) => [...prevMessages, data])
     }
   }
 

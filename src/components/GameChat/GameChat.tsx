@@ -18,12 +18,18 @@ import InviteFriendList from '../InviteFriendList/InviteFriendList.tsx'
 import { useGameDetailQuery } from '../../hooks/query/useGameDetailQuery.ts'
 import KakaoMap from '../KakaoMap/KakaoMap.tsx'
 import { GameDetails } from '../../types/detail.ts'
+import { useUserInfoQuery } from '../../hooks/query/useUserInfoQuery.ts'
+import { useExitGame } from '../../hooks/query/useExitGame.ts'
+import { useQueryClient } from '@tanstack/react-query'
+import { QUERY_KEYS } from '../../constants/queryKeys.ts'
 
 export default function GameChat() {
   const params = useParams()
   const accessToken = localStorage.getItem('Access-Token')
   const [chat, setChat] = useState<string>('')
-
+  const { userInfo } = useUserInfoQuery()
+  const { exitGameMutate } = useExitGame()
+  const queryClient = useQueryClient()
   const {
     isModalOpen,
     openModal,
@@ -35,7 +41,8 @@ export default function GameChat() {
 
   const { messages, sendMessage } = useWebSocket(
     params.id as string,
-    accessToken as string
+    accessToken as string,
+    userInfo?.nickName
   )
   const { gameDetail }: { gameDetail: GameDetails } = useGameDetailQuery(
     params.id
@@ -49,7 +56,10 @@ export default function GameChat() {
     }
   }
 
-  console.log('호출')
+  const handelExitGame = () => {
+    exitGameMutate(Number(params.id))
+    queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.GET_CHAT_LIST] })
+  }
 
   return (
     <S.Wrapper>
@@ -82,6 +92,7 @@ export default function GameChat() {
               $bgColor={theme.colors.red}
               $fontcolor={theme.colors.white}
               $width={'10rem'}
+              onClick={handelExitGame}
             >
               나가기
             </BasicButton>
