@@ -6,40 +6,80 @@ import MatchPoint from '../../components/MatchPoint/MatchPoint.tsx'
 import DetailTopTitle from '../../components/DetailTopTitle/DetailTopTitle.tsx'
 import JoinGame from '../../components/JoinGame/JoinGame.tsx'
 import MatchData from '../../components/MatchData/MatchData.tsx'
+import { useParams } from 'react-router-dom'
+import { useGameDetailQuery } from '../../hooks/query/useGameDetailQuery.ts'
+import { GameDetails, ParticipantUser } from '../../types/detail.ts'
+import {
+  convertGameType,
+  convertGender,
+} from '../../helper/convertValueToName.ts'
+import dayjs from 'dayjs'
+import 'dayjs/locale/ko'
+import { useUserInfoQuery } from '../../hooks/query/useUserInfoQuery.ts'
+
+dayjs.locale('ko')
 
 export default function Detail() {
-  // TODO: 임시 데이터입니다. 이후 페이지 id에 따라서 데이터 받아온 후 화면에 뿌릴것
-  const detail = {
-    title: ' 강남 농구장',
-    matchPoint: {
-      playType: '3 vs 3',
-      gender: '남녀 모두',
-      place: '실내 코트',
-      addFriend: '초대 가능',
-    },
+  const { id } = useParams()
+  const { gameDetail }: { gameDetail: GameDetails } = useGameDetailQuery(id)
+  const { userInfo } = useUserInfoQuery()
 
-    date: '4월 24일 수요일 13:00',
-    location: '서울 강남',
+  const restCount =
+    gameDetail?.headCount - gameDetail?.participantUserList.length
+  const countFemaleUsers = gameDetail?.participantUserList?.reduce(
+    (acc, user) => {
+      if (user.genderType === 'FEMALE') {
+        return acc + 1
+      }
+      return acc
+    },
+    0
+  )
+
+  const isUserParticipating = (
+    participantUserList: ParticipantUser[],
+    loggedInUserId: number
+  ): boolean => {
+    return participantUserList?.some((user) => user.userId === loggedInUserId)
+  }
+
+  const matchPoints = {
+    playType: convertGameType(gameDetail?.matchFormat),
+    gender: convertGender(gameDetail?.gender),
+    place: gameDetail?.fieldStatus === 'INDOOR' ? '실내' : '실외',
+    addFriend: gameDetail?.inviteYn ? '친구 초대 가능' : '친구 초대 불가능',
+    femaleUser: countFemaleUsers,
   }
 
   // TODO: 각각의 영역마다 컴포넌트로 나눠서 관리 할 수 있을듯
   return (
     <CS.DefaultContainer>
       <S.Wrapper>
-        <DetailTopTitle title={detail.title} />
+        <DetailTopTitle title={gameDetail?.placeName} />
         <S.InfoWrapper>
           <div>
-            <MatchPoint matchPoint={detail.matchPoint} />
+            <MatchPoint matchPoint={matchPoints} />
             {/* TODO: 매치 데이터 시각화 조건부 렌더링 구현 */}
-            <MatchData/>
-            <LockMatchData />
+            {isUserParticipating(
+              gameDetail?.participantUserList,
+              userInfo?.userId ?? 0
+            ) ? (
+              <MatchData
+                userList={gameDetail?.participantUserList}
+                content={gameDetail?.content}
+              />
+            ) : (
+              <LockMatchData />
+            )}
 
-            <KakaoMap lat={33.450701} lng={126.570667} />
+            <KakaoMap lat={gameDetail?.latitude} lng={gameDetail?.longitude} />
           </div>
           <JoinGame
-            date={detail.date}
-            title={detail.title}
-            location={detail.location}
+            date={dayjs(gameDetail?.startDateTime).format('M월 D일 ddd HH:mm')}
+            title={gameDetail?.placeName}
+            restCount={restCount}
+            address={gameDetail?.address}
+            isCreator={userInfo?.userId === gameDetail?.userId}
           />
         </S.InfoWrapper>
       </S.Wrapper>

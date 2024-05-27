@@ -14,6 +14,10 @@ import GameChat from '../components/GameChat/GameChat.tsx'
 import WaitChatSelect from '../components/WaitChatSelect/WaitChatSelect.tsx'
 import SearchTab from '../components/SearchTab/SearchTab.tsx'
 import MyLastGameList from '../pages/MyLastGame/MyLastGame.tsx'
+import PrivateRoute from '../routes/PrivateRoute.tsx'
+import EditGame from '../pages/EditGame/EditGame.tsx'
+import FindUserId from '../pages/FindUserId/FindUserId.tsx'
+import FIndUserPassword from '../pages/FIndUserPassword/FIndUserPassword.tsx'
 
 export default function MainRouter() {
   return (
@@ -22,10 +26,8 @@ export default function MainRouter() {
         <Route path={'/'} element={<Main />}></Route>
         <Route path={'/sign-in'} element={<SignIn />} />
         <Route path={'/sign-up'} element={<SignUp />} />
-        <Route path={'/add-game'} element={<AddGame />} />
-        <Route path={'/admin/report'} element={<Report />} />
-        <Route path={'/search'} element={<SearchTab />} />
-        <Route path={'/my-last-game'} element={<MyLastGameList />} />
+        <Route path={'/account'} element={<FindUserId />} />
+        <Route path={'/password'} element={<FIndUserPassword />} />
         <Route
           path={'/detail/:id'}
           element={
@@ -34,24 +36,31 @@ export default function MainRouter() {
             </ChangeBgLayout>
           }
         />
-        <Route
-          path={'/my-page'}
-          element={
-            <ChangeBgLayout $bg={theme.colors.default_gray_bg}>
-              <MyPage />
-            </ChangeBgLayout>
-          }
-        />
-        <Route
-          path={'/my-game'}
-          element={
-            <ChangeBgLayout $bg={theme.colors.default_gray_bg}>
-              <MyGame />
-            </ChangeBgLayout>
-          }
-        >
-          <Route path={'/my-game'} element={<WaitChatSelect />} />
-          <Route path={'/my-game/:id'} element={<GameChat />} />
+        <Route element={<PrivateRoute />}>
+          <Route path={'/add-game'} element={<AddGame />} />
+          <Route path={'/admin/report'} element={<Report />} />
+          <Route path={'/search'} element={<SearchTab />} />
+          <Route path={'/my-last-game'} element={<MyLastGameList />} />
+          <Route path={'/edit-game/:id'} element={<EditGame />} />
+          <Route
+            path={'/my-page'}
+            element={
+              <ChangeBgLayout $bg={theme.colors.default_gray_bg}>
+                <MyPage />
+              </ChangeBgLayout>
+            }
+          />
+          <Route
+            path={'/my-game'}
+            element={
+              <ChangeBgLayout $bg={theme.colors.default_gray_bg}>
+                <MyGame />
+              </ChangeBgLayout>
+            }
+          >
+            <Route path={'/my-game'} element={<WaitChatSelect />} />
+            <Route path={'/my-game/:id'} element={<GameChat />} />
+          </Route>
         </Route>
       </Route>
     </Routes>

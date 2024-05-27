@@ -18,8 +18,8 @@ export const VALID_RULES = deepFreeze({
         value.length <= 13 || '비밀번호는 최대 13자리를 넘을 수 없습니다.',
       containsUppercase: (value: string) =>
         REGEX.UPPERCASE.test(value) || '비밀번호에 대문자가 포함되어야 합니다.',
-      containsLowercase: (value: string) =>
-        REGEX.LOWERCASE.test(value) || '비밀번호에 소문자가 포함되어야 합니다.',
+      // containsLowercase: (value: string) =>
+      //   REGEX.LOWERCASE.test(value) || '비밀번호에 소문자가 포함되어야 합니다.',
       containsNumber: (value: string) =>
         REGEX.INCLUDE_NUMBER.test(value) ||
         '비밀번호에 숫자가 포함되어야 합니다.',

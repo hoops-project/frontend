@@ -1,9 +1,12 @@
 import Slider from '../common/Slider/Slider.tsx'
 import { S } from './Calender.style.ts'
 import { useState } from 'react'
+import { useDateStore } from '../../store/calender.ts'
 
 export default function Calender() {
   const [selected, setSelected] = useState<number>(0)
+
+  const { setDate: globalSetDate } = useDateStore()
 
   const handleClick = (
     index: number,
@@ -13,8 +16,9 @@ export default function Calender() {
   ) => {
     setSelected(index)
 
-    // NOTICE: 나중에 데이터 서버 전송을 위해 미리 받아옴
-    console.log(year, month, date)
+    globalSetDate(
+      `${year}-${String(month).padStart(2, '0')}-${String(date).padStart(2, '0')}`
+    )
   }
 
   const currentDate = new Date()

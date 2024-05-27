@@ -11,7 +11,7 @@ export const S = {
     & > p {
       font-weight: bold;
       font-size: 1.8rem;
-      margin-bottom: 7rem;
+      margin-bottom: 3rem;
     }
     & > div {
       display: flex;
@@ -24,6 +24,18 @@ export const S = {
       & > img {
         margin-bottom: 2rem;
       }
+    }
+  `,
+  MatchContent: styled.span`
+    font-size: 1.6rem;
+    color: ${(props) => props.theme.colors.gray_700};
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    margin-bottom: 7rem;
+
+    & > p {
+      font-weight: bold;
     }
   `,
 }

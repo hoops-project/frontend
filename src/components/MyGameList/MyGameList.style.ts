@@ -15,9 +15,13 @@ export const S = {
   ListContainer: styled.div`
     margin-bottom: 3rem;
     & > div:nth-child(1) {
+      min-height: 51rem;
       margin-bottom: 1.5rem;
       display: flex;
       flex-direction: column;
     }
+  `,
+  Loading: styled.div`
+    min-height: 51rem;
   `,
 }

@@ -40,9 +40,10 @@ export const S = {
     align-items: center;
   `,
   Match: styled.span`
+    display: flex;
     font-size: 1.5rem;
     margin-top: 2rem;
-    padding-right: 1rem;
+    padding-right: 2rem;
   `,
   LastGameList: styled.div`
     display: flex;
@@ -60,5 +61,10 @@ export const S = {
     flex-direction: column;
     font-size: 2rem;
     margin-left: 2rem;
+  `,
+  ReviewContainer: styled.div`
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
   `,
 }

@@ -18,7 +18,7 @@ export default function GameSelectList({ selected }: GameSelectedProps) {
         name={'경기'}
         options={OPTIONS.GAME_TYPE}
         size={'small'}
-        width={80}
+        width={90}
         value={selected.gameType}
         setValue={selected.setGameType}
       />
@@ -50,7 +50,7 @@ export default function GameSelectList({ selected }: GameSelectedProps) {
         name={'시간'}
         options={OPTIONS.GAME_TIME}
         size={'small'}
-        width={80}
+        width={85}
         value={selected.time}
         setValue={selected.setTime}
       />
@@ -58,7 +58,7 @@ export default function GameSelectList({ selected }: GameSelectedProps) {
         name={'날짜'}
         options={OPTIONS.GAME_DATE}
         size={'small'}
-        width={80}
+        width={120}
         value={selected.date}
         setValue={selected.setDate}
       />

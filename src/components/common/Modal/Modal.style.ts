@@ -1,5 +1,6 @@
 import { styled } from 'styled-components'
 import { ModalProps } from '../../../types/modal.ts'
+import { theme } from '../../../styles/theme.ts'
 
 export const S = {
   ModalContainer: styled.div`
@@ -12,6 +13,7 @@ export const S = {
     justify-content: center;
     align-items: center;
     background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
   `,
 
   CloseBtnContainer: styled.div`
@@ -22,7 +24,7 @@ export const S = {
   CloseBtnButton: styled.button`
     color: #222;
     background-color: transparent;
-    ont-size: 1.2rem;
+    font-size: 1.2rem;
     font-weight: 700;
     border: none;
     cursor: pointer;
@@ -30,6 +32,7 @@ export const S = {
 
   Modal: styled.div<ModalProps>`
     position: absolute;
+      overflow-y: scroll;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -38,12 +41,23 @@ export const S = {
     background-color: ${(props) => props.theme.colors.white};
     padding: 3rem;
     text-align: center;
-    z-index: 1;
+    z-index: 999;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 30px;
+    gap: 3rem;
     border-radius: 1rem;
+    }
+
+    .address {
+      font-size:2rem;
+      font-weight:600;
+    }
+
+    .submit {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: ${theme.colors.gray_500};
     }
   `,
 }

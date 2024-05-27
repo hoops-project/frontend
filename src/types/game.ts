@@ -13,8 +13,52 @@ export interface MyGameItemProps {
 export interface MyGameUserList {
   userInfo: {
     userId: number
-    name: string
-    gameId: number
-    rate: number
+    ability: string
+    createdDateTime: string
+    gender: string
+    mannerPoint: number | null
+    nickName: string
+    participantId: number
+    playStyle: string
+    status: string
   }[]
+}
+
+export interface GameData {
+  addFriends: string
+  address: string
+  date: string
+  gamePlace: string
+  gameType: string
+  gender: string
+  lat: string
+  lng: string
+  placeName: string
+  region: string
+  showOver: string
+  time: string
+  title: string
+  content: string
+  totalPlayers: string
+  gameId?: number
+}
+
+export interface GameListData {
+  gameId: number
+  gameOwnerId: number
+  myId: number
+  title: string
+  content: string
+  headCount: number
+  fieldStatus: string
+  gender: string
+  startDateTime: string
+  createdDateTime: string
+  deletedDateTime: string
+  inviteYn: boolean
+  address: string
+  latitude: number
+  longitude: number
+  cityName: string
+  matchFormat: string
 }

@@ -6,6 +6,7 @@ export default function BasicButton({
   children,
   type = 'button',
   onClick,
+  disabled,
   $bgColor = theme.colors.blue,
   $hoverBgColor,
   $fontcolor = theme.colors.black,
@@ -16,6 +17,7 @@ export default function BasicButton({
   return (
     <S.BasicButton
       type={type}
+      disabled={disabled}
       onClick={onClick}
       $bgColor={$bgColor}
       $hoverBgColor={$hoverBgColor}

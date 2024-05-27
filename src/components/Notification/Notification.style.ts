@@ -41,7 +41,7 @@ export const S = {
     overflow-y: scroll;
     margin-top: 2rem;
     background-color: ${(props) => props.theme.colors.white_gray};
-    height: 85%;
+    height: 75%;
     padding: 2rem;
   `,
   NoticeItem: styled.div`
@@ -60,4 +60,16 @@ export const S = {
       height: 2rem;
     }
   `,
+  Logout: styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+
+  & > span {
+    cursor: pointer;
+    padding: 1rem;
+    font-size: 1.5rem;
+    color: ${(props) => props.theme.colors.gray_500};
+  }
+  `
 }

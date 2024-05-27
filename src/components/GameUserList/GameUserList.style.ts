@@ -26,8 +26,11 @@ export const S = {
 
     & > svg {
       cursor: pointer;
-      width: 2rem;
-      height: 2rem;
+    }
+  `,
+  Report: styled.div`
+    & > textarea {
+      margin-top: 1.5rem;
     }
   `,
 }

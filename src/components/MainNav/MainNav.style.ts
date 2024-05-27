@@ -23,4 +23,9 @@ export const S = {
       }
     }
   `,
+  MoreSearch: styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin: 2rem 0;
+  `
 }
