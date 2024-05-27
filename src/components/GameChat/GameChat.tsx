@@ -20,8 +20,6 @@ import KakaoMap from '../KakaoMap/KakaoMap.tsx'
 import { GameDetails } from '../../types/detail.ts'
 import { useUserInfoQuery } from '../../hooks/query/useUserInfoQuery.ts'
 import { useExitGame } from '../../hooks/query/useExitGame.ts'
-import { useQueryClient } from '@tanstack/react-query'
-import { QUERY_KEYS } from '../../constants/queryKeys.ts'
 
 export default function GameChat() {
   const params = useParams()
@@ -29,7 +27,6 @@ export default function GameChat() {
   const [chat, setChat] = useState<string>('')
   const { userInfo } = useUserInfoQuery()
   const { exitGameMutate } = useExitGame()
-  const queryClient = useQueryClient()
   const navigate = useNavigate()
   const {
     isModalOpen,
@@ -60,9 +57,6 @@ export default function GameChat() {
   const handelExitGame = () => {
     exitGameMutate(Number(params.id))
     navigate('/my-game')
-    queryClient.invalidateQueries({
-      queryKey: [QUERY_KEYS.GET_GAME_LIST],
-    })
   }
 
   return (
