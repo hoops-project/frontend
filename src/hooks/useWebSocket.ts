@@ -25,6 +25,7 @@ export const useWebSocket = (
 
     const headers = {
       Authorization: `Bearer ${accessToken}`,
+      gameId: chatRoomId,
     }
 
     const connectCallback = () => {
@@ -34,10 +35,14 @@ export const useWebSocket = (
         `/topic/${chatRoomId}`,
         (response) => {
           const message = JSON.parse(response.body)
-          console.log(message)
           setMessages((prevMessages) => [...prevMessages, message])
         },
         headers
+      )
+      newClient.send(
+        `app/addUser/${chatRoomId}`,
+        {},
+        JSON.stringify({ sender: nickName, type: 'JOIN' })
       )
     }
 

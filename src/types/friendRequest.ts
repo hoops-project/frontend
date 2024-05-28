@@ -5,6 +5,6 @@ export interface FriendRequest {
   nickName: string
   playStyle: string
   ability: string
-  score: number | null
+  mannerPoint: number | null
   friendId: number
 }

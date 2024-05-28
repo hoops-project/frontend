@@ -28,6 +28,12 @@ export const S = {
     display: flex;
     align-items: center;
 
+    & > a > svg {
+      width: 2.5rem;
+      height: 2.5rem;
+      cursor: pointer;
+    }
+
     & > a > img:first-of-type {
       margin-right: 2rem;
       margin-top: 0.5rem;

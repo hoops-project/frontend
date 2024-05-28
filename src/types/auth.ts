@@ -73,3 +73,10 @@ export interface InviteFriendType {
   mannerPoint?: number | null
   status?: 'REQUEST' | null
 }
+
+export interface ReportedUser extends InviteFriendType {
+  playStyleType: string
+  abilityType: string
+  userName: string
+  reportId: number
+}
