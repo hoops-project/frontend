@@ -5,7 +5,7 @@ export const S = {
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
-    height: calc(100vh - 30rem);
+    height: calc(100vh - 36rem);
   `,
   Chat: styled.div`
     margin: 1rem 0 1rem 2rem;
