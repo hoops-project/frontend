@@ -21,10 +21,11 @@ export const END_POINT = deepFreeze({
   },
   MANAGER: {
     DELETE: 'api/manager',
-    BLACK_LIST: 'api/blacklist',
+    BLACK_LIST: 'api/manager/black-list',
   },
   REPORT: {
-    REPORT: 'api/report/user',
+    REPORT: 'api/report/user-list',
+    REPORT_CONTENT: 'api/report/contents/',
   },
   GAME_USER: {
     GAME_SEARCH: 'api/game-user/search',

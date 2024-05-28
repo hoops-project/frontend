@@ -1,40 +1,23 @@
-import { S } from '../Report/Report.style'
-import ReportItem from '../../components/ReportItem/ReportItem'
+import { S } from './Report.style.ts'
+import { useGetReportList } from '../../hooks/query/useGetReportList.ts'
+import { useInfiniteScroll } from '../../hooks/useInfiniteScroll.ts'
+import ReportItem from '../../components/ReportItem/ReportItem.tsx'
+import { ReportedUser } from '../../types/auth.ts'
 
 export default function Report() {
-  // NOTICE: 임시 데이터
-  const report = {
-    title: '신고 받은 유저 리스트',
-  }
-
   const titles = ['이름', '평점', '스타일']
 
-  const reports = [
-    {
-      name: '오신웅',
-      rating: '4.5',
-      buttons: ['남자', '공격적', '슛'],
-    },
-    {
-      name: '오신웅',
-      rating: '4.5',
-      buttons: ['남자', '공격적', '슛'],
-    },
-    {
-      name: '오신웅',
-      rating: '4.5',
-      buttons: ['남자', '공격적', '슛'],
-    },
-    {
-      name: '오신웅',
-      rating: '4.5',
-      buttons: ['남자', '공격적', '슛'],
-    },
-  ]
+  const { reportedList, fetchNextPage, hasNextPage } = useGetReportList()
+  const { loader } = useInfiniteScroll({
+    fetchNextPage,
+    hasNextPage,
+  })
+
+  console.log('신고당한 유저 리스트', reportedList)
 
   return (
     <S.Wrapper>
-      <p>{report.title}</p>
+      <p>신고 받은 유저 리스트</p>
       <S.TopTit>
         <div className='tit_box'>
           {titles.map((title, index) => (
@@ -44,9 +27,14 @@ export default function Report() {
           ))}
         </div>
       </S.TopTit>
-      {reports.map((report, index) => (
-        <ReportItem key={index} report={report} />
+      {reportedList?.pages?.map((page, index) => (
+        <div key={index}>
+          {page?.map((report: ReportedUser) => (
+            <ReportItem key={report?.userId} report={report} />
+          ))}
+        </div>
       ))}
+      <div ref={loader} />
     </S.Wrapper>
   )
 }
