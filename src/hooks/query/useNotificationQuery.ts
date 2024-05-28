@@ -14,6 +14,7 @@ export const useNotificationQuery = () => {
   const { data: notificationsResult } = useQuery({
     queryKey: [QUERY_KEYS.GET_NOTIFICATION],
     queryFn: getNotification,
+    staleTime: 5000,
   })
 
   return { notificationsResult }
