@@ -6,10 +6,10 @@ import Modal from '../common/Modal/Modal.tsx'
 import ModalTit from '../common/ModalTit/ModalTit.tsx'
 import MyPageUserInfo from '../common/MyPageUserInfo/MyPageUserInfo.tsx'
 import useModal from '../../hooks/useModal.ts'
-import { S } from './InvitedItem.style.ts'
+import { S } from './InvitedRequestItem.style.ts'
 import { useAcceptGameRequestQuery } from '../../hooks/query/useAcceptGameRequestQuery.ts'
 
-export default function InvitedItem({ info }: { info: Participant }) {
+export default function InvitedRequestItem({ info }: { info: Participant }) {
   const { isModalOpen, openModal, closeModal } = useModal()
 
   const { acceptMutate, denyMutate } = useAcceptGameRequestQuery()

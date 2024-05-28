@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { GameDetails } from '../../types/detail.ts'
 import { useGameDetailQuery } from '../../hooks/query/useGameDetailQuery.ts'
 import { useParticipantGameQuery } from '../../hooks/query/useParticipantGameQuery.ts'
-import InvitedItem from '../InvitedItem/InvitedItem.tsx'
+import InvitedRequestItem from '../InvitedRequestItem/InvitedRequestItem.tsx'
 
 export interface Participant {
   participantId: number
@@ -38,7 +38,7 @@ export default function ParticipationGameList() {
           {userPk === String(gameDetail?.userId) ? (
             participantRequestList?.applyParticipantGameList.map(
               (info: Participant) => (
-                <InvitedItem info={info} key={info.userId} />
+                <InvitedRequestItem info={info} key={info.userId} />
               )
             )
           ) : (
