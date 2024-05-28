@@ -1,13 +1,17 @@
 import { useEffect } from 'react'
 import { defaultAxios } from '../../api/axiosInstance.ts'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 
 export function OAuthRedirect() {
   const navigate = useNavigate()
+
+  const [searchParams] = useSearchParams()
+  const code = searchParams.get('code')
+
   useEffect(() => {
     const getUerInfo = async () => {
       try {
-        const res = await defaultAxios.get(`/oauth2/kakao`)
+        const res = await defaultAxios.get(`/api/oauth2/kakao?code=${code}`)
         const authorizationHeader = res.headers['authorization']
         const authorizationBody = res.data.refreshToken
         const accessToken = authorizationHeader

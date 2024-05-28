@@ -29,7 +29,7 @@ export default function MainRouter() {
         <Route path={'/sign-up'} element={<SignUp />} />
         <Route path={'/account'} element={<FindUserId />} />
         <Route path={'/password'} element={<FIndUserPassword />} />
-        <Route path={'/api/oauth2/kakao'} element={<OAuthRedirect />} />
+        <Route path={'/kakao/callback'} element={<OAuthRedirect />} />
         <Route
           path={'/detail/:id'}
           element={
