@@ -26,7 +26,7 @@ export default function RequestItem({ info }: { info: FriendRequest }) {
     <S.RequestItem>
       <p>{info?.nickName}</p>
       <PiInfoLight onClick={openModal} />
-      <p>{info?.score}</p>
+      <p>{info?.mannerPoint}</p>
       <S.ButtonWrapper>
         <BasicButton
           type={'button'}
