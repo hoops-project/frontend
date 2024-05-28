@@ -20,10 +20,10 @@ const KakaoLoginButton: React.FC = () => {
   const kakaoURL = '/api/oauth2/login/kakao'
 
   const handleKakaoLogin = async () => {
-    const { data } = await defaultAxios.get(kakaoURL)
-    console.log(data)
+    window.location.href = 'https://hoops.services/api/oauth2/login/kakao'
+    //const { data } = await defaultAxios.get(kakaoURL)
+    //console.log(data)
   }
-
   // useEffect(() => {
   //   const isAuthenticated = localStorage.getItem('Access-Token');
   //   if (isAuthenticated) {
