@@ -8,29 +8,23 @@ export default function Calender() {
 
   const { setDate: globalSetDate } = useDateStore()
 
-  const handleClick = (
-    index: number,
-    year: number,
-    month: number,
-    date: number
-  ) => {
+  const handleClick = (index: number, date: Date) => {
     setSelected(index)
 
+    const year = date.getFullYear()
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+
     globalSetDate(
-      `${year}-${String(month).padStart(2, '0')}-${String(date).padStart(2, '0')}`
+      `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`
     )
   }
 
   const currentDate = new Date()
-  const year: number = currentDate.getFullYear()
-  const month: number = currentDate.getMonth() + 1
-  const date: number = currentDate.getDate()
 
-  const getDayName = (year: number, month: number, date: number) => {
-    const day: Date = new Date(year, month - 1, date)
+  const getDayName = (date: Date) => {
     const dayNames = ['일', '월', '화', '수', '목', '금', '토']
-
-    return dayNames[day.getDay()]
+    return dayNames[date.getDay()]
   }
 
   const getColorByDayOfWeek = (dayOfWeek: string) => {
@@ -44,6 +38,16 @@ export default function Calender() {
     }
   }
 
+  const generateDates = (startDate: Date, days: number) => {
+    return Array.from({ length: days }, (_, index) => {
+      const date = new Date(startDate)
+      date.setDate(startDate.getDate() + index)
+      return date
+    })
+  }
+
+  const dates = generateDates(currentDate, 14)
+
   return (
     <S.Container>
       <Slider
@@ -53,38 +57,32 @@ export default function Calender() {
         sx={{ paddingLeft: '2rem', paddingRight: '2rem' }}
       >
         <S.Item>
-          {Array.from({ length: 7 }, (_, index) => (
+          {dates.slice(0, 7).map((date, index) => (
             <S.Date
               key={index}
               role={'button'}
-              onClick={() => handleClick(index, year, month, date + index)}
+              onClick={() => handleClick(index, date)}
               $selected={selected === index}
-              $dateColor={getColorByDayOfWeek(
-                getDayName(year, month, date + index)
-              )}
+              $dateColor={getColorByDayOfWeek(getDayName(date))}
             >
               {/** TODO: 클릭할때 마다 해당 요일에 해당하는 경기 불러오기 */}
-              <p>{date + index}</p>
-              <p>{getDayName(year, month, date + index)}</p>
+              <p>{date.getDate()}</p>
+              <p>{getDayName(date)}</p>
             </S.Date>
           ))}
         </S.Item>
         <S.Item>
-          {Array.from({ length: 7 }, (_, index) => (
+          {dates.slice(7, 14).map((date, index) => (
             <S.Date
               key={index}
               role={'button'}
-              onClick={() =>
-                handleClick(index + 7, year, month, date + 7 + index)
-              }
+              onClick={() => handleClick(index + 7, date)}
               $selected={selected === index + 7}
-              $dateColor={getColorByDayOfWeek(
-                getDayName(year, month, date + index)
-              )}
+              $dateColor={getColorByDayOfWeek(getDayName(date))}
             >
               {/** TODO: 클릭할때 마다 해당 요일에 해당하는 경기 불러오기 */}
-              <p>{date + 7 + index}</p>
-              <p>{getDayName(year, month, date + 7 + index)}</p>
+              <p>{date.getDate()}</p>
+              <p>{getDayName(date)}</p>
             </S.Date>
           ))}
         </S.Item>
