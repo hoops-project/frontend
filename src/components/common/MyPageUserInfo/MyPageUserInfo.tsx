@@ -12,8 +12,6 @@ export default function MyPageUserInfo({
 }: {
   userInfo: FriendRequest | Participant
 }) {
-  console.log(userInfo)
-
   return (
     <div>
       <S.Wrapper>

@@ -4,13 +4,7 @@ import { useParams } from 'react-router-dom'
 import { GameDetails } from '../../types/detail.ts'
 import { useGameDetailQuery } from '../../hooks/query/useGameDetailQuery.ts'
 import { useParticipantGameQuery } from '../../hooks/query/useParticipantGameQuery.ts'
-import { PiInfoLight } from 'react-icons/pi'
-import BasicButton from '../common/BasicButton/BasicButton.tsx'
-import { theme } from '../../styles/theme.ts'
-import useModal from '../../hooks/useModal.ts'
-import Modal from '../common/Modal/Modal.tsx'
-import ModalTit from '../common/ModalTit/ModalTit.tsx'
-import MyPageUserInfo from '../common/MyPageUserInfo/MyPageUserInfo.tsx'
+import InvitedItem from '../InvitedItem/InvitedItem.tsx'
 
 export interface Participant {
   participantId: number
@@ -33,7 +27,6 @@ export default function ParticipationGameList() {
     Number(id),
     gameDetail?.userId
   )
-  const { isModalOpen, openModal, closeModal } = useModal()
 
   return (
     <S.Wrapper>
@@ -41,54 +34,22 @@ export default function ParticipationGameList() {
       {!gameDetail?.userId ? (
         <S.LockContainer></S.LockContainer>
       ) : (
-        <S.LockContainer>
+        <>
           {userPk === String(gameDetail?.userId) ? (
             participantRequestList?.applyParticipantGameList.map(
               (info: Participant) => (
-                <S.Invite key={info.userId}>
-                  <p>{info.nickName}</p>
-                  <PiInfoLight onClick={openModal} />
-                  <S.ButtonWrapper>
-                    <BasicButton
-                      type={'button'}
-                      $bgColor={theme.colors.blue}
-                      $fontcolor={theme.colors.white}
-                      $width={'6rem'}
-                    >
-                      수락
-                    </BasicButton>
-                    <BasicButton
-                      type={'button'}
-                      $bgColor={theme.colors.red}
-                      $fontcolor={theme.colors.white}
-                      $width={'6rem'}
-                    >
-                      거절
-                    </BasicButton>
-                  </S.ButtonWrapper>
-                  {isModalOpen && (
-                    <Modal $width='50rem' $height='30rem' onClose={closeModal}>
-                      <ModalTit title='유저 정보' />
-                      <MyPageUserInfo userInfo={info} />
-                      <BasicButton
-                        type='button'
-                        children={'닫기'}
-                        $fontcolor={theme.colors.white}
-                        $bgColor={theme.colors.blue}
-                        onClick={closeModal}
-                      />
-                    </Modal>
-                  )}
-                </S.Invite>
+                <InvitedItem info={info} key={info.userId} />
               )
             )
           ) : (
-            <div>
-              <img src={lock} alt={'자물쇠 아이콘'} />
-              <p>팀장만 신청 회원을 관리할 수 있어요.</p>
-            </div>
+            <S.LockContainer>
+              <div>
+                <img src={lock} alt={'자물쇠 아이콘'} />
+                <p>팀장만 신청 회원을 관리할 수 있어요.</p>
+              </div>
+            </S.LockContainer>
           )}
-        </S.LockContainer>
+        </>
       )}
     </S.Wrapper>
   )
