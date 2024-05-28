@@ -5,7 +5,7 @@ import MainCarousel from '../../components/MainCarousel/MainCarousel.tsx'
 import Calender from '../../components/Calender/Calender.tsx'
 import { useSelectBox } from '../../hooks/useSelectBox.ts'
 import MainSelectList from '../../components/MainSelectList/MainSelectList.tsx'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CS } from '../../styles/commonStyle.ts'
 import { S } from './Main.style.ts'
 import { theme } from '../../styles/theme.ts'
@@ -15,18 +15,16 @@ import { useInfiniteScroll } from '../../hooks/useInfiniteScroll.ts'
 import MatchItem from '../../components/MatchItem/MatchItem.tsx'
 import { Match } from '../../types/match.ts'
 import dayjs from 'dayjs'
+import { useAuthStore } from '../../store/store.ts'
 
 export default function Main() {
   const selected = useSelectBox()
-  // NOTICE : 임시 데이터
-  // 나중에 로그인 토큰으로 조건문 렌더링 해야됨~
-  const [isAdmin] = useState(false)
-  // NOTICE: 임시 데이터
-
-  const { date: globalDate } = useDateStore()
+  const loginState = useAuthStore((state) => state.isLoggedIn)
+  const [isAdmin, setIsAdmin] = useState(false)
+  const { date: globalGameDate } = useDateStore()
 
   const gameFilter = {
-    localData: globalDate,
+    localData: globalGameDate,
     cityName: selected.region,
     fieldStatus: selected.gamePlace,
     gender: selected.gender,
@@ -41,6 +39,17 @@ export default function Main() {
     fetchNextPage,
     hasNextPage,
   })
+
+  useEffect(() => {
+    if (loginState) {
+      const userPK = localStorage.getItem('userPK')
+      if (userPK === String(1)) {
+        setIsAdmin(true)
+      } else {
+        setIsAdmin(false)
+      }
+    }
+  }, [loginState])
 
   return (
     <CS.DefaultContainer>
