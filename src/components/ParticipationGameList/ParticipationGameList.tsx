@@ -32,7 +32,9 @@ export default function ParticipationGameList() {
     <S.Wrapper>
       <p>경기 참여 신청 목록</p>
       {!gameDetail?.userId ? (
-        <S.LockContainer></S.LockContainer>
+        <S.WaitContainer>
+          <p>채팅방에 입장해야 합니다.</p>
+        </S.WaitContainer>
       ) : (
         <>
           {userPk === String(gameDetail?.userId) ? (

@@ -32,4 +32,12 @@ export const S = {
       }
     }
   `,
+  WaitContainer: styled.div`
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: ${(props) => props.theme.colors.gray_500};
+  `,
 }

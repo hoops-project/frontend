@@ -31,6 +31,11 @@ export default function GameUserList({ userInfo }: MyGameUserList) {
     closeModal()
   }
 
+  const handleAddFriend = (userId: number) => {
+    // NOTICE: 이곳에서 친구 추가 mutate 호출 하시면 됩니다.
+    console.log(userId)
+  }
+
   return (
     <S.Wrapper>
       <p>유저 목록</p>
@@ -51,6 +56,7 @@ export default function GameUserList({ userInfo }: MyGameUserList) {
                   $bgColor={theme.colors.blue}
                   $fontcolor={theme.colors.white}
                   $width={'7rem'}
+                  onClick={() => handleAddFriend(info.userId)}
                 >
                   친구 추가
                 </BasicButton>

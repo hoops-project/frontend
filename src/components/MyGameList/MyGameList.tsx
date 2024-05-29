@@ -1,7 +1,7 @@
 import { S } from './MyGameList.style.ts'
 import MyGameItem from '../MyGameItem/MyGameItem.tsx'
 import React, { useState } from 'react'
-import { Pagination, Stack } from '@mui/material'
+import { Grid, Pagination } from '@mui/material'
 import GameUserList from '../GameUserList/GameUserList.tsx'
 import { useGetChatListQuery } from '../../hooks/query/useGetChatListQuery.ts'
 import { GameListData } from '../../types/game.ts'
@@ -26,7 +26,7 @@ export default function MyGameList() {
       <p>나의 경기</p>
       <S.ListContainer>
         <div>
-          {chatList ? (
+          {chatList?.content?.length > 0 ? (
             <>
               {chatList?.content.map((gameItem: GameListData) => (
                 <MyGameItem
@@ -39,21 +39,23 @@ export default function MyGameList() {
             </>
           ) : (
             <S.Loading>
-              {/* TODO: 로당을 위한 컴포넌트 추가해서 교체할것*/}
-              로딩중...
+              <p>아직 경기가 없습니다.</p>
             </S.Loading>
           )}
         </div>
-        <div>
-          <Stack spacing={1}>
-            <Pagination
-              size={'large'}
-              count={5}
-              page={page}
-              onChange={handlePageChange}
-            />
-          </Stack>
-        </div>
+        <>
+          <Grid container justifyContent='center'>
+            <Grid item>
+              <Pagination
+                className='custom-pagination'
+                size={'large'}
+                count={chatList?.totalPages}
+                page={page}
+                onChange={handlePageChange}
+              />
+            </Grid>
+          </Grid>
+        </>
       </S.ListContainer>
       <GameUserList userInfo={joinUser} />
     </S.Wrapper>
