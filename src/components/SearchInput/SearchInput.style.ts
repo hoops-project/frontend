@@ -42,11 +42,12 @@ export const S = {
         margin-right: 1rem;
       }
 
-      & > span:nth-child(2),
-      & > span:nth-child(3),
-      & > span:nth-child(4) {
-        font-size: 1.2rem;
-        color: ${(props) => props.theme.colors.gray_500};
+      & > div {
+        margin-top: 1rem;
+        & > span {
+          font-size: 1.2rem;
+          color: ${(props) => props.theme.colors.gray_500};
+        }
       }
     }
   `,
