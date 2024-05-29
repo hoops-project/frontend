@@ -25,7 +25,7 @@ export const useWebSocket = (
 
     const headers = {
       Authorization: `Bearer ${accessToken}`,
-      gameId: chatRoomId,
+      gameId: String(chatRoomId),
     }
 
     const connectCallback = () => {
@@ -44,6 +44,7 @@ export const useWebSocket = (
         {},
         JSON.stringify({ sender: nickName, type: 'JOIN' })
       )
+      newClient.send('/app/loadMessages/' + chatRoomId, headers)
     }
 
     const errorCallback = (error: unknown) => {
@@ -66,8 +67,16 @@ export const useWebSocket = (
   const sendMessage = (message: string) => {
     // client 상태를 직접 사용하고 옵셔널 체이닝 연산자로 안전하게 확인
     if (client?.connected) {
-      const data = { sender: nickName, content: message }
-      client.send(`/app/sendMessage/${chatRoomId}`, {}, JSON.stringify(data))
+      const data = { sender: nickName, content: message, type: 'CHAT' }
+
+      client.send(
+        `/app/sendMessage/${chatRoomId}`,
+        {
+          Authorization: `Bearer ${accessToken}`,
+          gameId: String(chatRoomId),
+        },
+        JSON.stringify(data)
+      )
     }
   }
 
