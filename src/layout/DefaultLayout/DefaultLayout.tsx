@@ -7,9 +7,6 @@ import { EventSourcePolyfill, NativeEventSource } from 'event-source-polyfill'
 import { useQueryClient } from '@tanstack/react-query'
 import { useAuthStore } from '../../store/store.ts'
 import { QUERY_KEYS } from '../../constants/queryKeys.ts'
-import { Notifications } from '../../types/notification.ts'
-import { useNotificationQuery } from '../../hooks/query/useNotificationQuery.ts'
-import useToast from '../../hooks/useToast.ts'
 
 export default function DefaultLayout() {
   const EventSource = EventSourcePolyfill || NativeEventSource
@@ -17,11 +14,7 @@ export default function DefaultLayout() {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn)
   const queryClient = useQueryClient()
 
-  const URL = `${import.meta.env.VITE_HOOPS_API_URL}/subscribe`
-  const { toastSuccess } = useToast()
-
-  const { notificationsResult }: { notificationsResult: Notifications[] } =
-    useNotificationQuery()
+  const URL = `${import.meta.env.VITE_HOOPS_API_URL}/api/subscribe`
 
   useEffect(() => {
     let eventSource: EventSourcePolyfill
@@ -70,12 +63,6 @@ export default function DefaultLayout() {
       }
     }
   }, [isLoggedIn])
-
-  useEffect(() => {
-    if (notificationsResult) {
-      toastSuccess(notificationsResult[0].content || '')
-    }
-  }, [notificationsResult])
 
   return (
     <>
