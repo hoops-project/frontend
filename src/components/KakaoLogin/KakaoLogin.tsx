@@ -12,7 +12,7 @@ declare global {
 
 const KakaoLoginButton: React.FC = () => {
   const handleKakaoLogin = async () => {
-    window.location.href = `  ${import.meta.env.VITE_HOOPS_API_URL}/api/oauth2/login/kakao`
+    window.location.href = `${import.meta.env.VITE_HOOPS_API_URL}/api/oauth2/login/kakao`
   }
 
   return (
