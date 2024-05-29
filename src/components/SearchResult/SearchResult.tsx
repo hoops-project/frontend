@@ -23,7 +23,7 @@ const SearchFriendList: React.FC<SearchFriendListProps> = ({ query }) => {
         {friends.map((user: UserInfoType) => {
           const isAdded = addedFriends.includes(user.userId);
           const isRemoved = removedFriends.includes(user.userId);
-          const isFriend = user.friendId !== null;
+          const isFriend = user.friendId !== null && user.friendId !== undefined;
 
           return (
             <S.ListItem key={user.userId}>
@@ -47,7 +47,13 @@ const SearchFriendList: React.FC<SearchFriendListProps> = ({ query }) => {
                 $width="10rem"
                 $hoverBgColor={theme.colors.gray_300}
                 $fontcolor={theme.colors.white}
-                onClick={() => (isFriend ? handleRemoveFriend(user.userId) : handleAddFriend(user.userId))}
+                onClick={() => {
+                  if (isFriend && user.friendId !== null && user.friendId !== undefined) {
+                    handleRemoveFriend(user.friendId);
+                  } else {
+                    handleAddFriend(user.userId);
+                  }
+                }}
                 disabled={isAdded || isRemoved}
               >
                 {isAdded

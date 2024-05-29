@@ -18,15 +18,33 @@ export default function ChatList({ message }: ChatListProps) {
     <>
       <S.Wrapper ref={chatListRef}>
         {message.map((msg, index) => (
-          <S.Chat key={index}>
-            <S.ChatUserInfo>
-              <div>✉️</div>
-              <p>{msg.sender}</p>
-            </S.ChatUserInfo>
-            <S.ContentWrapper>
-              <strong>{msg.content}</strong>
-            </S.ContentWrapper>
-          </S.Chat>
+          <div key={index}>
+            {Array.isArray(msg) ? (
+              <>
+                {msg.map((pastMsg) => (
+                  <S.Chat key={pastMsg.id}>
+                    <S.ChatUserInfo>
+                      <div>✉️</div>
+                      <p>{pastMsg.sender}</p>
+                    </S.ChatUserInfo>
+                    <S.ContentWrapper>
+                      <strong>{pastMsg.content}</strong>
+                    </S.ContentWrapper>
+                  </S.Chat>
+                ))}
+              </>
+            ) : (
+              <S.Chat key={index}>
+                <S.ChatUserInfo>
+                  <div>✉️</div>
+                  <p>{msg.sender}</p>
+                </S.ChatUserInfo>
+                <S.ContentWrapper>
+                  <strong>{msg.content}</strong>
+                </S.ContentWrapper>
+              </S.Chat>
+            )}
+          </div>
         ))}
       </S.Wrapper>
     </>
