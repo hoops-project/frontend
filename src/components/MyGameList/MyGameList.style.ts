@@ -22,6 +22,11 @@ export const S = {
     }
   `,
   Loading: styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
     min-height: 51rem;
+    color: ${(props) => props.theme.colors.gray_700};
+    font-weight: bold;
   `,
 }

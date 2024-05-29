@@ -8,7 +8,7 @@ export const S = {
 
     & > div:first-of-type {
       margin-top: 2rem;
-      height: calc(100vh - 82rem);
+      height: calc(100vh - 90rem);
       min-height: 10rem;
       overflow-y: scroll;
     }
