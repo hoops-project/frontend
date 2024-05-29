@@ -2,21 +2,21 @@ import { axiosAuth } from '../../api/axiosInstance.ts'
 import { END_POINT } from '../../constants/endPoint.ts'
 import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query'
 import { QUERY_KEYS } from '../../constants/queryKeys.ts'
-import { useEffect } from 'react';
+import { useEffect } from 'react'
 
 const fetchAPI = async (page: number, size: number) => {
   const res = await axiosAuth.get(END_POINT.FRIENDS.FRIEND_LIST, {
     params: {
       page,
-      size
+      size,
     },
-  });
-  return res.data;
-};
+  })
+  return res.data
+}
 
 const useGetFriendsListQuery = () => {
-  const queryClient = useQueryClient();
-  
+  const queryClient = useQueryClient()
+
   const {
     data: friendsListData,
     fetchNextPage: friendsListFetchNextPage,
@@ -26,19 +26,19 @@ const useGetFriendsListQuery = () => {
     isFetching: friendsListIsFetching,
   } = useInfiniteQuery({
     queryKey: [QUERY_KEYS.GET_FRIENDS_LIST],
-    queryFn: ({ pageParam = 1 }) => fetchAPI(pageParam, 1),
+    queryFn: ({ pageParam = 0 }) => fetchAPI(pageParam, 10),
     getNextPageParam: (lastPage, allPages) => {
       const nextPage = allPages.length + 1
       const maxPage = lastPage.totalPages
       return nextPage <= maxPage ? nextPage : undefined
     },
 
-    initialPageParam: 1,
+    initialPageParam: 0,
   })
 
   useEffect(() => {
-    queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.GET_FRIENDS_LIST] });
-  }, [queryClient]);
+    queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.GET_FRIENDS_LIST] })
+  }, [queryClient])
 
   return {
     friendsListData,
@@ -47,7 +47,7 @@ const useGetFriendsListQuery = () => {
     friendsListRefetch,
     friendsListIsLoading,
     friendsListIsFetching,
-  };
-};
+  }
+}
 
-export default useGetFriendsListQuery;
+export default useGetFriendsListQuery
