@@ -23,17 +23,15 @@ export default function SignInForm() {
     },
   })
 
-  const { loginMutate, loginPending } = useLoginQuery();
+  const { loginMutate, loginPending } = useLoginQuery()
 
   const handleSignIn = (signInData: SignInType) => {
     if (errors.id?.message || errors.password?.message) {
-      return;
+      return
     }
 
-    loginMutate(signInData);
-
-    console.log(signInData);
-  };
+    loginMutate(signInData)
+  }
 
   return (
     <>
@@ -92,5 +90,5 @@ export default function SignInForm() {
         </div>
       </form>
     </>
-  );
+  )
 }
