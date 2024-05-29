@@ -50,8 +50,6 @@ export default function Notification() {
   const { notificationsResult }: { notificationsResult: Notifications[] } =
     useNotificationQuery()
 
-  console.log(notificationsResult)
-
   return (
     <S.Wrapper>
       <S.UserInfo>

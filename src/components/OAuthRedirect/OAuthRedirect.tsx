@@ -1,9 +1,11 @@
 import { useEffect } from 'react'
 import { defaultAxios } from '../../api/axiosInstance.ts'
 import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useAuthStore } from '../../store/store.ts'
 
 export function OAuthRedirect() {
   const navigate = useNavigate()
+  const setLoginState = useAuthStore((state) => state.login)
 
   const [searchParams] = useSearchParams()
   const code = searchParams.get('code')
@@ -20,6 +22,7 @@ export function OAuthRedirect() {
         localStorage.setItem('Access-Token', accessToken)
         localStorage.setItem('Refresh-Token', refreshToken)
         localStorage.setItem('userPK', String(res.data.userInfo.userId))
+        setLoginState()
       } catch (error) {
         console.error('Login failed:', error)
       } finally {
@@ -29,5 +32,5 @@ export function OAuthRedirect() {
     getUerInfo()
   }, [])
 
-  return <div>리다이렉트 중... 코드</div>
+  return <div>로그인 중입니다... 잠시만 기다려 주세요.</div>
 }
