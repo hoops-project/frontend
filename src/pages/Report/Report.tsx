@@ -13,8 +13,6 @@ export default function Report() {
     hasNextPage,
   })
 
-  console.log('신고당한 유저 리스트', reportedList)
-
   return (
     <S.Wrapper>
       <p>신고 받은 유저 리스트</p>
@@ -29,7 +27,7 @@ export default function Report() {
       </S.TopTit>
       {reportedList?.pages?.map((page, index) => (
         <div key={index}>
-          {page?.map((report: ReportedUser) => (
+          {page?.content?.map((report: ReportedUser) => (
             <ReportItem key={report?.userId} report={report} />
           ))}
         </div>
