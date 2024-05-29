@@ -11,6 +11,7 @@ import BasicTextArea from '../common/BasicTextArea/BasicTextArea.tsx'
 import { useState } from 'react'
 import { useReportQuery } from '../../hooks/query/useReportQuery.ts'
 import useToast from '../../hooks/useToast.ts'
+import useFriendActions from '../../hooks/query/useFriendActions.ts'
 
 export default function GameUserList({ userInfo }: MyGameUserList) {
   const { toastError } = useToast()
@@ -20,6 +21,7 @@ export default function GameUserList({ userInfo }: MyGameUserList) {
 
   const { userInfo: currentUser } = useUserInfoQuery()
   const { reportMutation } = useReportQuery()
+  const { handleAddFriend } = useFriendActions();
 
   const handelReport = () => {
     if (reportContent.length < 35 || reportContent.length > 255) {
@@ -31,10 +33,7 @@ export default function GameUserList({ userInfo }: MyGameUserList) {
     closeModal()
   }
 
-  const handleAddFriend = (userId: number) => {
-    // NOTICE: 이곳에서 친구 추가 mutate 호출 하시면 됩니다.
-    console.log(userId)
-  }
+
 
   return (
     <S.Wrapper>
