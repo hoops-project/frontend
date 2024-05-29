@@ -5,15 +5,9 @@ import SearchInput from '../../components/SearchInput/SearchInput.tsx'
 import { CS } from '../../styles/commonStyle.ts'
 import { PiSignInLight } from 'react-icons/pi'
 import { useAuthStore } from '../../store/store.ts'
-import { useEffect, useState } from 'react'
 
 export default function Header() {
   const globalLoginState = useAuthStore((state) => state.isLoggedIn)
-  const [isLogin, setIsLogin] = useState<boolean>(globalLoginState)
-
-  useEffect(() => {
-    setIsLogin(globalLoginState)
-  }, [globalLoginState])
 
   return (
     <S.Header>
@@ -25,7 +19,7 @@ export default function Header() {
         </h1>
         <S.SearchGroup>
           <SearchInput />
-          {isLogin ? (
+          {globalLoginState ? (
             <CS.Link to={'/my-page'}>
               <img src={myPage} alt='마이 페이지' />
             </CS.Link>
