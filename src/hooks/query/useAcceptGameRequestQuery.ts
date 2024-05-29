@@ -31,6 +31,9 @@ export const useAcceptGameRequestQuery = () => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.GET_JOINED_USER],
       })
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_PARTICIPANT_REQUEST_LIST],
+      })
     },
     onError: () => {
       toastError('문제가 발생했습니다.')
@@ -43,6 +46,9 @@ export const useAcceptGameRequestQuery = () => {
       toastSuccess('거절 완료 되었습니다!')
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.GET_JOINED_USER],
+      })
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_PARTICIPANT_REQUEST_LIST],
       })
     },
     onError: () => {
