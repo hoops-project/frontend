@@ -17,6 +17,7 @@ export const useParticipantGameQuery = (gameId: number, userId: number) => {
     queryKey: [QUERY_KEYS.GET_PARTICIPANT_REQUEST_LIST, gameId],
     queryFn: getParticipantRequest,
     enabled: Number(userPK) === userId,
+    staleTime: 0,
   })
   return { participantRequestList }
 }
