@@ -21,7 +21,7 @@ export default function GameUserList({ userInfo }: MyGameUserList) {
 
   const { userInfo: currentUser } = useUserInfoQuery()
   const { reportMutation } = useReportQuery()
-  const { handleAddFriend } = useFriendActions();
+  const { handleAddFriend } = useFriendActions()
 
   const handelReport = () => {
     if (reportContent.length < 35 || reportContent.length > 255) {
@@ -32,8 +32,6 @@ export default function GameUserList({ userInfo }: MyGameUserList) {
     setReportContent('')
     closeModal()
   }
-
-
 
   return (
     <S.Wrapper>
