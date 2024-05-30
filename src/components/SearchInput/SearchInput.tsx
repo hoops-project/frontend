@@ -44,9 +44,11 @@ export default function SearchInput() {
                   to={`/detail/${result.gameId}`}
                 >
                   <span>{result.title}</span>
-                  <span>{convertGameType(result.matchFormat)}</span>
-                  <span>{convertGender(result.gender)}</span>
-                  <span>{result.inviteYn ? '초대 가능' : '초대 불가능'}</span>
+                  <div>
+                    <span>{convertGameType(result.matchFormat)}</span>
+                    <span>{convertGender(result.gender)}</span>
+                    <span>{result.inviteYn ? '초대 가능' : '초대 불가능'}</span>
+                  </div>
                 </CS.Link>
               ))}
             </>

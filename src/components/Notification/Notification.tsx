@@ -33,6 +33,10 @@ export default function Notification() {
           queryKey: [QUERY_KEYS.GET_USER_INFO],
           exact: true,
         })
+        queryClient.removeQueries({
+          queryKey: [QUERY_KEYS.GET_PARTICIPANT_REQUEST_LIST],
+          exact: true,
+        })
       })
       toastSuccess('로그아웃이 성공적으로 완료되었습니다 💪🏻')
       setLoginState()

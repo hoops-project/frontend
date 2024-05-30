@@ -39,11 +39,6 @@ export const useWebSocket = (
         },
         headers
       )
-      newClient.send(
-        `app/addUser/${chatRoomId}`,
-        {},
-        JSON.stringify({ sender: nickName, type: 'JOIN' })
-      )
       newClient.send('/app/loadMessages/' + chatRoomId, headers)
     }
 

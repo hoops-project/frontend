@@ -29,6 +29,9 @@ export const useAcceptGameRequestQuery = () => {
     onSuccess: () => {
       toastSuccess('수락이 완료 되었습니다!')
       queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_JOINED_USER],
+      })
+      queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.GET_PARTICIPANT_REQUEST_LIST],
       })
     },
@@ -41,6 +44,9 @@ export const useAcceptGameRequestQuery = () => {
     mutationFn: denyRequest,
     onSuccess: () => {
       toastSuccess('거절 완료 되었습니다!')
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_JOINED_USER],
+      })
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.GET_PARTICIPANT_REQUEST_LIST],
       })
