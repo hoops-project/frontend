@@ -75,8 +75,8 @@ export interface InviteFriendType {
 }
 
 export interface ReportedUser extends InviteFriendType {
-  playStyleType: string
-  abilityType: string
+  playStyle: string
+  ability: string
   userName: string
   reportId: number
 }

@@ -8,7 +8,7 @@ export default function MyFriend({ children }: { children: ReactNode }) {
         <S.FlexBox>
           <p>이름</p>
           <p>평점</p>
-          <p>스타일</p>
+          <p>정보</p>
         </S.FlexBox>
       </S.TopTit>
       <S.UnderLine />

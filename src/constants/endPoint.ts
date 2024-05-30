@@ -24,6 +24,7 @@ export const END_POINT = deepFreeze({
     BLACK_LIST: 'api/manager/black-list',
   },
   REPORT: {
+    ADD_REPORT: 'api/report/user',
     REPORT: 'api/report/user-list',
     REPORT_CONTENT: 'api/report/contents/',
   },

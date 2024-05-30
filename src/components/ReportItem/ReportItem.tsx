@@ -7,6 +7,11 @@ import ModalTit from '../common/ModalTit/ModalTit'
 import useModal from '../../hooks/useModal.ts'
 import { ReportedUser } from '../../types/auth.ts'
 import { useReportContentAndBlackQuery } from '../../hooks/query/useReportContentAndBlackQuery.ts'
+import {
+  convertAttributeToKorean,
+  convertGenderToKorean,
+  convertPlayStyleToKorean,
+} from '../../helper/convertValueToName.ts'
 
 export default function ReportItem({ report }: { report: ReportedUser }) {
   const { isModalOpen, openModal, closeModal } = useModal()
@@ -15,17 +20,15 @@ export default function ReportItem({ report }: { report: ReportedUser }) {
     String(report.reportId)
   )
 
-  console.log(reportContent)
-
   return (
     <S.ContentBox>
       <S.ListBox>
         <p>{report.userName}</p>
-        <p>{report.mannerPoint}</p>
+        <p>{report.mannerPoint || '0'}</p>
         <S.ButtonWrapper>
-          <S.Button>{report.abilityType}</S.Button>
-          <S.Button>{report.playStyleType}</S.Button>
-          <S.Button>{report.gender}</S.Button>
+          <S.Button>{convertGenderToKorean(report.gender)}</S.Button>
+          <S.Button>{convertAttributeToKorean(report.ability)}</S.Button>
+          <S.Button>{convertPlayStyleToKorean(report.playStyle)}</S.Button>
         </S.ButtonWrapper>
       </S.ListBox>
       <S.SubmitWrapper>

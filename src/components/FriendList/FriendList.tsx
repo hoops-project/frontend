@@ -6,6 +6,11 @@ import useGetFriendsListQuery from '../../hooks/query/useGetFriendListQuery.ts'
 import { axiosAuth } from '../../api/axiosInstance.ts'
 import { END_POINT } from '../../constants/endPoint.ts'
 import { UserInfoType } from '../../types/auth.ts'
+import {
+  convertAttributeToKorean,
+  convertGenderToKorean,
+  convertPlayStyleToKorean,
+} from '../../helper/convertValueToName.ts'
 
 const FriendList = () => {
   const { friendsListData, friendsListIsLoading, friendsListFetchNextPage } =
@@ -30,7 +35,6 @@ const FriendList = () => {
 
   const friends =
     friendsListData?.pages.flatMap((page) => page.myFriendList) ?? []
-  console.log(friends)
 
   // 친구 목록 / 검색 결과
 
@@ -39,10 +43,10 @@ const FriendList = () => {
       {friends.map((user: UserInfoType) => (
         <S.ListItem key={user.userId}>
           <p>{user.nickName}</p>
-          <p>{user.rating}</p>
-          <p>{user.gender}</p>
-          <p>{user.playStyle}</p>
-          <p>{user.ability}</p>
+          <p>{user.rating || '0'}</p>
+          <p>{convertGenderToKorean(user.gender)}</p>
+          <p>{convertPlayStyleToKorean(user.playStyle)}</p>
+          <p>{convertAttributeToKorean(user.ability)}</p>
           <BasicButton
             type='button'
             $bgColor={

@@ -12,7 +12,7 @@ export const useReportQuery = () => {
   const { toastSuccess } = useToast()
 
   const sendReport = async (report: ReportProps) => {
-    const { data } = await axiosAuth.post(END_POINT.REPORT.REPORT, {
+    const { data } = await axiosAuth.post(END_POINT.REPORT.ADD_REPORT, {
       content: report.content,
       reportedUserId: report.userId,
     })
