@@ -26,9 +26,9 @@ export default function ReportItem({ report }: { report: ReportedUser }) {
         <p>{report.userName}</p>
         <p>{report.mannerPoint || '0'}</p>
         <S.ButtonWrapper>
+          <S.Button>{convertGenderToKorean(report.gender)}</S.Button>
           <S.Button>{convertAttributeToKorean(report.ability)}</S.Button>
           <S.Button>{convertPlayStyleToKorean(report.playStyle)}</S.Button>
-          <S.Button>{convertGenderToKorean(report.gender)}</S.Button>
         </S.ButtonWrapper>
       </S.ListBox>
       <S.SubmitWrapper>
