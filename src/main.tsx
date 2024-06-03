@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { queryClient } from './api/QueryClient'
 import { ThemeProvider } from 'styled-components'
 import { theme } from './styles/theme'
+import { HelmetProvider } from 'react-helmet-async'
 
 async function enableMocking() {
   if (import.meta.env.DEV) {
@@ -19,12 +20,14 @@ async function enableMocking() {
 enableMocking().then(() => {
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </ThemeProvider>
+      <HelmetProvider>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ThemeProvider>
+      </HelmetProvider>
     </QueryClientProvider>
   )
 })
