@@ -9,8 +9,6 @@ import { CS } from '../../styles/commonStyle.ts'
 import useLoginQuery from '../../hooks/query/useLoginQuery.ts'
 
 export default function SignInForm() {
-  // TODO: 서버 연결 후 서버에서 내려온 에러메시지 담아서 출력할것
-
   const {
     handleSubmit,
     control,

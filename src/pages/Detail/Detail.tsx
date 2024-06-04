@@ -52,38 +52,40 @@ export default function Detail() {
     femaleUser: countFemaleUsers,
   }
 
-  // TODO: 각각의 영역마다 컴포넌트로 나눠서 관리 할 수 있을듯
   return (
     <CS.DefaultContainer>
-      <SEO title="경기 상세 페이지" description="경기의 상세 정보를 보고, 경기에 참가할 수 있어요." />
-        <S.Wrapper>
-          <DetailTopTitle title={gameDetail?.placeName} />
-          <S.InfoWrapper>
-            <div>
-              <MatchPoint matchPoint={matchPoints} />
-              {isUserParticipating(
-                gameDetail?.participantUserList,
-                userInfo?.userId ?? 0
-              ) ? (
-                <MatchData
-                  userList={gameDetail?.participantUserList}
-                  content={gameDetail?.content}
-                />
-              ) : (
-                <LockMatchData />
-              )}
+      <SEO
+        title='경기 상세 페이지'
+        description='경기의 상세 정보를 보고, 경기에 참가할 수 있어요.'
+      />
+      <S.Wrapper>
+        <DetailTopTitle title={gameDetail?.placeName} />
+        <S.InfoWrapper>
+          <div>
+            <MatchPoint matchPoint={matchPoints} />
+            {isUserParticipating(
+              gameDetail?.participantUserList,
+              userInfo?.userId ?? 0
+            ) ? (
+              <MatchData
+                userList={gameDetail?.participantUserList}
+                content={gameDetail?.content}
+              />
+            ) : (
+              <LockMatchData />
+            )}
 
-              <KakaoMap lat={gameDetail?.latitude} lng={gameDetail?.longitude} />
-            </div>
-            <JoinGame
-              date={dayjs(gameDetail?.startDateTime).format('M월 D일 ddd HH:mm')}
-              title={gameDetail?.placeName}
-              restCount={restCount}
-              address={gameDetail?.address}
-              isCreator={userInfo?.userId === gameDetail?.userId}
-            />
-          </S.InfoWrapper>
-        </S.Wrapper>
+            <KakaoMap lat={gameDetail?.latitude} lng={gameDetail?.longitude} />
+          </div>
+          <JoinGame
+            date={dayjs(gameDetail?.startDateTime).format('M월 D일 ddd HH:mm')}
+            title={gameDetail?.placeName}
+            restCount={restCount}
+            address={gameDetail?.address}
+            isCreator={userInfo?.userId === gameDetail?.userId}
+          />
+        </S.InfoWrapper>
+      </S.Wrapper>
     </CS.DefaultContainer>
   )
 }
