@@ -18,25 +18,25 @@ export default function MainNav() {
       <S.NavContainer>
         <CS.Link to={'/add-game'}>
           <div>
-            <img src={makeGroup} alt={'모임 추가'} />
+            <img src={makeGroup} alt='' />
             <p>모임 추가</p>
           </div>
         </CS.Link>
         <CS.Link to={'/my-game'}>
           <div>
-            <img src={myGame} alt={'나의 경기'} />
+            <img src={myGame} alt='' />
             <p>나의 경기</p>
           </div>
         </CS.Link>
         <CS.Link to={'/my-last-game'}>
           <div>
-            <img src={lastGame} alt={'지난 경기'} />
+            <img src={lastGame} alt='' />
             <p>지난 경기</p>
           </div>
         </CS.Link>
         <CS.Link to={''}>
           <div onClick={openModal}>
-            <img src={friends} alt={'친구'} />
+            <img src={friends} alt='' />
             <p>친구</p>
           </div>
         </CS.Link>
