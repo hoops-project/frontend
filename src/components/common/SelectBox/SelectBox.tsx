@@ -36,6 +36,7 @@ export default function SelectBox({
       <FormControl sx={{ m: 1, width: width }} size={size} fullWidth>
         <InputLabel style={{ fontSize: `${fontSize}rem` }}>{name}</InputLabel>
         <Select
+          aria-labelledby={name}
           defaultValue={name}
           style={{
             fontSize: `${fontSize}rem`,
@@ -48,6 +49,7 @@ export default function SelectBox({
         >
           {options.map((option) => (
             <MenuItem
+              aria-label={option.VALUE}
               key={option.NAME}
               style={{ fontSize: `${fontSize}rem` }}
               value={option.VALUE}

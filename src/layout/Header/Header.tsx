@@ -14,17 +14,17 @@ export default function Header() {
       <S.Container>
         <h1>
           <CS.Link to={'/'}>
-            <S.Logo src={logo} alt='훕스 로고' />
+            <S.Logo src={logo} alt='훕스 로고' aria-label={'메인 로고'} />
           </CS.Link>
         </h1>
         <S.SearchGroup>
           <SearchInput />
           {globalLoginState ? (
-            <CS.Link to={'/my-page'}>
+            <CS.Link to={'/my-page'} aria-label={'마이페이지'}>
               <img src={myPage} alt='마이 페이지' />
             </CS.Link>
           ) : (
-            <CS.Link to={'/sign-in'}>
+            <CS.Link to={'/sign-in'} aria-label={'로그인'}>
               <PiSignInLight />
             </CS.Link>
           )}
