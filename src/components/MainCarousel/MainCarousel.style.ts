@@ -5,7 +5,7 @@ export const S = {
     width: 100%;
     margin-top: 5rem;
   `,
-  Item: styled.div`
+  Picture: styled.picture`
     display: flex;
     align-items: center;
     justify-content: center;
