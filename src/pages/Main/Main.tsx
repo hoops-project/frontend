@@ -16,6 +16,7 @@ import MatchItem from '../../components/MatchItem/MatchItem.tsx'
 import { Match } from '../../types/match.ts'
 import dayjs from 'dayjs'
 import { useAuthStore } from '../../store/store.ts'
+import { SEO } from '../../components/SEO/index.tsx'
 
 export default function Main() {
   const selected = useSelectBox()
@@ -53,53 +54,54 @@ export default function Main() {
 
   return (
     <CS.DefaultContainer>
-      <S.Wrapper>
-        <S.CenterWrapper>
-          {isAdmin ? (
-            <Link className='admin' to='/admin/report'>
-              <BasicButton
-                children={'신고 목록'}
-                type={'button'}
-                $bgColor={theme.colors.red}
-                $fontcolor={theme.colors.white}
-              />
-            </Link>
-          ) : (
-            <MainNav />
-          )}
-        </S.CenterWrapper>
-        <MainCarousel />
-        <Calender />
-        <MainSelectList selected={selected} />
-        {data?.pages.map((page, index) => (
-          <div key={index}>
-            {page?.content?.length > 0 ? (
-              <>
-                {page.content.map((content: Match) => {
-                  const isHide = selected.showOver === 'HIDE'
-                  const shouldRender = dayjs(content.startDateTime).isBefore(
-                    dayjs()
-                  )
-                  return (
-                    <div key={content.gameId}>
-                      {isHide ? (
-                        !shouldRender && <MatchItem match={content} />
-                      ) : (
-                        <MatchItem match={content} />
-                      )}
-                    </div>
-                  )
-                })}
-              </>
+      <SEO title="메인" description="메인 페이지입니다." />
+        <S.Wrapper>
+          <S.CenterWrapper>
+            {isAdmin ? (
+              <Link className='admin' to='/admin/report'>
+                <BasicButton
+                  children={'신고 목록'}
+                  type={'button'}
+                  $bgColor={theme.colors.red}
+                  $fontcolor={theme.colors.white}
+                />
+              </Link>
             ) : (
-              <S.NoResult>
-                <p>결과가 없습니다.</p>
-              </S.NoResult>
+              <MainNav />
             )}
-          </div>
-        ))}
-      </S.Wrapper>
-      <div ref={loader} />
+          </S.CenterWrapper>
+          <MainCarousel />
+          <Calender />
+          <MainSelectList selected={selected} />
+          {data?.pages.map((page, index) => (
+            <div key={index}>
+              {page?.content?.length > 0 ? (
+                <>
+                  {page.content.map((content: Match) => {
+                    const isHide = selected.showOver === 'HIDE'
+                    const shouldRender = dayjs(content.startDateTime).isBefore(
+                      dayjs()
+                    )
+                    return (
+                      <div key={content.gameId}>
+                        {isHide ? (
+                          !shouldRender && <MatchItem match={content} />
+                        ) : (
+                          <MatchItem match={content} />
+                        )}
+                      </div>
+                    )
+                  })}
+                </>
+              ) : (
+                <S.NoResult>
+                  <p>결과가 없습니다.</p>
+                </S.NoResult>
+              )}
+            </div>
+          ))}
+        </S.Wrapper>
+        <div ref={loader} />
     </CS.DefaultContainer>
   )
 }

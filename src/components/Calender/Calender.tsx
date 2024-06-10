@@ -65,7 +65,6 @@ export default function Calender() {
               $selected={selected === index}
               $dateColor={getColorByDayOfWeek(getDayName(date))}
             >
-              {/** TODO: 클릭할때 마다 해당 요일에 해당하는 경기 불러오기 */}
               <p>{date.getDate()}</p>
               <p>{getDayName(date)}</p>
             </S.Date>
@@ -80,7 +79,6 @@ export default function Calender() {
               $selected={selected === index + 7}
               $dateColor={getColorByDayOfWeek(getDayName(date))}
             >
-              {/** TODO: 클릭할때 마다 해당 요일에 해당하는 경기 불러오기 */}
               <p>{date.getDate()}</p>
               <p>{getDayName(date)}</p>
             </S.Date>

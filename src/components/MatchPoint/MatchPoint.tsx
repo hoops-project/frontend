@@ -5,7 +5,6 @@ import maxPlayerIcon from '../../assets/ic_info_max_player_cnt.svg'
 import girl from '../../assets/girl.svg'
 import { S } from './MatchPoint.style.ts'
 
-// TODO: 임시 데이터 타입 추후 수정 필요
 interface MatchPointProps {
   playType: string | null
   gender: string | null

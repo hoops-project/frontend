@@ -13,7 +13,7 @@ export default function MatchItem({ match }: MatchData) {
   const isOver: boolean = dayjs(match.startDateTime).isBefore(dayjs())
 
   return (
-    <CS.Link to={`/detail/${match.gameId}`}>
+    <CS.Link to={`/detail/${match.gameId}`} aria-label={match.title}>
       <S.container>
         <S.Info>
           <div>
@@ -30,7 +30,7 @@ export default function MatchItem({ match }: MatchData) {
         </S.Info>
         <BasicButton
           type={'button'}
-          $bgColor={isOver ? theme.colors.gray_300 : theme.colors.blue}
+          $bgColor={isOver ? theme.colors.gray_500 : theme.colors.blue}
           $width={'13rem'}
           $fontcolor={theme.colors.white}
         >

@@ -16,6 +16,7 @@ import {
 import dayjs from 'dayjs'
 import 'dayjs/locale/ko'
 import { useUserInfoQuery } from '../../hooks/query/useUserInfoQuery.ts'
+import { SEO } from '../../components/SEO/index.tsx'
 
 dayjs.locale('ko')
 
@@ -51,15 +52,17 @@ export default function Detail() {
     femaleUser: countFemaleUsers,
   }
 
-  // TODO: 각각의 영역마다 컴포넌트로 나눠서 관리 할 수 있을듯
   return (
     <CS.DefaultContainer>
+      <SEO
+        title='경기 상세 페이지'
+        description='경기의 상세 정보를 보고, 경기에 참가할 수 있어요.'
+      />
       <S.Wrapper>
         <DetailTopTitle title={gameDetail?.placeName} />
         <S.InfoWrapper>
           <div>
             <MatchPoint matchPoint={matchPoints} />
-            {/* TODO: 매치 데이터 시각화 조건부 렌더링 구현 */}
             {isUserParticipating(
               gameDetail?.participantUserList,
               userInfo?.userId ?? 0
