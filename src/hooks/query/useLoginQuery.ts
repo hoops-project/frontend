@@ -11,7 +11,7 @@ const memberLogin = async (data: SignInType): Promise<SignInResponseType> => {
   const { id, password } = data
 
   const res = await defaultAxios.post(`${END_POINT.AUTH.LOGIN}`, {
-    id,
+    loginId: id,
     password,
   })
 
