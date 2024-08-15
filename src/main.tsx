@@ -17,17 +17,15 @@ async function enableMocking() {
   }
 }
 
-enableMocking().then(() => {
-  ReactDOM.createRoot(document.getElementById('root')!).render(
-    <QueryClientProvider client={queryClient}>
-      <HelmetProvider>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </ThemeProvider>
-      </HelmetProvider>
-    </QueryClientProvider>
-  )
-})
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <QueryClientProvider client={queryClient}>
+    <HelmetProvider>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ThemeProvider>
+    </HelmetProvider>
+  </QueryClientProvider>
+)
