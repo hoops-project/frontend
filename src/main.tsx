@@ -9,13 +9,13 @@ import { ThemeProvider } from 'styled-components'
 import { theme } from './styles/theme'
 import { HelmetProvider } from 'react-helmet-async'
 
-async function enableMocking() {
-  if (import.meta.env.DEV) {
-    // MSW 설정을 비동기로 로드
-    const { worker } = await import('./mock/setupWorker')
-    return worker.start({ onUnhandledRequest: 'bypass' })
-  }
-}
+// async function enableMocking() {
+//   if (import.meta.env.DEV) {
+//     // MSW 설정을 비동기로 로드
+//     const { worker } = await import('./mock/setupWorker')
+//     return worker.start({ onUnhandledRequest: 'bypass' })
+//   }
+// }
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <QueryClientProvider client={queryClient}>
