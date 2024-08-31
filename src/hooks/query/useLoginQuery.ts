@@ -6,6 +6,7 @@ import { QUERY_KEYS } from '../../constants/queryKeys'
 import { END_POINT } from '../../constants/endPoint'
 import { useToast } from '../useToast'
 import { useAuthStore } from '../../store/store.ts'
+import { AxiosError } from 'axios'
 
 const memberLogin = async (data: SignInType): Promise<SignInResponseType> => {
   const { id, password } = data
@@ -64,8 +65,9 @@ export default function useLoginQuery() {
       toastSuccess('로그인에 성공하셨습니다 💪🏻')
     },
     onError: (error) => {
-      console.log(error)
-      toastError('로그인에 실패 🚨 아이디와 비밀번호를 확인해주세요.')
+      if (error instanceof AxiosError) {
+        toastError(`${error.response?.data?.errorMessage}`)
+      }
     },
   })
 

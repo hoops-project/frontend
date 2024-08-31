@@ -45,7 +45,7 @@ export const useSignUpQuery = () => {
 
   const signUp = async (signUpData: SignUpType & SignUpSelectInfo) => {
     const { data } = await defaultAxios.post(END_POINT.USER.SIGN_UP, {
-      id: signUpData.id,
+      loginId: signUpData.id,
       email: signUpData.email,
       password: signUpData.password,
       passwordCheck: signUpData.passwordConfirm,
@@ -62,7 +62,7 @@ export const useSignUpQuery = () => {
   const { mutate: idDuplicateMutation } = useMutation({
     mutationFn: checkId,
     onSuccess: (data) => {
-      if (data === true) {
+      if (data.result === true) {
         setIdPassed(true)
         toastSuccess('사용가능한 아이디 입니다.')
       } else {
@@ -78,7 +78,7 @@ export const useSignUpQuery = () => {
   const { mutate: emailDuplicateMutation } = useMutation({
     mutationFn: checkEmail,
     onSuccess: (data) => {
-      if (data === true) {
+      if (data.result === true) {
         setEmailPassed(true)
         toastSuccess('사용가능한 이메일 입니다.')
       } else {
@@ -94,7 +94,7 @@ export const useSignUpQuery = () => {
   const { mutate: nickNameDuplicateMutation } = useMutation({
     mutationFn: checkNickName,
     onSuccess: (data) => {
-      if (data === true) {
+      if (data.result === true) {
         setNicknamePassed(true)
         toastSuccess('사용가능한 닉네임 입니다.')
       } else {
